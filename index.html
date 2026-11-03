@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,137 +7,678 @@
 <title>EVORA — Signature Scent</title>
 <style>
 :root {
-  --site-primary: #30251f;
-  --site-on-primary: #fffaf4;
-  --site-secondary: #d8c3a6;
-  --site-on-secondary: #30251f;
-  --site-background: #f5f0e9;
-  --site-on-background: #30251f;
-  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-font-heading: Georgia, "Times New Roman", serif;
-  --site-heading-scale: 1;
-  --site-spacing-scale: 1;
-  --site-radius-scale: 1;
-  --site-decoration-opacity: 1;
-  color-scheme: light dark;
+  --site-primary:#34231d;
+  --site-on-primary:#fffaf3;
+  --site-secondary:#c9ad8d;
+  --site-background:#f8f5f0;
+  --site-on-background:#34231d;
 }
-* { box-sizing: border-box; }
-body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
-.app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); position: relative; overflow: hidden; padding: calc(34px * var(--site-spacing-scale)) 20px calc(30px * var(--site-spacing-scale)); }
-.ambient { position:absolute; pointer-events:none; opacity:var(--site-decoration-opacity); border-radius:50%; filter:blur(2px); }
-.ambient.one { width:300px;height:300px;top:-150px;right:-100px;background:var(--site-secondary);opacity:calc(var(--site-decoration-opacity) * .25); }
-.ambient.two { width:240px;height:240px;bottom:10%;left:-170px;border:1px solid var(--site-secondary); }
-main { width:min(100%, 460px); margin:0 auto; position:relative; z-index:1; }
-.brandmark { display:block;width:min(100%, 260px);height:auto;margin:0 auto 17px;border:0;border-radius:0; }
-.eyebrow { text-align:center; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:color-mix(in srgb, var(--site-on-background) 65%, transparent); }
-h1 { font-family:var(--site-font-heading); font-size:calc(39px * var(--site-heading-scale));font-weight:400;letter-spacing:5px;text-align:center;margin:8px 0 5px; }
-.tagline { text-align:center; font-size:10px;letter-spacing:3px;text-transform:uppercase;color:color-mix(in srgb, var(--site-on-background) 65%, transparent); }
-.intro { text-align:center;max-width:340px;margin:25px auto 27px;font-size:13px;line-height:1.8;color:color-mix(in srgb, var(--site-on-background) 82%, transparent); }
-.rule { height:1px;background:color-mix(in srgb, var(--site-primary) 18%, transparent);margin:0 0 23px; }
-.section-label { text-align:center;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin:0 0 13px;color:color-mix(in srgb, var(--site-on-background) 60%, transparent); }
-.links { display:grid;gap:11px; }
-.link { min-height:55px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 18px;text-decoration:none;border:1px solid color-mix(in srgb, var(--site-primary) 28%, transparent);border-radius:calc(3px * var(--site-radius-scale));color:var(--site-on-background);background:color-mix(in srgb, var(--site-background) 90%, white);transition:transform .2s,background .2s; }
-.link:hover { transform:translateY(-2px);background:color-mix(in srgb, var(--site-secondary) 25%, var(--site-background)); }
-.link.primary { background:var(--site-primary);color:var(--site-on-primary);border-color:var(--site-primary); }
-.link span:first-child { font-size:12px;letter-spacing:1.2px; }
-.arrow { font-size:17px;opacity:.75; }
-.note { margin:18px 0 0;text-align:center;font-size:10px;line-height:1.7;color:color-mix(in srgb, var(--site-on-background) 58%, transparent); }
-.footer { text-align:center;margin:38px 0 0;font-size:9px;letter-spacing:3px;color:color-mix(in srgb, var(--site-on-background) 55%, transparent); }
-.footer strong { display:block;font-family:var(--site-font-heading);font-size:15px;font-weight:400;letter-spacing:4px;margin-bottom:7px;color:var(--site-on-background); }
-@media (prefers-color-scheme: dark) {
- body { background:#171412; }
- .app { background-color:light-dark(var(--site-background), #171412); color:light-dark(var(--site-on-background), #f4ece2); }
- .brandmark { color:light-dark(var(--site-primary), #e7d5c1);border-color:color-mix(in srgb, currentColor 35%, transparent); }
- .link { color:light-dark(var(--site-on-background), #f4ece2);background:light-dark(#faf8f4,#211d1a);border-color:light-dark(#b6a28e,#5b4a3d); }
- .link.primary { background:light-dark(var(--site-primary),#d8c3a6);color:light-dark(var(--site-on-primary),#30251f); }
- .rule { background:color-mix(in srgb, currentColor 20%, transparent); }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#f8f5f0;
+  color:#34231d;
 }
-@media (min-width:600px) { .app { padding-top:55px; } }
-.app { padding:24px 16px 32px; }
-main { width:min(100%, 620px); }
-.hero { text-align:center; padding:10px 0 24px; }
-.hero h1 { font-size:30px; letter-spacing:7px; }
-.intro { margin:14px auto 0; }
-.section { margin:22px 0; }
-.section-head { display:flex; align-items:end; justify-content:space-between; gap:12px; margin-bottom:12px; }
-.section-head h2 { font:400 25px var(--site-font-heading); margin:0; }
-.section-head small { font-size:9px; letter-spacing:2px; text-transform:uppercase; opacity:.65; }
-.catalog { display:flex; gap:14px; max-height:none; overflow-x:auto; overflow-y:hidden; padding:2px 4px 14px 0; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:thin; }
-.product { flex:0 0 min(76%,245px); scroll-snap-align:start; background:color-mix(in srgb,var(--site-background) 82%,white); border:1px solid color-mix(in srgb,var(--site-primary) 17%,transparent); padding:15px; min-width:0; }
-.bottle { height:112px; display:grid; place-items:center; background:color-mix(in srgb,var(--site-secondary) 25%,var(--site-background)); margin-bottom:12px; font:italic 30px var(--site-font-heading); color:var(--site-primary); }
-.product h3 { font:400 17px var(--site-font-heading); margin:0 0 6px; }
-.product p { font-size:11px; line-height:1.6; opacity:.72; min-height:36px; margin:0 0 10px; }
-.product .price { font-size:12px; font-weight:650; margin-bottom:12px; }
-.product a,.action { display:inline-flex; align-items:center; justify-content:center; padding:10px 12px; background:var(--site-primary); color:var(--site-on-primary); text-decoration:none; border:0; font:inherit; font-size:10px; letter-spacing:1px; cursor:pointer; }
-.updates { border:1px solid color-mix(in srgb,var(--site-primary) 22%,transparent); padding:17px; background:color-mix(in srgb,var(--site-secondary) 15%,var(--site-background)); }
-.updates h2 { font:400 23px var(--site-font-heading); margin:0 0 8px; }
-.updates p { font-size:12px; line-height:1.75; white-space:pre-wrap; margin:0; }
-.footer { margin-top:28px; }
-.admin-entry { display:block; margin:15px auto 0; border:0; background:none; color:inherit; opacity:.45; font-size:10px; text-decoration:underline; cursor:pointer; }
-.modal { position:fixed; inset:0; z-index:5; display:none; align-items:center; justify-content:center; padding:18px; background:#171412bf; overflow:auto; }
-.modal.open { display:flex; }
-.panel { width:min(100%,560px); max-height:92vh; overflow:auto; background:var(--site-background); color:var(--site-on-background); padding:22px; box-shadow:0 18px 60px #0005; }
-.panel h2 { font:400 25px var(--site-font-heading); margin:0 0 15px; }
-.field { display:grid; gap:6px; margin:10px 0; }
-.field label { font-size:10px; letter-spacing:1px; text-transform:uppercase; }
-.field input,.field textarea { width:100%; padding:11px; border:1px solid #a99b8b; background:transparent; color:inherit; font:inherit; font-size:13px; }
-.field textarea { min-height:75px; resize:vertical; }
-.admin-list { display:grid; gap:8px; margin:15px 0; }
-.admin-row { display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid #a99b8b; padding:10px; font-size:12px; }
-.admin-row button,.secondary { border:1px solid #a99b8b; background:transparent; color:inherit; padding:8px 10px; cursor:pointer; font-size:11px; }
-.admin-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-.hint { font-size:11px; line-height:1.6; opacity:.65; }
-.product-photo { width:100%; aspect-ratio:1 / 1; height:auto; object-fit:contain; display:block; margin-bottom:12px; background:color-mix(in srgb,var(--site-secondary) 25%,var(--site-background)); }
-.update-photo { display:block; width:100%; max-height:280px; object-fit:cover; margin-top:14px; }
-.update-post { padding:14px 0; border-top:1px solid color-mix(in srgb,var(--site-primary) 18%,transparent); }
-.update-post:first-child { border-top:0; padding-top:2px; }
-.update-post img { display:block; width:100%; aspect-ratio:5 / 4; object-fit:cover; margin:0 0 12px; }
-.update-post h3 { font:400 18px var(--site-font-heading); margin:0 0 7px; }
-.update-post p { white-space:pre-wrap; }
-.field input[type=file] { padding:8px; font-size:11px; }
-@media(min-width:600px) { .product { flex-basis:220px; } }
+.app{
+  min-height:100vh;
+  padding:34px 22px 42px;
+  background:radial-gradient(ellipse at 50% 0%,#fff 0%,#f8f5f0 58%,#eee5da 100%);
+}
+main{width:min(100%,1080px);margin:auto}
+.hero{text-align:center;padding:22px 0 38px}
+.brandmark{
+  display:block;
+  width:min(100%,235px);
+  height:auto;
+  margin:0 auto 24px;
+}
+.eyebrow{
+  color:#9b8068;
+  font-size:10px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-family:Georgia,serif;
+  color:#34231d;
+  font-size:clamp(38px,6vw,58px);
+  font-weight:400;
+  letter-spacing:10px;
+  margin:13px 0 8px;
+}
+.tagline{
+  color:#9b8068;
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+.intro{
+  max-width:520px;
+  margin:22px auto 0;
+  color:#75665b;
+  font-size:14px;
+  line-height:1.9;
+}
+.section{margin:38px 0}
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+  padding-bottom:13px;
+  border-bottom:1px solid #e5d9cc;
+}
+.section-head h2,.updates h2{
+  color:#34231d;
+  font:400 clamp(24px,3vw,30px) Georgia,serif;
+  margin:0;
+}
+.section-head small{
+  color:#9b8068;
+  font-size:9px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+}
+.catalog{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:0 0 8px;
+}
+.product{
+  padding:16px;
+  background:#fffdfa;
+  border:1px solid #e8ded3;
+  border-radius:5px;
+  box-shadow:0 12px 30px #4933210d;
+  transition:transform .25s,box-shadow .25s;
+}
+.product:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 36px #49332118;
+}
+.bottle{
+  height:210px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#eee4d8,#faf7f2 58%,#e7d8c7);
+  color:#9a8068;
+  font:italic 25px Georgia,serif;
+  letter-spacing:5px;
+  margin-bottom:17px;
+}
+.bottle:before{
+  content:"";
+  position:absolute;
+  width:66px;
+  height:112px;
+  left:50%;
+  top:54%;
+  transform:translate(-50%,-50%);
+  border:1px solid #bda58c;
+  border-radius:9px 9px 13px 13px;
+  background:linear-gradient(90deg,#ffffffb8,#d8c3a880 48%,#ffffffa8);
+  box-shadow:0 12px 18px #57412b20;
+}
+.bottle:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:22px;
+  left:50%;
+  top:calc(54% - 67px);
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,#9b8068,#e6d7c7,#9b8068);
+  border-radius:3px 3px 0 0;
+}
+.product h3{
+  color:#34231d;
+  font:400 19px Georgia,serif;
+  margin:0 0 8px;
+}
+.product p{
+  color:#78695d;
+  font-size:12px;
+  line-height:1.7;
+  min-height:55px;
+  margin:0 0 10px;
+}
+.product .price{
+  color:#34231d;
+  font-size:13px;
+  font-weight:650;
+  margin-bottom:12px;
+}
+.product a,.action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#34231d;
+  color:#fffaf3;
+  border:0;
+  border-radius:2px;
+  padding:12px 17px;
+  text-decoration:none;
+  font:inherit;
+  font-size:10px;
+  letter-spacing:1.5px;
+  cursor:pointer;
+}
+.updates{
+  background:#efe7dc;
+  border:1px solid #e2d4c4;
+  border-radius:4px;
+  padding:24px;
+}
+.updates h2{margin-bottom:14px}
+.updates p{
+  color:#75665b;
+  font-size:13px;
+  line-height:1.75;
+  white-space:pre-wrap;
+}
+.update-post{
+  padding:18px 0;
+  border-top:1px solid #dfd1c2;
+}
+.update-post:first-child{border-top:0;padding-top:2px}
+.update-post img{
+  display:block;
+  width:100%;
+  max-height:420px;
+  aspect-ratio:5/4;
+  object-fit:cover;
+  margin-bottom:12px;
+  border-radius:3px;
+}
+.update-post h3{
+  color:#34231d;
+  font:400 21px Georgia,serif;
+  margin:0 0 7px;
+}
+.footer{
+  color:#9b8068;
+  text-align:center;
+  letter-spacing:3px;
+  margin-top:48px;
+  font-size:9px;
+}
+.footer strong{
+  display:block;
+  color:#34231d;
+  font:400 20px Georgia,serif;
+  letter-spacing:6px;
+  margin-bottom:7px;
+}
+.admin-entry{
+  display:block;
+  margin:15px auto 0;
+  border:0;
+  background:none;
+  color:inherit;
+  opacity:.35;
+  font-size:10px;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:5;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:#171412bf;
+  overflow:auto;
+}
+.modal.open{display:flex}
+.panel{
+  width:min(100%,560px);
+  max-height:92vh;
+  overflow:auto;
+  background:#fffdfa;
+  color:#34231d;
+  border:1px solid #e8ded3;
+  padding:22px;
+  box-shadow:0 18px 60px #0005;
+}
+.panel h2{
+  font:400 25px Georgia,serif;
+  margin:0 0 15px;
+}
+.field{display:grid;gap:6px;margin:10px 0}
+.field label{
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.field input,.field textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #a99b8b;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  font-size:13px;
+}
+.field textarea{min-height:75px;resize:vertical}
+.field input[type=file]{padding:8px;font-size:11px}
+.admin-list{display:grid;gap:8px;margin:15px 0}
+.admin-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid #a99b8b;
+  padding:10px;
+  font-size:12px;
+}
+.admin-row button,.secondary{
+  border:1px solid #a99b8b;
+  background:transparent;
+  color:inherit;
+  padding:8px 10px;
+  cursor:pointer;
+  font-size:11px;
+}
+.admin-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.hint{font-size:11px;line-height:1.6;opacity:.65}
+.product-photo{
+  width:100%;
+  aspect-ratio:1/1;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  margin-bottom:12px;
+  background:#eee4d8;
+}
+@media(max-width:600px){
+  .app{padding:22px 16px 32px}
+  .hero{padding-top:12px}
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+  .catalog{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+  .product{padding:10px}
+  .bottle{height:155px}
+  .bottle:before{transform:translate(-50%,-50%) scale(.82)}
+  .bottle:after{transform:translateX(-50%) scale(.82)}
+  .product h3{font-size:16px}
+}
 </style>
 </head>
 <body>
-<div class="app" data-sites-preview-theme="custom">
-  <div class="ambient one"></div><div class="ambient two"></div>
-  <main>
-    <header class="hero">
-    <img class="brandmark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAACWAQAAAABlC7W9AAADoElEQVR42u2ZvY7cNhSFP3LktYAMMCyCwEWQYToXKVJuqTJlHsFF3sN0l3ILP8CWKfMAKWbzBC4MJJ2Vbjtzkk2g2ZFEF6J+KJGbxSJIpVvMCBIPeX8OD69mhONpdiN5qq3IFbkiV+SKXJErckWuyBX53yMPHtkIIYQQCjiKrnXNAY79XXgjhBD5gHy1XDPHjHNeAfw5PjwZf+FsiFTjGJMDzjB8dnadiFMDmV9OAe00JgCs/26rpbeSEug6+7q7VY5PK/9dz9YsgC5BLXocZ0dkHV7MqmKHWdJWtSHSAJhqmNKGLo6RTzPknHNuupgBEM455xO0d84NEVvXIwVhLFV346LPuLcX/UXZzRzGqSd+5rMqZw/yVrWP4PKhK/JslAPK7OG9YWJr5jPaJKxcIjNMj0+a85mQy71n1IPINpqhx+3zolqOFZS4aREjVnNde6QLidv+C23xQiEBIYSQQcZTqfFMDqouhxDqBLzPjJW5i+Wk7mkb8TLOjGxC3FRmPA2yrupyyh5QLTZRmtu+4rmM7gA3VZ7QVRFqtQxFM49M1ie9T78SlBOkHoh7iNK2GJ3SXfIzZlQ43OxiSB34YpdqIkMdmOz5PoktRUdcOU/Eh3hlcvjWF8ckdoeN1yRDjDte1xGkSRBe8pWnrfByNUcWd3Haiqef2ea2JzzkLoLUJAhfDLT1ciUX2U94oeuneqv6ozgHyWGJzOO09bExUca5DmXhEW1nUjwK3aBDQhHuVO7DrkJ22t8po7GxE8pPoZwA2M3OhHaZIZWq+OChHctTVLHc6lBeRipUI+F1PeuHAExKp4s67BtkiisLMdTtGI5qZ/3QVOY38x5MuZ628ZOYr4NedLNoJwdaSDZu7GqmdgnwZeePHtzvWoEMEHPI3fZxPF7+frt97BZY3zpW5Ir8X5E/uvyo7LsbTaNPCpc3qq5PuT2aP3R5fSzepJDOtlbYisuSv386We5t83uLqKq/rjblz/xm9sk18yaX1DyDf76RcM7vtw4J2SHjkrzQ6TjvZy9udxcYQL2AX3iXjlNcQaM/88t3C2wOjcZyMl8AvybXfA+bUnayuvE95ytRAs/NBvrGJoJUgO+Y/Pkh25eyuy/NrG8OM3TRq/22e4/cVmjA3oLw3Vu8Ki83PzSKAmjeAu67Z+9RwOn7k8Z8XtyETfTEdm5X7T66xrl6f3au3bX78/nsPtrXdv/B2ddmMvYg1n/3VuSKXJErckUu7BM59jtOc9t6LAAAAABJRU5ErkJggg==" alt="EVORA — Scent of Confidence">
-    <div class="eyebrow">The art of personal scent</div><h1>EVORA</h1><div class="tagline">Scent of Confidence</div>
-    <p class="intro">Temukan aroma yang mencerminkan karakter dan cerita unikmu.</p></header>
-    <section class="section" id="katalog"><div class="section-head"><h2>Katalog Parfum</h2><small>Discover your scent</small></div><div class="catalog" id="catalogList" aria-live="polite"></div></section>
-    <section class="section updates" id="informasi"><h2>Info & Update</h2><div id="updatePosts"><p>Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</p></div></section>
-    <div class="footer"><strong>EVORA</strong>SIGNATURE SCENT · EST. 2026</div><button class="admin-entry" id="adminOpen">Admin</button>
-  </main>
+<div class="app">
+<main>
+<header class="hero">
+  <img class="brandmark"
+  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAACWAQAAAABlC7W9AAADoElEQVR42u2ZvY7cNhSFP3LktYAMMCyCwEWQYToXKVJuqTJlHsFF3sN0l3ILP8CWKfMAKWbzBC4MJJ2Vbjtzkk2g2ZFEF6J+KJGbxSJIpVvMCBIPeX8OD69mhONpdiN5qq3IFbkiV+SKXJErckWuyBX53yMPHtkIIYQQCjiKrnXNAY79XXgjhBD5gHy1XDPHjHNeAfw5PjwZf+FsiFTjGJMDzjB8dnadiFMDmV9OAe00JgCs/26rpbeSEug6+7q7VY5PK/9dz9YsgC5BLXocZ0dkHV7MqmKHWdJWtSHSAJhqmNKGLo6RTzPknHNuupgBEM455xO0d84NEVvXIwVhLFV346LPuLcX/UXZzRzGqSd+5rMqZw/yVrWP4PKhK/JslAPK7OG9YWJr5jPaJKxcIjNMj0+a85mQy71n1IPINpqhx+3zolqOFZS4aREjVnNde6QLidv+C23xQiEBIYSQQcZTqfFMDqouhxDqBLzPjJW5i+Wk7mkb8TLOjGxC3FRmPA2yrupyyh5QLTZRmtu+4rmM7gA3VZ7QVRFqtQxFM49M1ie9T78SlBOkHoh7iNK2GJ3SXfIzZlQ43OxiSB34YpdqIkMdmOz5PoktRUdcOU/Eh3hlcvjWF8ckdoeN1yRDjDte1xGkSRBe8pWnrfByNUcWd3Haiqef2ea2JzzkLoLUJAhfDLT1ciUX2U94oeuneqv6ozgHyWGJzOO09bExUca5DmXhEW1nUjwK3aBDQhHuVO7DrkJ22t8po7GxE8pPoZwA2M3OhHaZIZWq+OChHctTVLHc6lBeRipUI+F1PeuHAExKp4s67BtkiisLMdTtGI5qZ/3QVOY38x5MuZ628ZOYr4NedLNoJwdaSDZu7GqmdgnwZeePHtzvWoEMEHPI3fZxPF7+frt97BZY3zpW5Ir8X5E/uvyo7LsbTaNPCpc3qq5PuT2aP3R5fSzepJDOtlbYisuSv386We5t83uLqKq/rjblz/xm9sk18yaX1DyDf76RcM7vtw4J2SHjkrzQ6TjvZy9udxcYQL2AX3iXjlNcQaM/88t3C2wOjcZyMl8AvybXfA+bUnayuvE95ytRAs/NBvrGJoJUgO+Y/Pkh25eyuy/NrG8OM3TRq/22e4/cVmjA3oLw3Vu8Ki83PzSKAmjeAu67Z+9RwOn7k8Z8XtyETfTEdm5X7T66xrl6f3au3bX78/nsPtrXdv/B2ddmMvYg1n/3VuSKXJErckUu7BM59jtOc9t6LAAAAABJRU5ErkJggg=="
+  alt="EVORA — Scent of Confidence">
+  <div class="eyebrow">The art of personal scent</div>
+  <h1>EVORA</h1>
+  <div class="tagline">Scent of Confidence</div>
+  <p class="intro">Temukan aroma yang mencerminkan karakter dan cerita unikmu.</p>
+</header>
+
+<section class="section" id="katalog">
+  <div class="section-head">
+    <h2>Katalog Parfum</h2>
+    <small>Discover your scent</small>
+  </div>
+  <div class="catalog" id="catalogList" aria-live="polite"></div>
+</section>
+
+<section class="section updates" id="informasi">
+  <h2>Info & Update</h2>
+  <div id="updatePosts">
+    <p>Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <strong>EVORA</strong>
+  SIGNATURE SCENT · EST. 2026
 </div>
-<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Login admin"><div class="panel"><h2>Admin EVORA</h2><p class="hint">Masukkan password untuk mengelola katalog dan informasi.</p><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Password admin"></div><p class="hint" id="loginError" role="alert"></p><div class="admin-actions"><button class="action" id="loginButton">Masuk</button><button class="secondary" data-close="loginModal">Batal</button></div></div></div>
-<div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-label="Dashboard admin"><div class="panel"><h2>Dashboard Admin</h2><p class="hint">Perubahan tersimpan di browser perangkat ini. Atur produk dan pengumuman halaman utama.</p>
-  <div class="field"><label for="productName">Nama parfum</label><input id="productName" placeholder="Contoh: Mandalika Holly Sweet"></div><div class="field"><label for="productPrice">Harga</label><input id="productPrice" placeholder="Contoh: Rp149.000"></div><div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" placeholder="Karakter aroma dan kesan parfum"></textarea></div><div class="field"><label for="productUrl">Link pembelian (opsional)</label><input id="productUrl" placeholder="https://..."></div><div class="field"><label for="productImage">Foto produk</label><input id="productImage" type="file" accept="image/*"><span class="hint">Pilih gambar parfum dari perangkat.</span></div>
-  <div class="admin-actions"><button class="action" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div><div class="admin-list" id="adminProductList"></div>
-  <h2 style="margin-top:24px">Buat postingan info</h2><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" placeholder="Contoh: New Arrival — Koleksi Terbaru"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" placeholder="Tulis deskripsi, promo, atau pengumuman..."></textarea></div><div class="field"><label for="updateImage">Foto postingan</label><input id="updateImage" type="file" accept="image/*"><span class="hint">Tambahkan foto untuk postingan ini.</span></div><div class="admin-actions"><button class="action" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div><div class="admin-list" id="adminUpdateList"></div><div class="admin-actions"><button class="secondary" id="adminLogout">Keluar</button></div>
+<button class="admin-entry" id="adminOpen">Admin</button>
+</main>
+</div>
+
+<div class="modal" id="loginModal" role="dialog" aria-modal="true">
+<div class="panel">
+  <h2>Admin EVORA</h2>
+  <p class="hint">Masukkan password untuk mengelola katalog dan informasi.</p>
+  <div class="field">
+    <label for="adminPassword">Password</label>
+    <input id="adminPassword" type="password" placeholder="Password admin">
+  </div>
+  <p class="hint" id="loginError"></p>
+  <div class="admin-actions">
+    <button class="action" id="loginButton">Masuk</button>
+    <button class="secondary" data-close="loginModal">Batal</button>
+  </div>
+</div>
+</div>
+
+<div class="modal" id="adminModal" role="dialog" aria-modal="true">
+<div class="panel">
+  <h2>Dashboard Admin</h2>
+  <p class="hint">Perubahan tersimpan di browser perangkat ini. Atur produk dan pengumuman halaman utama.</p>
+
+  <div class="field">
+    <label for="productName">Nama parfum</label>
+    <input id="productName" placeholder="Contoh: Mandalika Holly Sweet">
+  </div>
+  <div class="field">
+    <label for="productPrice">Harga</label>
+    <input id="productPrice" placeholder="Contoh: Rp149.000">
+  </div>
+  <div class="field">
+    <label for="productDesc">Deskripsi singkat</label>
+    <textarea id="productDesc" placeholder="Karakter aroma dan kesan parfum"></textarea>
+  </div>
+  <div class="field">
+    <label for="productUrl">Link pembelian (opsional)</label>
+    <input id="productUrl" placeholder="https://...">
+  </div>
+  <div class="field">
+    <label for="productImage">Foto produk</label>
+    <input id="productImage" type="file" accept="image/*">
+    <span class="hint">Pilih gambar parfum dari perangkat.</span>
+  </div>
+  <div class="admin-actions">
+    <button class="action" id="saveProduct">Tambah produk</button>
+    <button class="secondary" id="cancelEdit" hidden>Batal edit</button>
+  </div>
+  <div class="admin-list" id="adminProductList"></div>
+
+  <h2 style="margin-top:24px">Buat postingan info</h2>
+  <div class="field">
+    <label for="updateTitle">Judul postingan</label>
+    <input id="updateTitle" placeholder="Contoh: New Arrival — Koleksi Terbaru">
+  </div>
+  <div class="field">
+    <label for="updateEditor">Deskripsi / informasi</label>
+    <textarea id="updateEditor" placeholder="Tulis deskripsi, promo, atau pengumuman..."></textarea>
+  </div>
+  <div class="field">
+    <label for="updateImage">Foto postingan</label>
+    <input id="updateImage" type="file" accept="image/*">
+    <span class="hint">Tambahkan foto untuk postingan ini.</span>
+  </div>
+  <div class="admin-actions">
+    <button class="action" id="saveUpdate">Posting info</button>
+    <button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button>
+  </div>
+  <div class="admin-list" id="adminUpdateList"></div>
+  <div class="admin-actions">
+    <button class="secondary" id="adminLogout">Keluar</button>
+  </div>
   <p class="hint">Password demo awal: <b>EVORA2026</b>. Login preview ini hanya pengunci tampilan, bukan sistem keamanan untuk data rahasia.</p>
-</div></div>
+</div>
+</div>
+
 <script>
 (() => {
-  const KEY='evora_catalog_v1', UPDATE='evora_update_v1', UPDATE_IMAGE='evora_update_image_v1', POSTS='evora_update_posts_v1', PASSWORD='EVORA2026';
-  const defaults=[{name:'Mandalika Holly Sweet',price:'',desc:'Fruity, sweet, floral, vanilla, warm dan feminin.',url:''},{name:'Koleksi EVORA',price:'',desc:'Temukan aroma signature yang paling menggambarkan karaktermu.',url:''}];
-  let products=JSON.parse(localStorage.getItem(KEY)||'null')||defaults, editing=-1, editingPost=-1;
-  let posts=JSON.parse(localStorage.getItem(POSTS)||'null');if(!posts){const oldText=localStorage.getItem(UPDATE)||'';const oldImage=localStorage.getItem(UPDATE_IMAGE)||'';posts=oldText?[{title:'Info & Update',description:oldText,image:oldImage}]:[];}
+  const KEY='evora_catalog_v1';
+  const POSTS='evora_update_posts_v1';
+  const PASSWORD='EVORA2026';
+
+  const defaults=[
+    {
+      name:'Mandalika Holly Sweet',
+      price:'',
+      desc:'Fruity, sweet, floral, vanilla, warm dan feminin.',
+      url:''
+    },
+    {
+      name:'Koleksi EVORA',
+      price:'',
+      desc:'Temukan aroma signature yang paling menggambarkan karaktermu.',
+      url:''
+    }
+  ];
+
+  let products=JSON.parse(localStorage.getItem(KEY)||'null')||defaults;
+  let editing=-1;
+  let editingPost=-1;
+  let posts=JSON.parse(localStorage.getItem(POSTS)||'null');
+
+  if(!posts){
+    posts=[];
+    const oldText=localStorage.getItem('evora_update_v1')||'';
+    const oldImage=localStorage.getItem('evora_update_image_v1')||'';
+    if(oldText)posts=[{title:'Info & Update',description:oldText,image:oldImage}];
+  }
+
   const $=id=>document.getElementById(id);
-  const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  function render(){ $('catalogList').innerHTML=products.length?products.map(p=>`<article class="product">${p.image?`<img class="product-photo" src="${p.image}" alt="${safe(p.name)}">`:'<div class="bottle">EVORA</div>'}<h3>${safe(p.name)}</h3><p>${safe(p.desc)}</p><div class="price">${safe(p.price||'Hubungi kami untuk harga')}</div>${p.url?`<a href="${safe(p.url)}" target="_blank" rel="noopener">BELI SEKARANG ↗</a>`:''}</article>`).join(''):'<p class="hint">Katalog sedang diperbarui. Silakan cek kembali.</p>'; $('adminProductList').innerHTML=products.map((p,i)=>`<div class="admin-row"><span>${safe(p.name)}</span><span><button data-edit="${i}">Edit</button> <button data-delete="${i}">Hapus</button></span></div>`).join('');$('updatePosts').innerHTML=posts.length?posts.map(p=>`<article class="update-post">${p.image?`<img src="${p.image}" alt="${safe(p.title)}">`:''}<h3>${safe(p.title||'Info EVORA')}</h3><p>${safe(p.description)}</p></article>`).join(''):'<p>Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</p>';$('adminUpdateList').innerHTML=posts.map((p,i)=>`<div class="admin-row"><span>${safe(p.title||'Info EVORA')}</span><span><button data-post-edit="${i}">Edit</button> <button data-post-delete="${i}">Hapus</button></span></div>`).join('');localStorage.setItem(KEY,JSON.stringify(products));localStorage.setItem(POSTS,JSON.stringify(posts)); }
-  function clearForm(){editing=-1;['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');$('saveProduct').textContent='Tambah produk';$('cancelEdit').hidden=true;}
-  $('adminOpen').onclick=()=>{$('loginModal').classList.add('open');$('adminPassword').focus();};
-  $('loginButton').onclick=()=>{if($('adminPassword').value===PASSWORD){$('loginModal').classList.remove('open');$('adminModal').classList.add('open');$('loginError').textContent='';$('adminPassword').value='';render();}else{$('loginError').textContent='Password belum sesuai.';}};
-  $('adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginButton').click();});document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).classList.remove('open'));
-  const readImage=file=>new Promise((resolve,reject)=>{if(!file){resolve('');return;}const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});
-  $('saveProduct').onclick=async()=>{const name=$('productName').value.trim();if(!name){$('productName').focus();return;}const old=editing>=0?products[editing]:{};const image=await readImage($('productImage').files[0]);const p={name,price:$('productPrice').value.trim(),desc:$('productDesc').value.trim(),url:$('productUrl').value.trim(),image:image||old.image||''};if(editing<0)products.push(p);else products[editing]=p;localStorage.setItem(KEY,JSON.stringify(products));clearForm();render();};
-  $('cancelEdit').onclick=clearForm;$('adminProductList').onclick=e=>{const edit=e.target.dataset.edit,del=e.target.dataset.delete;if(edit!==undefined){editing=Number(edit);const p=products[editing];$('productName').value=p.name;$('productPrice').value=p.price;$('productDesc').value=p.desc;$('productUrl').value=p.url;$('saveProduct').textContent='Simpan perubahan';$('cancelEdit').hidden=false;}if(del!==undefined&&confirm('Hapus produk ini?')){products.splice(Number(del),1);localStorage.setItem(KEY,JSON.stringify(products));clearForm();render();}};
-  function clearPostForm(){editingPost=-1;$('updateTitle').value='';$('updateEditor').value='';$('updateImage').value='';$('saveUpdate').textContent='Posting info';$('cancelUpdateEdit').hidden=true;}
-  $('saveUpdate').onclick=async()=>{const title=$('updateTitle').value.trim(),description=$('updateEditor').value.trim();if(!title&&!description){$('updateTitle').focus();return;}const old=editingPost>=0?posts[editingPost]:{};const image=await readImage($('updateImage').files[0]);const post={title:title||'Info EVORA',description,image:image||old.image||''};if(editingPost<0)posts.unshift(post);else posts[editingPost]=post;clearPostForm();render();};
-  $('cancelUpdateEdit').onclick=clearPostForm;$('adminUpdateList').onclick=e=>{const edit=e.target.dataset.postEdit,del=e.target.dataset.postDelete;if(edit!==undefined){editingPost=Number(edit);const p=posts[editingPost];$('updateTitle').value=p.title||'';$('updateEditor').value=p.description||'';$('saveUpdate').textContent='Simpan perubahan';$('cancelUpdateEdit').hidden=false;}if(del!==undefined&&confirm('Hapus postingan ini?')){posts.splice(Number(del),1);render();clearPostForm();}};
-  $('adminLogout').onclick=()=>{$('adminModal').classList.remove('open');clearForm();clearPostForm();};render();
+
+  const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
+
+  function render(){
+    $('catalogList').innerHTML=products.length
+      ?products.map(p=>`
+        <article class="product">
+          ${p.image
+            ?`<img class="product-photo" src="${p.image}" alt="${safe(p.name)}">`
+            :'<div class="bottle">EVORA</div>'}
+          <h3>${safe(p.name)}</h3>
+          <p>${safe(p.desc)}</p>
+          <div class="price">${safe(p.price||'Hubungi kami untuk harga')}</div>
+          ${p.url
+            ?`<a href="${safe(p.url)}" target="_blank" rel="noopener">BELI SEKARANG ↗</a>`
+            :''}
+        </article>
+      `).join('')
+      :'<p class="hint">Katalog sedang diperbarui. Silakan cek kembali.</p>';
+
+    $('adminProductList').innerHTML=products.map((p,i)=>`
+      <div class="admin-row">
+        <span>${safe(p.name)}</span>
+        <span>
+          <button data-edit="${i}">Edit</button>
+          <button data-delete="${i}">Hapus</button>
+        </span>
+      </div>
+    `).join('');
+
+    $('updatePosts').innerHTML=posts.length
+      ?posts.map(p=>`
+        <article class="update-post">
+          ${p.image?`<img src="${p.image}" alt="${safe(p.title)}">`:''}
+          <h3>${safe(p.title||'Info EVORA')}</h3>
+          <p>${safe(p.description)}</p>
+        </article>
+      `).join('')
+      :'<p>Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</p>';
+
+    $('adminUpdateList').innerHTML=posts.map((p,i)=>`
+      <div class="admin-row">
+        <span>${safe(p.title||'Info EVORA')}</span>
+        <span>
+          <button data-post-edit="${i}">Edit</button>
+          <button data-post-delete="${i}">Hapus</button>
+        </span>
+      </div>
+    `).join('');
+
+    localStorage.setItem(KEY,JSON.stringify(products));
+    localStorage.setItem(POSTS,JSON.stringify(posts));
+  }
+
+  function clearForm(){
+    editing=-1;
+    ['productName','productPrice','productDesc','productUrl','productImage']
+      .forEach(id=>$(id).value='');
+    $('saveProduct').textContent='Tambah produk';
+    $('cancelEdit').hidden=true;
+  }
+
+  $('adminOpen').onclick=()=>{
+    $('loginModal').classList.add('open');
+    $('adminPassword').focus();
+  };
+
+  $('loginButton').onclick=()=>{
+    if($('adminPassword').value===PASSWORD){
+      $('loginModal').classList.remove('open');
+      $('adminModal').classList.add('open');
+      $('loginError').textContent='';
+      $('adminPassword').value='';
+      render();
+    }else{
+      $('loginError').textContent='Password belum sesuai.';
+    }
+  };
+
+  $('adminPassword').addEventListener('keydown',e=>{
+    if(e.key==='Enter')$('loginButton').click();
+  });
+
+  document.querySelectorAll('[data-close]').forEach(b=>{
+    b.onclick=()=>$(b.dataset.close).classList.remove('open');
+  });
+
+  const readImage=file=>new Promise((resolve,reject)=>{
+    if(!file){resolve('');return;}
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+
+  $('saveProduct').onclick=async()=>{
+    const name=$('productName').value.trim();
+    if(!name){$('productName').focus();return;}
+
+    const old=editing>=0?products[editing]:{};
+    const image=await readImage($('productImage').files[0]);
+
+    const p={
+      name,
+      price:$('productPrice').value.trim(),
+      desc:$('productDesc').value.trim(),
+      url:$('productUrl').value.trim(),
+      image:image||old.image||''
+    };
+
+    if(editing<0)products.push(p);
+    else products[editing]=p;
+
+    localStorage.setItem(KEY,JSON.stringify(products));
+    clearForm();
+    render();
+  };
+
+  $('cancelEdit').onclick=clearForm;
+
+  $('adminProductList').onclick=e=>{
+    const edit=e.target.dataset.edit;
+    const del=e.target.dataset.delete;
+
+    if(edit!==undefined){
+      editing=Number(edit);
+      const p=products[editing];
+      $('productName').value=p.name;
+      $('productPrice').value=p.price;
+      $('productDesc').value=p.desc;
+      $('productUrl').value=p.url;
+      $('saveProduct').textContent='Simpan perubahan';
+      $('cancelEdit').hidden=false;
+    }
+
+    if(del!==undefined&&confirm('Hapus produk ini?')){
+      products.splice(Number(del),1);
+      localStorage.setItem(KEY,JSON.stringify(products));
+      clearForm();
+      render();
+    }
+  };
+
+  function clearPostForm(){
+    editingPost=-1;
+    $('updateTitle').value='';
+    $('updateEditor').value='';
+    $('updateImage').value='';
+    $('saveUpdate').textContent='Posting info';
+    $('cancelUpdateEdit').hidden=true;
+  }
+
+  $('saveUpdate').onclick=async()=>{
+    const title=$('updateTitle').value.trim();
+    const description=$('updateEditor').value.trim();
+
+    if(!title&&!description){
+      $('updateTitle').focus();
+      return;
+    }
+
+    const old=editingPost>=0?posts[editingPost]:{};
+    const image=await readImage($('updateImage').files[0]);
+
+    const post={
+      title:title||'Info EVORA',
+      description,
+      image:image||old.image||''
+    };
+
+    if(editingPost<0)posts.unshift(post);
+    else posts[editingPost]=post;
+
+    clearPostForm();
+    render();
+  };
+
+  $('cancelUpdateEdit').onclick=clearPostForm;
+
+  $('adminUpdateList').onclick=e=>{
+    const edit=e.target.dataset.postEdit;
+    const del=e.target.dataset.postDelete;
+
+    if(edit!==undefined){
+      editingPost=Number(edit);
+      const p=posts[editingPost];
+      $('updateTitle').value=p.title||'';
+      $('updateEditor').value=p.description||'';
+      $('saveUpdate').textContent='Simpan perubahan';
+      $('cancelUpdateEdit').hidden=false;
+    }
+
+    if(del!==undefined&&confirm('Hapus postingan ini?')){
+      posts.splice(Number(del),1);
+      render();
+      clearPostForm();
+    }
+  };
+
+  $('adminLogout').onclick=()=>{
+    $('adminModal').classList.remove('open');
+    clearForm();
+    clearPostForm();
+  };
+
+  render();
 })();
 </script>
 </body>
