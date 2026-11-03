@@ -132,7 +132,44 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--primary);color:var(--on-primary);padding:12px 20px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:all .35s var(--ease);z-index:50;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast.err{background:var(--danger)}
-@media(max-width:600px){.app{padding-top:18px}.admin-row .btns{flex-direction:column}}
+.social{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 18px}
+.social a{text-decoration:none;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--secondary);padding:10px 16px;border-radius:999px;transition:all .25s}
+.social a:hover{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.contactline{font-size:12px;color:var(--muted);letter-spacing:.5px;margin-bottom:16px;line-height:1.9}
+.panel{width:min(100%,760px)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+@media(min-width:600px){.cards{grid-template-columns:repeat(3,1fr)}}
+.stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+.stat small{display:block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+.stat b{display:block;font:400 30px var(--heading);margin-top:4px}
+.stat.hl{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.stat.hl small{color:#e6d7c7}
+.range{display:flex;gap:6px;margin:14px 0 0}
+.range button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:11px;letter-spacing:1px;cursor:pointer;color:var(--muted)}
+.range button.on{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:12px}
+.box h4{font:400 17px var(--heading);margin:0 0 10px}
+.chart{display:flex;align-items:stretch;gap:3px;height:170px}
+.col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
+.col .v{font-size:9px;color:var(--muted);height:12px}
+.col .bars{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:2px}
+.col .bars i{display:block;width:44%;max-width:16px;border-radius:2px 2px 0 0;background:var(--primary);min-height:2px}
+.col .bars i.k{background:var(--secondary)}
+.col .x{font-size:9px;color:var(--muted);height:14px;margin-top:4px;white-space:nowrap}
+.legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-top:8px}
+.legend span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;background:var(--primary)}
+.legend span.k:before{background:var(--secondary)}
+.bl{display:grid;gap:9px}
+.bl .r{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:13px}
+.bl .r .bar{grid-column:1/-1;height:6px;border-radius:3px;background:var(--bg);overflow:hidden}
+.bl .r .bar i{display:block;height:100%;background:var(--secondary);border-radius:3px}
+.bl .r b{font-weight:600}
+.two{display:grid;gap:0}
+@media(min-width:600px){.two{grid-template-columns:1fr 1fr;gap:12px}}
+.badge{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:6px;color:var(--muted)}
+.admin-row.off{opacity:.55}
+.admin-row .btns .ico{padding:8px 11px}
+@media(max-width:600px){.app{padding-top:18px}.admin-row{flex-wrap:wrap}.admin-row .btns{width:100%;justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -165,7 +202,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="feed" id="updatePosts"></div>
     </section>
 
-    <div class="footer"><strong>EVORA</strong>SIGNATURE SCENT · EST. 2026</div>
+    <div class="footer"><div class="social" id="social"></div><div class="contactline" id="contactLine"></div><strong>EVORA</strong>SIGNATURE SCENT · EST. 2026</div>
     <button class="admin-entry" id="adminOpen">Admin</button>
   </main>
 </div>
@@ -185,9 +222,10 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   <div class="panel">
     <h2>Dashboard Admin</h2>
     <p class="hint">Perubahan tersimpan ke database online dan langsung tampil di website.</p>
-    <div class="tabs" id="tabs"><button class="on" data-tab="tabProducts">Katalog</button><button data-tab="tabPosts">Info &amp; Update</button></div>
+    <div class="tabs" id="tabs"><button class="on" data-tab="tabStats">Statistik</button><button data-tab="tabProducts">Katalog</button><button data-tab="tabPosts">Info</button><button data-tab="tabSettings">Setelan</button></div>
+    <div id="tabStats"><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div>
 
-    <div id="tabProducts">
+    <div id="tabProducts" hidden>
       <h3 class="sub" id="productFormTitle">Tambah produk</h3>
       <div class="field"><label for="productName">Nama parfum</label><input id="productName" maxlength="120" placeholder="Contoh: Mandalika Holly Sweet"></div>
       <div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Contoh: Rp149.000"></div>
@@ -210,6 +248,20 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="admin-list" id="adminUpdateList"></div>
     </div>
 
+    <div id="tabSettings" hidden>
+      <h3 class="sub">Pengaturan website</h3>
+      <p class="hint">Link tampil sebagai tombol di bagian bawah website. Kosongkan jika tidak dipakai.</p>
+      <div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div>
+      <div class="field"><label for="sWa">Link WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812xxxxxxx"></div>
+      <div class="field"><label for="sIg">Link Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div>
+      <div class="field"><label for="sTh">Link Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div>
+      <div class="field"><label for="sTt">Link TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div>
+      <div class="field"><label for="sMp">Link Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div>
+      <div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div>
+      <div class="field"><label for="sPhone">Telepon / WhatsApp</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div>
+      <div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div>
+    </div>
+
     <div class="admin-actions" style="margin-top:22px;border-top:1px solid var(--line);padding-top:16px">
       <button class="secondary" data-close="adminModal">Tutup</button>
       <button class="secondary" id="adminLogout">Keluar</button>
@@ -226,11 +278,29 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   const ADMIN_UID='cae0cfb9-7bc3-42d9-aa5f-e51d65a928ae';
   const BUCKET='evora-images';
   const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-  let products=[],posts=[],editingId=null,editingPostId=null,busy=false;
+  let products=[],posts=[],settings={},editingId=null,editingPostId=null,busy=false,hasOrder=true,isAdmin=false,statDays=14;
   const $=id=>document.getElementById(id);
   const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const httpUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'';
   const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return '';}};
+
+  /* ---------- Pelacakan kunjungan & klik (anonim) ---------- */
+  const SID=(()=>{try{let s=localStorage.getItem('evora_sid');if(!s){s=crypto.randomUUID();localStorage.setItem('evora_sid',s);}return s;}catch(e){return crypto.randomUUID();}})();
+  function trafficSource(){
+    const q=new URLSearchParams(location.search);let r=(q.get('src')||q.get('utm_source')||'').toLowerCase();
+    if(!r){try{const u=new URL(document.referrer);if(u.host!==location.host)r=u.hostname.toLowerCase();}catch(e){}}
+    if(!r)return 'direct';
+    if(/instagram/.test(r))return 'instagram';if(/threads/.test(r))return 'threads';if(/tiktok/.test(r))return 'tiktok';
+    if(/whatsapp|wa\.me/.test(r))return 'whatsapp';if(/facebook|fb\./.test(r))return 'facebook';if(/google/.test(r))return 'google';
+    return r.slice(0,40);
+  }
+  const DEVICE=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'mobile':'desktop';
+  function track(type,label,productId){
+    if(isAdmin)return;
+    const row={type,label:String(label||'').slice(0,120),session_id:SID,source:trafficSource(),device:DEVICE};
+    if(productId)row.product_id=productId;
+    try{db.from('events').insert(row).then(()=>{},()=>{});}catch(e){}
+  }
 
   let toastTimer;
   function toast(msg,isErr){const t=$('toast');t.textContent=msg;t.className='toast show'+(isErr?' err':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.className='toast',3400);}
@@ -280,13 +350,14 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 
   /* ---------- Render ---------- */
   function renderCatalog(){
-    const el=$('catalogList');
-    if(!products.length){el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';$('dots').innerHTML='';return;}
-    el.innerHTML=products.map(p=>{
-      const url=httpUrl(p.purchase_url);
-      return `<article class="product">${p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>'}<h3>${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${safe(p.price||'Hubungi kami untuk harga')}</div>${url?`<a class="buy" href="${safe(url)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`:'<span class="buy off btn">Segera Tersedia</span>'}</article>`;
+    const el=$('catalogList'),shown=products.filter(p=>p.is_active!==false);
+    if(!shown.length){el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';$('dots').innerHTML='';return;}
+    el.innerHTML=shown.map(p=>{
+      const wa=httpUrl(settings.whatsapp_url);
+      const url=httpUrl(p.purchase_url)||(wa?wa+(wa.includes('?')?'&':'?')+'text='+encodeURIComponent('Halo EVORA, saya tertarik dengan '+p.name):'');
+      return `<article class="product">${p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>'}<h3>${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${safe(p.price||'Hubungi kami untuk harga')}</div>${url?`<a class="buy" href="${safe(url)}" data-pid="${safe(p.id)}" data-name="${safe(p.name)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`:'<span class="buy off btn">Segera Tersedia</span>'}</article>`;
     }).join('');
-    $('dots').innerHTML=products.length>1?products.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
+    $('dots').innerHTML=shown.length>1?shown.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
     updateDots();
   }
   function renderPosts(){
@@ -296,7 +367,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     observe();
   }
   function renderAdmin(){
-    $('adminProductList').innerHTML=products.length?products.map(p=>`<div class="admin-row">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.name)}</b><span>${safe(p.price||'-')}</span></div><div class="btns"><button data-edit="${p.id}">Edit</button><button class="del" data-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada produk.</p>';
+    $('adminProductList').innerHTML=products.length?products.map((p,i)=>`<div class="admin-row${p.is_active===false?' off':''}">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.name)}${p.is_active===false?'<span class="badge">Tersembunyi</span>':''}</b><span>${safe(p.price||'-')}</span></div><div class="btns">${hasOrder?`<button class="ico" data-up="${i}" ${i===0?'disabled':''} aria-label="Naik">↑</button><button class="ico" data-down="${i}" ${i===products.length-1?'disabled':''} aria-label="Turun">↓</button><button data-toggle="${p.id}">${p.is_active===false?'Tampilkan':'Sembunyikan'}</button>`:''}<button data-edit="${p.id}">Edit</button><button class="del" data-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada produk.</p>';
     $('adminUpdateList').innerHTML=posts.length?posts.map(p=>`<div class="admin-row">${p.image_url?`<img class="cover" src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.title||'Info EVORA')}</b><span>${fmtDate(p.created_at)}</span></div><div class="btns"><button data-post-edit="${p.id}">Edit</button><button class="del" data-post-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada postingan.</p>';
   }
   function showLoading(){
@@ -311,15 +382,25 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   async function loadPublic(showSkeleton){
     if(showSkeleton)showLoading();
     try{
-      const [p,q]=await Promise.all([
-        db.from('products').select('*').order('created_at',{ascending:false}),
-        db.from('posts').select('*').order('created_at',{ascending:false})
-      ]);
+      let pq=db.from('products').select('*');
+      pq=hasOrder?pq.order('sort_order',{ascending:true}).order('created_at',{ascending:false}):pq.order('created_at',{ascending:false});
+      let [p,q,s]=await Promise.all([pq,db.from('posts').select('*').order('created_at',{ascending:false}),db.from('settings').select('*').eq('id',1).maybeSingle()]);
+      if(p.error&&hasOrder){hasOrder=false;p=await db.from('products').select('*').order('created_at',{ascending:false});}
       if(p.error)throw p.error;if(q.error)throw q.error;
-      products=p.data||[];posts=q.data||[];
-      renderCatalog();renderPosts();renderAdmin();
+      products=p.data||[];posts=q.data||[];settings=(s&&!s.error&&s.data)||{};
+      renderSettingsPublic();renderCatalog();renderPosts();renderAdmin();
     }catch(err){console.error(err);showError();throw err;}
   }
+
+  function renderSettingsPublic(){
+    if(settings.tagline)document.querySelector('.tagline').textContent=settings.tagline;
+    const L=[['WhatsApp',settings.whatsapp_url],['Instagram',settings.instagram_url],['Threads',settings.threads_url],['TikTok',settings.tiktok_url],['Marketplace',settings.marketplace_url]].filter(l=>httpUrl(l[1]));
+    $('social').innerHTML=L.map(l=>`<a href="${safe(httpUrl(l[1]))}" data-social="${l[0]}" target="_blank" rel="noopener">${l[0]}</a>`).join('');
+    const c=[];if(settings.contact_email)c.push(safe(settings.contact_email));if(settings.contact_phone)c.push(safe(settings.contact_phone));
+    $('contactLine').innerHTML=c.join(' · ');
+  }
+  $('catalogList').addEventListener('click',e=>{const a=e.target.closest('a.buy');if(a)track('product_click',a.dataset.name,a.dataset.pid);});
+  $('social').addEventListener('click',e=>{const a=e.target.closest('a[data-social]');if(a)track('social_click',a.dataset.social);});
 
   /* ---------- Slider controls ---------- */
   const cat=$('catalogList');
@@ -339,7 +420,8 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   document.addEventListener('keydown',e=>{if(e.key==='Escape')['loginModal','adminModal'].forEach(close);});
   $('tabs').onclick=e=>{const t=e.target.dataset.tab;if(!t)return;
     document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-    ['tabProducts','tabPosts'].forEach(id=>$(id).hidden=id!==t);};
+    ['tabStats','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==t);
+    if(t==='tabStats')loadStats();if(t==='tabSettings')fillSettings();};
   async function guarded(btn,fn){
     if(busy)return;busy=true;const label=btn.textContent;btn.disabled=true;btn.textContent='Menyimpan…';
     try{await fn();}catch(err){report(err);}finally{busy=false;btn.disabled=false;btn.textContent=label;}
@@ -352,7 +434,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   async function showAdmin(){
     const {data:{user}}=await db.auth.getUser();
     if(!user||user.id!==ADMIN_UID){toast('Akun ini tidak memiliki akses admin EVORA.',true);await db.auth.signOut();return;}
-    close('loginModal');open('adminModal');$('loginError').textContent='';$('adminEmail').value='';$('adminPassword').value='';
+    isAdmin=true;close('loginModal');open('adminModal');loadStats();$('loginError').textContent='';$('adminEmail').value='';$('adminPassword').value='';
     renderAdmin();
   }
   $('adminOpen').onclick=()=>{open('loginModal');$('adminEmail').focus();};
@@ -377,6 +459,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     if(!old&&!file)throw new Error('Pilih foto produk terlebih dahulu.');
     const image=await uploadImage(file,'products');
     const row={name,price:$('productPrice').value.trim(),description:$('productDesc').value.trim(),purchase_url:link,image_url:image||(old&&old.image_url)||null};
+    if(!editingId&&hasOrder)row.sort_order=products.length?Math.max(...products.map(x=>x.sort_order||0))+1:0;
     const r=editingId?await db.from('products').update(row).eq('id',editingId):await db.from('products').insert(row);
     if(r.error){if(image)removeImage(image);throw r.error;}
     if(image&&old&&old.image_url)removeImage(old.image_url);
@@ -384,7 +467,12 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   });};
   $('cancelEdit').onclick=clearForm;
   $('adminProductList').onclick=async e=>{
-    const b=e.target.closest('button');if(!b)return;const edit=b.dataset.edit,del=b.dataset.delete;
+    const b=e.target.closest('button');if(!b||b.disabled)return;const edit=b.dataset.edit,del=b.dataset.delete;
+    if(b.dataset.toggle){try{const p=products.find(x=>x.id===b.dataset.toggle);const {error}=await db.from('products').update({is_active:p.is_active===false}).eq('id',p.id);if(error)throw error;toast(p.is_active===false?'Produk ditampilkan.':'Produk disembunyikan.');await loadPublic();}catch(err){report(err);}return;}
+    if(b.dataset.up!==undefined||b.dataset.down!==undefined){
+      const i=+(b.dataset.up!==undefined?b.dataset.up:b.dataset.down),j=b.dataset.up!==undefined?i-1:i+1;
+      const ids=products.map(x=>x.id);[ids[i],ids[j]]=[ids[j],ids[i]];
+      try{const res=await Promise.all(ids.map((id,n)=>db.from('products').update({sort_order:n}).eq('id',id)));const bad=res.find(r=>r.error);if(bad)throw bad.error;await loadPublic();}catch(err){report(err);}return;}
     if(edit){const p=products.find(x=>x.id===edit);if(!p)return;editingId=p.id;
       $('productName').value=p.name;$('productPrice').value=p.price||'';$('productDesc').value=p.description||'';$('productUrl').value=p.purchase_url||'';$('productImage').value='';
       if(p.image_url){$('productPreview').src=p.image_url;$('productPreview').hidden=false;}else $('productPreview').hidden=true;
@@ -412,13 +500,64 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       $('saveUpdate').textContent='Simpan perubahan';$('postFormTitle').textContent='Edit postingan';$('cancelUpdateEdit').hidden=false;$('updateTitle').scrollIntoView({behavior:'smooth',block:'center'});}
     if(del&&confirm('Hapus postingan ini?')){try{const p=posts.find(x=>x.id===del);const {error}=await db.from('posts').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearPostForm();toast('Postingan dihapus.');await loadPublic();}catch(err){report(err);}}
   };
-  $('adminLogout').onclick=async()=>{await db.auth.signOut();close('adminModal');clearForm();clearPostForm();toast('Anda sudah keluar.');};
+  $('adminLogout').onclick=async()=>{await db.auth.signOut();isAdmin=false;close('adminModal');clearForm();clearPostForm();toast('Anda sudah keluar.');};
+
+  /* ---------- Statistik ---------- */
+  const nf=n=>Number(n||0).toLocaleString('id-ID');
+  function barList(items,key,empty){
+    if(!items||!items.length)return `<p class="hint">${empty}</p>`;
+    const max=Math.max(...items.map(i=>+i[key]))||1;
+    return `<div class="bl">${items.map(i=>`<div class="r"><span>${safe(i.name)}</span><b>${nf(i[key])}</b><div class="bar"><i style="width:${(i[key]/max*100).toFixed(1)}%"></i></div></div>`).join('')}</div>`;
+  }
+  function renderStats(s){
+    const daily=s.daily||[],max=Math.max(1,...daily.map(d=>d.visits));
+    const conv=s.range_visits?(s.range_clicks/s.range_visits*100).toFixed(1):'0.0';
+    const lbl=d=>{const p=String(d).split('-');return p[2]+'/'+p[1];};
+    const every=Math.ceil(daily.length/7);
+    const top=(s.top_products||[]);const best=top[0];
+    $('statsBody').innerHTML=
+      `<div class="cards"><div class="stat hl"><small>Kunjungan hari ini</small><b>${nf(s.today_visits)}</b></div><div class="stat"><small>Pengunjung unik hari ini</small><b>${nf(s.today_unique)}</b></div><div class="stat"><small>Klik beli hari ini</small><b>${nf(s.today_clicks)}</b></div>
+      <div class="stat"><small>Kunjungan ${s.days} hari</small><b>${nf(s.range_visits)}</b></div><div class="stat"><small>Klik beli ${s.days} hari</small><b>${nf(s.range_clicks)}</b></div><div class="stat"><small>Rasio klik / kunjungan</small><b>${conv}%</b></div></div>
+      ${best?`<div class="box"><h4>Produk terlaris (paling banyak diklik)</h4><p style="margin:0;font-size:15px"><b>${safe(best.name)}</b> — ${nf(best.clicks)} klik dalam ${s.days} hari</p></div>`:''}
+      <div class="box"><h4>Tren ${s.days} hari terakhir</h4><div class="chart">${daily.map((d,i)=>`<div class="col" title="${lbl(d.day)}: ${d.visits} kunjungan, ${d.clicks} klik beli"><span class="v">${daily.length<=14&&d.visits?d.visits:''}</span><div class="bars"><i style="height:${d.visits/max*100}%"></i><i class="k" style="height:${d.clicks/max*100}%"></i></div><span class="x">${i%every===0?lbl(d.day):''}</span></div>`).join('')}</div><div class="legend"><span>Kunjungan</span><span class="k">Klik beli</span></div></div>
+      <div class="box"><h4>Klik per produk</h4>${barList(top,'clicks','Belum ada klik tombol Beli pada periode ini.')}</div>
+      <div class="two"><div class="box"><h4>Sumber pengunjung</h4>${barList(s.sources,'n','Belum ada data.')}</div><div class="box"><h4>Perangkat</h4>${barList(s.devices,'n','Belum ada data.')}</div></div>
+      <div class="box"><h4>Klik tombol sosial & kontak</h4>${barList(s.social,'n','Belum ada klik.')}</div>
+      <p class="hint" style="margin-top:12px">Hari dihitung dengan zona waktu WIB. Kunjungan Anda sendiri sebagai admin tidak dihitung. "Unik" dihitung per perangkat/browser.</p>
+      <div class="admin-actions"><button class="secondary" id="refreshStats">Segarkan</button></div>`;
+    $('refreshStats').onclick=()=>loadStats();
+  }
+  async function loadStats(){
+    $('statsBody').innerHTML='<div class="state">Memuat statistik…</div>';
+    try{
+      const {data,error}=await db.rpc('admin_stats',{days:statDays});
+      if(error)throw error;
+      renderStats(data);
+    }catch(err){
+      console.error(err);
+      $('statsBody').innerHTML='<div class="state err">Statistik belum aktif atau gagal dimuat.<br><span class="hint">Pastikan file <b>upgrade.sql</b> sudah dijalankan di Supabase SQL Editor.</span></div>';
+    }
+  }
+  $('range').onclick=e=>{const d=e.target.dataset.d;if(!d)return;statDays=+d;document.querySelectorAll('#range button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));loadStats();};
+
+  /* ---------- Pengaturan ---------- */
+  const SMAP={sTagline:'tagline',sWa:'whatsapp_url',sIg:'instagram_url',sTh:'threads_url',sTt:'tiktok_url',sMp:'marketplace_url',sEmail:'contact_email',sPhone:'contact_phone'};
+  function fillSettings(){Object.keys(SMAP).forEach(id=>$(id).value=settings[SMAP[id]]||'');}
+  $('saveSettings').onclick=function(){guarded(this,async()=>{
+    const row={id:1};
+    for(const id of Object.keys(SMAP)){const v=$(id).value.trim();row[SMAP[id]]=v;
+      if(/^s(Wa|Ig|Th|Tt|Mp)$/.test(id)&&v&&!httpUrl(v))throw new Error('Link harus diawali https://');}
+    const {error}=await db.from('settings').upsert(row);
+    if(error)throw new Error('Gagal menyimpan. Pastikan upgrade.sql sudah dijalankan. ('+error.message+')');
+    settings=Object.assign({},settings,row);renderSettingsPublic();renderCatalog();toast('Pengaturan tersimpan.');
+  });};
 
   /* ---------- Init ---------- */
   showLoading();
   loadPublic().catch(()=>{}).then(async()=>{
     const {data}=await db.auth.getSession();
-    if(data.session&&data.session.user.id===ADMIN_UID)await showAdmin();
+    if(data.session&&data.session.user.id===ADMIN_UID){isAdmin=true;await showAdmin();}
+    else track('visit','');
   }).catch(report);
 })();
 </script>
