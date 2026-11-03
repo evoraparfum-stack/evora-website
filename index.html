@@ -169,6 +169,33 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 .badge{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:6px;color:var(--muted)}
 .admin-row.off{opacity:.55}
 .admin-row .btns .ico{padding:8px 11px}
+.ph{position:relative;margin-bottom:14px}
+.ph .product-photo,.ph .bottle{margin-bottom:0}
+.tag{position:absolute;top:10px;left:10px;z-index:1;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;background:var(--primary);color:var(--on-primary);padding:5px 10px;border-radius:999px}
+.tag.best{background:#8f6f3f}.tag.promo{background:var(--danger)}.tag.limited{background:#5a4a3c}
+.sold{position:absolute;inset:0;background:#fffdfacc;display:grid;place-items:center;font:500 11px var(--body);letter-spacing:3px;text-transform:uppercase;color:var(--primary);border-radius:4px}
+.price s{color:var(--muted);font-weight:400;font-size:12px;margin-right:6px}
+.price.big{font-size:20px;margin:6px 0 12px}
+.card-actions{display:flex;gap:8px}
+.card-actions .btn,.card-actions a.buy{flex:1;padding:12px 6px;letter-spacing:1px;font-size:9.5px;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--primary)}
+.btn.ghost:hover{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.product h3[data-detail],.ph[data-detail]{cursor:pointer}
+.dpanel{width:min(100%,520px)}
+.dmain{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:6px;display:block}
+.dthumbs{display:flex;gap:8px;margin:10px 0 4px;overflow-x:auto}
+.dthumbs img{width:58px;height:58px;object-fit:contain;background:#fff;border:2px solid var(--line);border-radius:6px;cursor:pointer;flex:none}
+.dthumbs img.on{border-color:var(--primary)}
+.dpanel h2{margin-top:12px}
+.ddesc{white-space:pre-wrap;color:var(--muted);font-size:14px;line-height:1.8;margin:0 0 16px}
+.dpanel .buy{width:100%}
+.field select{width:100%;padding:12px;border:1px solid #cdbfae;border-radius:4px;background:#fff;color:inherit;font:inherit;font-size:16px}
+.field.chk label{display:flex;gap:10px;align-items:center;text-transform:none;font-size:14px;letter-spacing:0}
+.field input[type=checkbox]{width:20px;height:20px;padding:0;accent-color:var(--primary)}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px}
+.thumbs .th{position:relative}
+.thumbs img{width:64px;height:64px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:6px;display:block}
+.thumbs button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:var(--danger);color:#fff;cursor:pointer;font-size:13px;line-height:1}
 @media(max-width:600px){.app{padding-top:18px}.admin-row{flex-wrap:wrap}.admin-row .btns{width:100%;justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
@@ -231,7 +258,11 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Contoh: Rp149.000"></div>
       <div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Karakter aroma dan kesan parfum"></textarea></div>
       <div class="field"><label for="productUrl">Link pembelian (WhatsApp / marketplace)</label><input id="productUrl" inputmode="url" placeholder="https://..."></div>
+      <div class="field"><label for="productOld">Harga coret (opsional, untuk promo)</label><input id="productOld" maxlength="60" placeholder="Contoh: Rp199.000"></div>
+      <div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div>
+      <div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div>
       <div class="field"><label for="productImage">Foto produk (rasio 1:1 disarankan)</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="" hidden></div>
+      <div class="field"><label for="productExtra">Foto tambahan (maks 5, tampil di halaman detail)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div>
       <div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div>
       <h3 class="sub">Daftar produk</h3>
       <div class="admin-list" id="adminProductList"></div>
@@ -268,6 +299,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     </div>
   </div>
 </div>
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Detail produk"><div class="panel dpanel"><div id="detailBody"></div><div class="admin-actions"><button class="secondary" data-close="detailModal">Tutup</button></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -349,13 +381,29 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   bindPreview('productImage','productPreview');bindPreview('updateImage','updatePreview');
 
   /* ---------- Render ---------- */
+  const tagClass=b=>/best/i.test(b)?'best':/promo|diskon/i.test(b)?'promo':/limited/i.test(b)?'limited':'';
+  const inStock=p=>p.in_stock!==false;
+  const gallery=p=>[p.image_url].concat(Array.isArray(p.images)?p.images:[]).filter(Boolean);
+  const priceHtml=p=>(p.old_price?`<s>${safe(p.old_price)}</s>`:'')+safe(p.price||'Hubungi kami untuk harga');
+  function buyUrl(p){const wa=httpUrl(settings.whatsapp_url);return httpUrl(p.purchase_url)||(wa?wa+(wa.includes('?')?'&':'?')+'text='+encodeURIComponent('Halo EVORA, saya tertarik dengan '+p.name):'');}
+  function buyHtml(p){
+    if(!inStock(p))return '<span class="buy off btn">Stok Habis</span>';
+    const url=buyUrl(p);
+    return url?`<a class="buy btn" href="${safe(url)}" data-pid="${safe(p.id)}" data-name="${safe(p.name)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`:'<span class="buy off btn">Segera Tersedia</span>';
+  }
+  function openDetail(id){
+    const p=products.find(x=>x.id===id);if(!p)return;const g=gallery(p);
+    $('detailBody').innerHTML=(g.length?`<img class="dmain" id="dmain" src="${safe(g[0])}" alt="${safe(p.name)}">`:'<div class="bottle">EVORA</div>')+
+      (g.length>1?`<div class="dthumbs">${g.map((u,i)=>`<img src="${safe(u)}" alt="Foto ${i+1}" data-src="${safe(u)}" class="${i?'':'on'}">`).join('')}</div>`:'')+
+      `<h2>${safe(p.name)}${p.badge?`<span class="badge">${safe(p.badge)}</span>`:''}</h2><div class="price big">${priceHtml(p)}</div><p class="ddesc">${safe(p.description)}</p>${buyHtml(p)}`;
+    open('detailModal');
+  }
   function renderCatalog(){
     const el=$('catalogList'),shown=products.filter(p=>p.is_active!==false);
     if(!shown.length){el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';$('dots').innerHTML='';return;}
     el.innerHTML=shown.map(p=>{
-      const wa=httpUrl(settings.whatsapp_url);
-      const url=httpUrl(p.purchase_url)||(wa?wa+(wa.includes('?')?'&':'?')+'text='+encodeURIComponent('Halo EVORA, saya tertarik dengan '+p.name):'');
-      return `<article class="product">${p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>'}<h3>${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${safe(p.price||'Hubungi kami untuk harga')}</div>${url?`<a class="buy" href="${safe(url)}" data-pid="${safe(p.id)}" data-name="${safe(p.name)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`:'<span class="buy off btn">Segera Tersedia</span>'}</article>`;
+      const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
+      return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
     }).join('');
     $('dots').innerHTML=shown.length>1?shown.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
     updateDots();
@@ -367,7 +415,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     observe();
   }
   function renderAdmin(){
-    $('adminProductList').innerHTML=products.length?products.map((p,i)=>`<div class="admin-row${p.is_active===false?' off':''}">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.name)}${p.is_active===false?'<span class="badge">Tersembunyi</span>':''}</b><span>${safe(p.price||'-')}</span></div><div class="btns">${hasOrder?`<button class="ico" data-up="${i}" ${i===0?'disabled':''} aria-label="Naik">↑</button><button class="ico" data-down="${i}" ${i===products.length-1?'disabled':''} aria-label="Turun">↓</button><button data-toggle="${p.id}">${p.is_active===false?'Tampilkan':'Sembunyikan'}</button>`:''}<button data-edit="${p.id}">Edit</button><button class="del" data-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada produk.</p>';
+    $('adminProductList').innerHTML=products.length?products.map((p,i)=>`<div class="admin-row${p.is_active===false?' off':''}">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.name)}${p.badge?`<span class="badge">${safe(p.badge)}</span>`:''}${p.is_active===false?'<span class="badge">Tersembunyi</span>':''}${p.in_stock===false?'<span class="badge">Habis</span>':''}</b><span>${p.old_price?`<s>${safe(p.old_price)}</s> `:''}${safe(p.price||'-')}</span></div><div class="btns">${hasOrder?`<button class="ico" data-up="${i}" ${i===0?'disabled':''} aria-label="Naik">↑</button><button class="ico" data-down="${i}" ${i===products.length-1?'disabled':''} aria-label="Turun">↓</button><button data-toggle="${p.id}">${p.is_active===false?'Tampilkan':'Sembunyikan'}</button>`:''}<button data-stock="${p.id}">${p.in_stock===false?'Stok Ada':'Tandai Habis'}</button><button data-edit="${p.id}">Edit</button><button class="del" data-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada produk.</p>';
     $('adminUpdateList').innerHTML=posts.length?posts.map(p=>`<div class="admin-row">${p.image_url?`<img class="cover" src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.title||'Info EVORA')}</b><span>${fmtDate(p.created_at)}</span></div><div class="btns"><button data-post-edit="${p.id}">Edit</button><button class="del" data-post-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada postingan.</p>';
   }
   function showLoading(){
@@ -399,7 +447,12 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     const c=[];if(settings.contact_email)c.push(safe(settings.contact_email));if(settings.contact_phone)c.push(safe(settings.contact_phone));
     $('contactLine').innerHTML=c.join(' · ');
   }
-  $('catalogList').addEventListener('click',e=>{const a=e.target.closest('a.buy');if(a)track('product_click',a.dataset.name,a.dataset.pid);});
+  $('catalogList').addEventListener('click',e=>{const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}const d=e.target.closest('[data-detail]');if(d)openDetail(d.dataset.detail);});
+  $('detailBody').addEventListener('click',e=>{
+    const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}
+    const im=e.target.closest('.dthumbs img');if(im){$('dmain').src=im.dataset.src;document.querySelectorAll('.dthumbs img').forEach(x=>x.classList.toggle('on',x===im));}
+  });
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
   $('social').addEventListener('click',e=>{const a=e.target.closest('a[data-social]');if(a)track('social_click',a.dataset.social);});
 
   /* ---------- Slider controls ---------- */
@@ -417,7 +470,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   /* ---------- Modal helpers ---------- */
   const open=id=>$(id).classList.add('open'),close=id=>$(id).classList.remove('open');
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>close(b.dataset.close));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')['loginModal','adminModal'].forEach(close);});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')['loginModal','adminModal','detailModal'].forEach(close);});
   $('tabs').onclick=e=>{const t=e.target.dataset.tab;if(!t)return;
     document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
     ['tabStats','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==t);
@@ -428,7 +481,13 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   }
 
   /* ---------- Forms ---------- */
-  function clearForm(){editingId=null;['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');$('productPreview').hidden=true;$('saveProduct').textContent='Tambah produk';$('productFormTitle').textContent='Tambah produk';$('cancelEdit').hidden=true;}
+  let extraKeep=[];
+  function renderExtra(){
+    $('extraThumbs').innerHTML=extraKeep.map((u,i)=>`<div class="th"><img src="${safe(u)}" alt=""><button type="button" data-rm="${i}" aria-label="Hapus foto">×</button></div>`).join('');
+  }
+  $('extraThumbs').onclick=e=>{const b=e.target.closest('button[data-rm]');if(b){extraKeep.splice(+b.dataset.rm,1);renderExtra();}};
+  $('productExtra').addEventListener('change',e=>{const n=e.target.files.length;$('extraHint').textContent=n?n+' foto baru dipilih, akan diunggah saat disimpan.':'';});
+  function clearForm(){extraKeep=[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';$('productOld').value='';$('productBadge').value='';$('productStock').checked=true;editingId=null;['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');$('productPreview').hidden=true;$('saveProduct').textContent='Tambah produk';$('productFormTitle').textContent='Tambah produk';$('cancelEdit').hidden=true;}
   function clearPostForm(){editingPostId=null;['updateTitle','updateEditor','updateImage'].forEach(id=>$(id).value='');$('updatePreview').hidden=true;$('saveUpdate').textContent='Posting info';$('postFormTitle').textContent='Buat postingan info';$('cancelUpdateEdit').hidden=true;}
 
   async function showAdmin(){
@@ -457,24 +516,29 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     if(link&&!httpUrl(link))throw new Error('Link pembelian harus diawali https://');
     const old=products.find(p=>p.id===editingId),file=$('productImage').files[0];
     if(!old&&!file)throw new Error('Pilih foto produk terlebih dahulu.');
+    const newFiles=Array.from($('productExtra').files);
+    if(extraKeep.length+newFiles.length>5)throw new Error('Maksimal 5 foto tambahan.');
     const image=await uploadImage(file,'products');
-    const row={name,price:$('productPrice').value.trim(),description:$('productDesc').value.trim(),purchase_url:link,image_url:image||(old&&old.image_url)||null};
+    const uploaded=[];for(const f of newFiles)uploaded.push(await uploadImage(f,'products'));
+    const row={name,price:$('productPrice').value.trim(),description:$('productDesc').value.trim(),purchase_url:link,image_url:image||(old&&old.image_url)||null,old_price:$('productOld').value.trim(),badge:$('productBadge').value,in_stock:$('productStock').checked,images:extraKeep.concat(uploaded)};
     if(!editingId&&hasOrder)row.sort_order=products.length?Math.max(...products.map(x=>x.sort_order||0))+1:0;
     const r=editingId?await db.from('products').update(row).eq('id',editingId):await db.from('products').insert(row);
-    if(r.error){if(image)removeImage(image);throw r.error;}
+    if(r.error){if(image)removeImage(image);uploaded.forEach(removeImage);throw /badge|old_price|in_stock|images|column/i.test(r.error.message||'')?new Error('Jalankan upgrade2.sql di Supabase terlebih dahulu. ('+r.error.message+')'):r.error;}
     if(image&&old&&old.image_url)removeImage(old.image_url);
+    if(old&&Array.isArray(old.images))old.images.filter(u=>!extraKeep.includes(u)).forEach(removeImage);
     toast(editingId?'Produk diperbarui.':'Produk ditambahkan.');clearForm();await loadPublic();
   });};
   $('cancelEdit').onclick=clearForm;
   $('adminProductList').onclick=async e=>{
     const b=e.target.closest('button');if(!b||b.disabled)return;const edit=b.dataset.edit,del=b.dataset.delete;
     if(b.dataset.toggle){try{const p=products.find(x=>x.id===b.dataset.toggle);const {error}=await db.from('products').update({is_active:p.is_active===false}).eq('id',p.id);if(error)throw error;toast(p.is_active===false?'Produk ditampilkan.':'Produk disembunyikan.');await loadPublic();}catch(err){report(err);}return;}
+    if(b.dataset.stock){try{const p=products.find(x=>x.id===b.dataset.stock);const {error}=await db.from('products').update({in_stock:p.in_stock===false}).eq('id',p.id);if(error)throw error;toast(p.in_stock===false?'Stok ditandai tersedia.':'Produk ditandai habis.');await loadPublic();}catch(err){report(err);}return;}
     if(b.dataset.up!==undefined||b.dataset.down!==undefined){
       const i=+(b.dataset.up!==undefined?b.dataset.up:b.dataset.down),j=b.dataset.up!==undefined?i-1:i+1;
       const ids=products.map(x=>x.id);[ids[i],ids[j]]=[ids[j],ids[i]];
       try{const res=await Promise.all(ids.map((id,n)=>db.from('products').update({sort_order:n}).eq('id',id)));const bad=res.find(r=>r.error);if(bad)throw bad.error;await loadPublic();}catch(err){report(err);}return;}
     if(edit){const p=products.find(x=>x.id===edit);if(!p)return;editingId=p.id;
-      $('productName').value=p.name;$('productPrice').value=p.price||'';$('productDesc').value=p.description||'';$('productUrl').value=p.purchase_url||'';$('productImage').value='';
+      $('productName').value=p.name;$('productPrice').value=p.price||'';$('productDesc').value=p.description||'';$('productUrl').value=p.purchase_url||'';$('productImage').value='';$('productOld').value=p.old_price||'';$('productBadge').value=p.badge||'';$('productStock').checked=p.in_stock!==false;extraKeep=Array.isArray(p.images)?p.images.slice():[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';
       if(p.image_url){$('productPreview').src=p.image_url;$('productPreview').hidden=false;}else $('productPreview').hidden=true;
       $('saveProduct').textContent='Simpan perubahan';$('productFormTitle').textContent='Edit produk';$('cancelEdit').hidden=false;$('productName').scrollIntoView({behavior:'smooth',block:'center'});}
     if(del&&confirm('Hapus produk ini?')){try{const p=products.find(x=>x.id===del);const {error}=await db.from('products').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearForm();toast('Produk dihapus.');await loadPublic();}catch(err){report(err);}}
