@@ -2,13 +2,13 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#f8f7f2">
 <meta name="description" content="EVORA Signature Scent — discover your personal signature fragrance.">
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA 4.7: 5:5 EVORA Picks images, plus INFO popup and all previous features -->
+<!-- EVORA V4.9: mobile zoom fix, preserving EVORA Picks, INFO popup/contact, catalogs and dashboard -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -220,6 +220,17 @@ body.info-is-open{overflow:hidden}
   mix-blend-mode:normal;
 }
 #catalogList.catalog .bottle{width:100%;height:100%}
+
+/* EVORA V4.9 — optimasi tampilan HP tanpa zoom tidak disengaja.
+   Browser dapat tetap mengizinkan zoom lewat opsi aksesibilitas pengguna. */
+@media (pointer:coarse) {
+  html,body { touch-action:pan-x pan-y; overscroll-behavior-x:none; }
+  /* iOS Safari auto-zoom ketika input memiliki font di bawah 16px. */
+  input:not([type="checkbox"]):not([type="radio"]),select,textarea {
+    font-size:16px !important;
+  }
+}
+html,body { max-width:100%; overflow-x:clip; }
 </style>
 </head>
 <body>
@@ -1182,6 +1193,22 @@ body.info-is-open{overflow:hidden}
     if(error)throw new Error('Gagal menyimpan. Pastikan upgrade.sql sudah dijalankan. ('+error.message+')');
     settings=Object.assign({},settings,row);renderSettingsPublic();renderCatalog();renderPosts();toast('Pengaturan tersimpan.');
   });};
+
+
+  /* EVORA V4.9 — cegah pinch-zoom di Safari HP, tanpa mengganggu scroll satu jari.
+     Tetap menghormati pengaturan aksesibilitas browser bila browser memaksakannya. */
+  (() => {
+    const coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    const touchDevice = (navigator.maxTouchPoints || 0)>0 || 'ontouchstart' in window;
+    if(!coarsePointer && !touchDevice)return;
+    const cancelGesture = e => {if(e.cancelable)e.preventDefault();};
+    ['gesturestart','gesturechange'].forEach(type =>
+      document.addEventListener(type,cancelGesture,{passive:false})
+    );
+    document.addEventListener('touchmove',e=>{
+      if(e.touches && e.touches.length>1 && e.cancelable)e.preventDefault();
+    },{passive:false});
+  })();
 
   /* ---------- Init ---------- */
   renderRoute();
