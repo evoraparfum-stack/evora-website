@@ -8,7 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA V5.3.3: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
+<!-- EVORA V5.3.4: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
 <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Fraunces',Georgia,serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--ui:'Plus Jakarta Sans',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -441,6 +441,52 @@ body{font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smooth
   .hero p{font-size:14px}
 }
 
+
+/* EVORA V5.3.4 — layout polish menyeluruh */
+button{line-height:1.1}
+.top-action,.secondary,.admin-row button,.btn,.product a.buy,.site-button{display:inline-flex;align-items:center;justify-content:center}
+.top-action,.secondary,.admin-row button{min-height:40px}
+.top-action{gap:8px;line-height:1.2}
+.secondary{gap:8px;line-height:1.2}
+.admin-row button{line-height:1.1}
+.info-modal-panel{position:relative}
+.info-modal-close{position:absolute;top:14px;right:14px;float:none;margin:0;display:flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;border-radius:50%;font:600 22px/1 var(--ui);line-height:1;transform:none}
+.info-modal-close:hover{transform:translateY(-1px)}
+.thumbs button{display:flex;align-items:center;justify-content:center;width:24px;height:24px;top:-8px;right:-8px;padding:0;border:1px solid #b54f45;background:var(--danger);color:#fff;font:700 14px/1 var(--ui);line-height:1;box-shadow:0 4px 12px #7b2f251f}
+.thumbs button:hover{filter:brightness(.96)}
+.featured-mini .controls{display:flex;align-items:center;gap:6px}
+.featured-mini button{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border-radius:50%;background:#fff;border:1px solid #dbe6d9;color:#45674c;font:700 14px/1 var(--ui);line-height:1;box-shadow:0 2px 10px #1d351b0a}
+.featured-mini button:hover{background:#eef4eb}
+.featured-mini button[data-feature-remove]{background:#fff7f5;border-color:#edd7d3;color:#a24d43}
+.featured-mini button[data-feature-remove]:hover{background:#fbecea}
+.collection-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;margin-top:38px;padding:24px 26px;border:1px solid #e2e8de;border-radius:18px;background:linear-gradient(135deg,#f7f8f3 0%,#eef3e7 52%,#f8faf6 100%);box-shadow:0 14px 34px #2e432d0b;border-top:none}
+.collection-bottom-copy{min-width:0}
+.collection-kicker{display:inline-flex;align-items:center;gap:7px;font:800 10px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#72856f;margin-bottom:10px}
+.collection-kicker:before{content:'';width:8px;height:8px;border-radius:50%;background:#9db094;box-shadow:0 0 0 6px #dce7d4}
+.collection-bottom strong{display:block;font:600 clamp(24px,2.2vw,30px)/1.2 var(--heading);color:#24382b;letter-spacing:-.03em;margin-bottom:7px}
+.collection-bottom p{font:400 13px/1.8 var(--body);color:#6d786c;margin:0;max-width:590px}
+.collection-cta{white-space:nowrap;min-height:52px;padding:14px 22px;box-shadow:0 12px 28px #30482f1f}
+.collection-cta span[aria-hidden="true"]{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#ffffff26;border:1px solid #ffffff24}
+.collection-cta:hover{box-shadow:0 16px 30px #30482f24}
+/* rapikan tombol tutup menu agar konsisten */
+.admin-toggle{min-width:108px}
+/* detail modal footer lebih rapi */
+#detailModal .admin-actions{justify-content:flex-end}
+#detailModal .secondary{min-width:96px}
+@media(max-width:650px){
+  .collection-bottom{grid-template-columns:1fr;padding:22px 18px;border-radius:16px;text-align:left;gap:16px}
+  .collection-bottom strong{font-size:24px}
+  .collection-cta{width:100%;justify-content:center}
+}
+@media(max-width:540px){
+  .info-modal-close{top:10px;right:10px;width:38px;height:38px;font-size:20px}
+  .featured-mini button{width:30px;height:30px}
+  .thumbs button{width:22px;height:22px;font-size:13px}
+  .top-action,.secondary,.admin-row button{min-height:38px}
+  .collection-bottom{padding:20px 16px}
+  .collection-bottom p{font-size:12px;line-height:1.75}
+}
+
 </style>
 </head>
 <body>
@@ -471,7 +517,7 @@ body{font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smooth
     <div class="section-heading"><div><span class="section-overline">Handpicked for you</span><h2>EVORA Picks</h2></div><p>Hingga lima parfum pilihan yang kami kurasi khusus untukmu. Geser untuk menjelajah.</p></div>
     <div class="slider-wrap"><button class="nav-btn prev" id="prevBtn" aria-label="Sebelumnya">‹</button><div class="catalog" id="catalogList" aria-live="polite" tabindex="0" aria-label="Katalog parfum"></div><button class="nav-btn next" id="nextBtn" aria-label="Berikutnya">›</button></div>
     <div class="dots" id="dots" aria-hidden="true"></div>
-    <div class="collection-bottom"><p>Masih banyak cerita aroma yang bisa kamu temukan.</p><a class="site-button" href="#koleksi">Lihat Katalog Lengkap <span aria-hidden="true">↗</span></a></div>
+    <div class="collection-bottom"><div class="collection-bottom-copy"><span class="collection-kicker">EXPLORE MORE</span><strong>Buka Katalog Lengkap EVORA</strong><p>Temukan seluruh koleksi parfum, promo pilihan, dan lebih banyak aroma yang bisa kamu jelajahi dalam satu halaman lengkap.</p></div><a class="site-button collection-cta" href="#koleksi">Masuk ke Katalog Lengkap <span aria-hidden="true">↗</span></a></div>
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">Kabar EVORA</span><h2>INFO</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
   <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">EVORA<small>SIGNATURE SCENT</small></div><p class="footer-desc">Your scent. Your signature. Temukan aroma yang mencerminkan jati dirimu.</p></div><div><div class="social" id="social"></div><div class="contactline" id="contactLine"></div></div></div><div class="footer-bottom"><span>© 2026 EVORA. Crafted with confidence.</span><button id="adminOpen" class="admin-entry">Masuk Admin</button></div></footer>
