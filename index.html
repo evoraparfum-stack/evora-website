@@ -8,6 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
+<!-- V5.3.5: titik Explore More berkedip lembut -->
 <!-- EVORA V5.3.4: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
 <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Fraunces',Georgia,serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--ui:'Plus Jakarta Sans',system-ui,sans-serif}
@@ -462,7 +463,13 @@ button{line-height:1.1}
 .collection-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;margin-top:38px;padding:24px 26px;border:1px solid #e2e8de;border-radius:18px;background:linear-gradient(135deg,#f7f8f3 0%,#eef3e7 52%,#f8faf6 100%);box-shadow:0 14px 34px #2e432d0b;border-top:none}
 .collection-bottom-copy{min-width:0}
 .collection-kicker{display:inline-flex;align-items:center;gap:7px;font:800 10px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#72856f;margin-bottom:10px}
-.collection-kicker:before{content:'';width:8px;height:8px;border-radius:50%;background:#9db094;box-shadow:0 0 0 6px #dce7d4}
+/* EVORA V5.3.5 — titik EXPLORE MORE berkedip lembut */
+.collection-kicker:before{content:'';width:8px;height:8px;border-radius:50%;background:#9db094;box-shadow:0 0 0 6px #dce7d4;flex-shrink:0;animation:evoraExploreBlink 2s ease-in-out infinite;transform-origin:center}
+@keyframes evoraExploreBlink{
+  0%,100%{opacity:1;box-shadow:0 0 0 6px #dce7d4}
+  50%{opacity:.24;box-shadow:0 0 0 3px #dce7d480}
+}
+@media(prefers-reduced-motion:reduce){.collection-kicker:before{animation:none!important;opacity:1}}
 .collection-bottom strong{display:block;font:600 clamp(24px,2.2vw,30px)/1.2 var(--heading);color:#24382b;letter-spacing:-.03em;margin-bottom:7px}
 .collection-bottom p{font:400 13px/1.8 var(--body);color:#6d786c;margin:0;max-width:590px}
 .collection-cta{white-space:nowrap;min-height:52px;padding:14px 22px;box-shadow:0 12px 28px #30482f1f}
