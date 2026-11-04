@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +10,18 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="Scent of Confidence. Temukan aroma yang mencerminkan karakter dan cerita unikmu.">
 <meta property="og:type" content="website">
+
 <style>
 :root{
-  --primary:#34231d; --on-primary:#fffaf3; --secondary:#c9ad8d; --bg:#f8f5f0; --paper:#fffdfa;
-  --muted:#75665b; --gold:#9b8068; --line:#e8ded3; --danger:#8a3b2f;
+  --primary:#34231d;
+  --on-primary:#fffaf3;
+  --secondary:#c9ad8d;
+  --bg:#f8f5f0;
+  --paper:#fffdfa;
+  --muted:#75665b;
+  --gold:#9b8068;
+  --line:#e8ded3;
+  --danger:#8a3b2f;
   --heading:Georgia,"Times New Roman",serif;
   --body:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.22,.61,.36,1);
@@ -48,7 +57,7 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 .section-head h2{font:400 clamp(24px,3vw,30px) var(--heading);margin:0}
 .section-head small{color:var(--gold);font-size:9px;letter-spacing:2.5px;text-transform:uppercase}
 
-/* Catalog — horizontal slider */
+/* Catalog */
 .slider-wrap{position:relative}
 .catalog{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:4px 20px 18px;scroll-snap-type:x mandatory;scroll-padding:0 20px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .catalog::-webkit-scrollbar{display:none}
@@ -65,7 +74,8 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 .product .buy.off{background:transparent;color:var(--muted);border-color:var(--line);cursor:default;pointer-events:none}
 .nav-btn{display:none;position:absolute;top:42%;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--primary);font-size:22px;cursor:pointer;box-shadow:0 8px 20px -8px #0004;transition:all .2s;z-index:2}
 .nav-btn:hover{background:var(--primary);color:var(--on-primary)}
-.nav-btn.prev{left:6px}.nav-btn.next{right:6px}
+.nav-btn.prev{left:6px}
+.nav-btn.next{right:6px}
 .dots{display:flex;justify-content:center;gap:6px;margin-top:2px}
 .dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:all .3s}
 .dots i.on{background:var(--primary);width:18px;border-radius:6px}
@@ -172,7 +182,9 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 .ph{position:relative;margin-bottom:14px}
 .ph .product-photo,.ph .bottle{margin-bottom:0}
 .tag{position:absolute;top:10px;left:10px;z-index:1;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;background:var(--primary);color:var(--on-primary);padding:5px 10px;border-radius:999px}
-.tag.best{background:#8f6f3f}.tag.promo{background:var(--danger)}.tag.limited{background:#5a4a3c}
+.tag.best{background:#8f6f3f}
+.tag.promo{background:var(--danger)}
+.tag.limited{background:#5a4a3c}
 .sold{position:absolute;inset:0;background:#fffdfacc;display:grid;place-items:center;font:500 11px var(--body);letter-spacing:3px;text-transform:uppercase;color:var(--primary);border-radius:4px}
 .price s{color:var(--muted);font-weight:400;font-size:12px;margin-right:6px}
 .price.big{font-size:20px;margin:6px 0 12px}
@@ -200,9 +212,11 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
+
 <body>
 <div class="app">
-  <div class="ambient one"></div><div class="ambient two"></div>
+  <div class="ambient one"></div>
+  <div class="ambient two"></div>
   <main>
     <header class="hero">
       <img class="brandmark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAACWAQAAAABlC7W9AAADoElEQVR42u2ZvY7cNhSFP3LktYAMMCyCwEWQYToXKVJuqTJlHsFF3sN0l3ILP8CWKfMAKWbzBC4MJJ2Vbjtzkk2g2ZFEF6J+KJGbxSJIpVvMCBIPeX8OD69mhONpdiN5qq3IFbkiV+SKXJErckWuyBX53yMPHtkIIYQQCjiKrnXNAY79XXgjhBD5gHy1XDPHjHNeAfw5PjwZf+FsiFTjGJMDzjB8dnadiFMDmV9OAe00JgCs/26rpbeSEug6+7q7VY5PK/9dz9YsgC5BLXocZ0dkHV7MqmKHWdJWtSHSAJhqmNKGLo6RTzPknHNuupgBEM455xO0d84NEVvXIwVhLFV346LPuLcX/UXZzRzGqSd+5rMqZw/yVrWP4PKhK/JslAPK7OG9YWJr5jPaJKxcIjNMj0+a85mQy71n1IPINpqhx+3zolqOFZS4aREjVnNde6QLidv+C23xQiEBIYSQQcZTqfFMDqouhxDqBLzPjJW5i+Wk7mkb8TLOjGxC3FRmPA2yrupyyh5QLTZRmtu+4rmM7gA3VZ7QVRFqtQxFM49M1ie9T78SlBOkHoh7iNK2GJ3SXfIzZlQ43OxiSB34YpdqIkMdmOz5PoktRUdcOU/Eh3hlcvjWF8ckdoeN1yRDjDte1xGkSRBe8pWnrfByNUcWd3Haiqef2ea2JzzkLoLUJAhfDLT1ciUX2U94oeuneqv6ozgHyWGJzOO09bExUca5DmXhEW1nUjwK3aBDQhHuVO7DrkJ22t8po7GxE8pPoZwA2M3OhHaZIZWq+OChHctTVLHc6lBeRipUI+F1PeuHAExKp4s67BtkiisLMdTtGI5qZ/3QVOY38x5MuZ628ZOYr4NedLNoJwdaSDZu7GqmdgnwZeePHtzvWoEMEHPI3fZxPF7+frt97BZY3zpW5Ir8X5E/uvyo7LsbTaNPCpc3qq5PuT2aP3R5fSzepJDOtlbYisuSv386We5t83uLqKq/rjblz/xm9sk18yaX1DyDf76RcM7vtw4J2SHjkrzQ6TjvZy9udxcYQL2AX3iXjlNcQaM/88t3C2wOjcZyMl8AvybXfA+bUnayuvE95ytRAs/NBvrGJoJUgO+Y/Pkh25eyuy/NrG8OM3TRq/22e4/cVmjA3oLw3Vu8Ki83PzSKAmjeAu67Z+9RwOn7k8Z8XtyETfTEdm5X7T66xrl6f3au3bX78/nsPtrXdv/B2ddmMvYg1n/3VuSKXJErckUu7BM59jtOc9t6LAAAAABJRU5ErkJggg==" alt="EVORA — Scent of Confidence">
@@ -210,11 +224,17 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <h1>EVORA</h1>
       <div class="tagline">Scent of Confidence</div>
       <p class="intro">Temukan aroma yang mencerminkan karakter dan cerita unikmu.</p>
-      <nav class="quicknav" aria-label="Navigasi cepat"><a href="#katalog">Katalog</a><a href="#informasi">Info &amp; Update</a></nav>
+      <nav class="quicknav" aria-label="Navigasi cepat">
+        <a href="#katalog">Katalog</a>
+        <a href="#informasi">Info &amp; Update</a>
+      </nav>
     </header>
 
     <section class="section" id="katalog">
-      <div class="section-head"><h2>Katalog Parfum</h2><small>Discover your scent</small></div>
+      <div class="section-head">
+        <h2>Katalog Parfum</h2>
+        <small>Discover your scent</small>
+      </div>
       <div class="slider-wrap">
         <button class="nav-btn prev" id="prevBtn" aria-label="Sebelumnya">&#8249;</button>
         <div class="catalog" id="catalogList" aria-live="polite" tabindex="0" aria-label="Katalog parfum, geser ke samping"></div>
@@ -229,28 +249,59 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="feed" id="updatePosts"></div>
     </section>
 
-    <div class="footer"><div class="social" id="social"></div><div class="contactline" id="contactLine"></div><strong>EVORA</strong>SIGNATURE SCENT · EST. 2026</div>
+    <div class="footer">
+      <div class="social" id="social"></div>
+      <div class="contactline" id="contactLine"></div>
+      <strong>EVORA</strong>
+      SIGNATURE SCENT · EST. 2026
+    </div>
     <button class="admin-entry" id="adminOpen">Admin</button>
   </main>
 </div>
 
+<!-- LOGIN -->
 <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Login admin">
   <div class="panel">
     <h2>Admin EVORA</h2>
     <p class="hint">Masuk menggunakan akun admin EVORA.</p>
-    <div class="field"><label for="adminEmail">Email</label><input id="adminEmail" type="email" autocomplete="username" placeholder="Email admin"></div>
-    <div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Password admin"></div>
+    <div class="field">
+      <label for="adminEmail">Email</label>
+      <input id="adminEmail" type="email" autocomplete="username" placeholder="Email admin">
+    </div>
+    <div class="field">
+      <label for="adminPassword">Password</label>
+      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Password admin">
+    </div>
     <p class="hint" id="loginError" role="alert" style="color:var(--danger);opacity:1"></p>
-    <div class="admin-actions"><button class="btn" id="loginButton">Masuk</button><button class="secondary" data-close="loginModal">Batal</button></div>
+    <div class="admin-actions">
+      <button class="btn" id="loginButton">Masuk</button>
+      <button class="secondary" data-close="loginModal">Batal</button>
+    </div>
   </div>
 </div>
 
+<!-- DASHBOARD -->
 <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-label="Dashboard admin">
   <div class="panel">
     <h2>Dashboard Admin</h2>
     <p class="hint">Perubahan tersimpan ke database online dan langsung tampil di website.</p>
-    <div class="tabs" id="tabs"><button class="on" data-tab="tabStats">Statistik</button><button data-tab="tabProducts">Katalog</button><button data-tab="tabPosts">Info</button><button data-tab="tabSettings">Setelan</button></div>
-    <div id="tabStats"><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div>
+    <div class="tabs" id="tabs">
+      <button class="on" data-tab="tabStats">Statistik</button>
+      <button data-tab="tabProducts">Katalog</button>
+      <button data-tab="tabPosts">Info</button>
+      <button data-tab="tabSettings">Setelan</button>
+    </div>
+
+    <div id="tabStats">
+      <div class="range" id="range">
+        <button data-d="7">7 hari</button>
+        <button data-d="14" class="on">14 hari</button>
+        <button data-d="30">30 hari</button>
+      </div>
+      <div id="statsBody">
+        <div class="state">Memuat statistik…</div>
+      </div>
+    </div>
 
     <div id="tabProducts" hidden>
       <h3 class="sub" id="productFormTitle">Tambah produk</h3>
@@ -259,11 +310,32 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Karakter aroma dan kesan parfum"></textarea></div>
       <div class="field"><label for="productUrl">Link pembelian (WhatsApp / marketplace)</label><input id="productUrl" inputmode="url" placeholder="https://..."></div>
       <div class="field"><label for="productOld">Harga coret (opsional, untuk promo)</label><input id="productOld" maxlength="60" placeholder="Contoh: Rp199.000"></div>
-      <div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div>
+      <div class="field">
+        <label for="productBadge">Label produk</label>
+        <select id="productBadge">
+          <option value="">Tanpa label</option>
+          <option>Baru</option>
+          <option>Best Seller</option>
+          <option>Limited</option>
+          <option>Promo</option>
+        </select>
+      </div>
       <div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div>
-      <div class="field"><label for="productImage">Foto produk (rasio 1:1 disarankan)</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="" hidden></div>
-      <div class="field"><label for="productExtra">Foto tambahan (maks 5, tampil di halaman detail)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div>
-      <div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div>
+      <div class="field">
+        <label for="productImage">Foto produk (rasio 1:1 disarankan)</label>
+        <input id="productImage" type="file" accept="image/*">
+        <img class="preview" id="productPreview" alt="" hidden>
+      </div>
+      <div class="field">
+        <label for="productExtra">Foto tambahan (maks 5, tampil di halaman detail)</label>
+        <input id="productExtra" type="file" accept="image/*" multiple>
+        <div class="thumbs" id="extraThumbs"></div>
+        <p class="hint" id="extraHint"></p>
+      </div>
+      <div class="admin-actions">
+        <button class="btn" id="saveProduct">Tambah produk</button>
+        <button class="secondary" id="cancelEdit" hidden>Batal edit</button>
+      </div>
       <h3 class="sub">Daftar produk</h3>
       <div class="admin-list" id="adminProductList"></div>
     </div>
@@ -299,7 +371,16 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     </div>
   </div>
 </div>
-<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Detail produk"><div class="panel dpanel"><div id="detailBody"></div><div class="admin-actions"><button class="secondary" data-close="detailModal">Tutup</button></div></div></div>
+
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Detail produk">
+  <div class="panel dpanel">
+    <div id="detailBody"></div>
+    <div class="admin-actions">
+      <button class="secondary" data-close="detailModal">Tutup</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -309,41 +390,96 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
   const SUPABASE_KEY='sb_publishable_tUay6M6nZXa7nHhw1LKs4Q_vxc7Dr8g';
   const ADMIN_UID='cae0cfb9-7bc3-42d9-aa5f-e51d65a928ae';
   const BUCKET='evora-images';
+
   const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
   let products=[],posts=[],settings={},editingId=null,editingPostId=null,busy=false,hasOrder=true,isAdmin=false,statDays=14;
+
   const $=id=>document.getElementById(id);
   const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const httpUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'';
-  const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return '';}};
+  const fmtDate=iso=>{
+    try{
+      return new Date(iso).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+    }catch(e){return '';}
+  };
 
-  /* ---------- Pelacakan kunjungan & klik (anonim) ---------- */
-  const SID=(()=>{try{let s=localStorage.getItem('evora_sid');if(!s){s=crypto.randomUUID();localStorage.setItem('evora_sid',s);}return s;}catch(e){return crypto.randomUUID();}})();
+  /* ---------- Pelacakan kunjungan & klik ---------- */
+  const SID=(()=>{
+    try{
+      let s=localStorage.getItem('evora_sid');
+      if(!s){
+        s=crypto.randomUUID();
+        localStorage.setItem('evora_sid',s);
+      }
+      return s;
+    }catch(e){return crypto.randomUUID();}
+  })();
+
   function trafficSource(){
-    const q=new URLSearchParams(location.search);let r=(q.get('src')||q.get('utm_source')||'').toLowerCase();
-    if(!r){try{const u=new URL(document.referrer);if(u.host!==location.host)r=u.hostname.toLowerCase();}catch(e){}}
+    const q=new URLSearchParams(location.search);
+    let r=(q.get('src')||q.get('utm_source')||'').toLowerCase();
+    if(!r){
+      try{
+        const u=new URL(document.referrer);
+        if(u.host!==location.host)r=u.hostname.toLowerCase();
+      }catch(e){}
+    }
     if(!r)return 'direct';
-    if(/instagram/.test(r))return 'instagram';if(/threads/.test(r))return 'threads';if(/tiktok/.test(r))return 'tiktok';
-    if(/whatsapp|wa\.me/.test(r))return 'whatsapp';if(/facebook|fb\./.test(r))return 'facebook';if(/google/.test(r))return 'google';
+    if(/instagram/.test(r))return 'instagram';
+    if(/threads/.test(r))return 'threads';
+    if(/tiktok/.test(r))return 'tiktok';
+    if(/whatsapp|wa\.me/.test(r))return 'whatsapp';
+    if(/facebook|fb\./.test(r))return 'facebook';
+    if(/google/.test(r))return 'google';
     return r.slice(0,40);
   }
+
   const DEVICE=/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'mobile':'desktop';
+
   function track(type,label,productId){
     if(isAdmin)return;
-    const row={type,label:String(label||'').slice(0,120),session_id:SID,source:trafficSource(),device:DEVICE};
+    const row={
+      type,
+      label:String(label||'').slice(0,120),
+      session_id:SID,
+      source:trafficSource(),
+      device:DEVICE
+    };
     if(productId)row.product_id=productId;
-    try{db.from('events').insert(row).then(()=>{},()=>{});}catch(e){}
+    try{
+      db.from('events').insert(row).then(()=>{},()=>{});
+    }catch(e){}
   }
 
   let toastTimer;
-  function toast(msg,isErr){const t=$('toast');t.textContent=msg;t.className='toast show'+(isErr?' err':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.className='toast',3400);}
-  const report=err=>{console.error(err);toast((err&&err.message)||'Terjadi kesalahan. Silakan coba lagi.',true);};
+  function toast(msg,isErr){
+    const t=$('toast');
+    t.textContent=msg;
+    t.className='toast show'+(isErr?' err':'');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>t.className='toast',3400);
+  }
+
+  const report=err=>{
+    console.error(err);
+    toast((err&&err.message)||'Terjadi kesalahan. Silakan coba lagi.',true);
+  };
 
   /* ---------- Reveal on scroll ---------- */
   let io;
   function observe(){
     const els=document.querySelectorAll('.reveal:not(.in)');
-    if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
-    io=io||new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.1});
+    if(!('IntersectionObserver' in window)){
+      els.forEach(e=>e.classList.add('in'));
+      return;
+    }
+    io=io||new IntersectionObserver(es=>es.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    }),{threshold:.1});
     els.forEach(e=>io.observe(e));
   }
 
@@ -354,53 +490,110 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       const img=new Image(),url=URL.createObjectURL(file);
       img.onload=()=>{
         const r=Math.min(1,maxSide/Math.max(img.width,img.height));
-        const c=document.createElement('canvas');c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);
-        c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+        const c=document.createElement('canvas');
+        c.width=Math.round(img.width*r);
+        c.height=Math.round(img.height*r);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        URL.revokeObjectURL(url);
         const png=file.type==='image/png';
         c.toBlob(b=>resolve(b||file),png?'image/png':'image/jpeg',.88);
       };
-      img.onerror=()=>{URL.revokeObjectURL(url);resolve(file);};
+      img.onerror=()=>{
+        URL.revokeObjectURL(url);
+        resolve(file);
+      };
       img.src=url;
     });
   }
+
   async function uploadImage(file,folder){
     if(!file)return '';
-    if(file.size>15*1024*1024)throw new Error('Ukuran foto terlalu besar (maks 15 MB).');
-    const blob=await shrink(file,1600),type=blob.type||file.type;
+    if(file.size>15*1024*1024)
+      throw new Error('Ukuran foto terlalu besar (maks 15 MB).');
+
+    const blob=await shrink(file,1600);
+    const type=blob.type||file.type;
     const ext=type==='image/png'?'png':type==='image/webp'?'webp':'jpg';
     const path=`${folder}/${crypto.randomUUID()}.${ext}`;
-    const {error}=await db.storage.from(BUCKET).upload(path,blob,{upsert:false,contentType:type,cacheControl:'31536000'});
-    if(error)throw error;
+
+    const {error}=await db.storage.from(BUCKET).upload(path,blob,{
+      upsert:false,
+      contentType:type,
+      cacheControl:'31536000'
+    });
+
+    if(error){
+      const msg=String(error.message||'Upload gambar gagal.');
+      if(/bucket not found/i.test(msg))
+        throw new Error('Bucket Supabase Storage "'+BUCKET+'" belum tersedia. Buat bucket public dengan nama yang sama. ('+msg+')');
+      if(/row.level security|not authorized|permission denied/i.test(msg))
+        throw new Error('Tidak diizinkan mengunggah foto ke Supabase Storage. Periksa policy bucket '+BUCKET+' untuk admin. ('+msg+')');
+      throw error;
+    }
     return db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
   }
-  function pathFromUrl(url){const m=String(url||'').match(/\/object\/public\/[^/]+\/(.+)$/);return m?decodeURIComponent(m[1]):'';}
-  async function removeImage(url){const p=pathFromUrl(url);if(!p)return;try{await db.storage.from(BUCKET).remove([p]);}catch(e){}}
-  function bindPreview(inputId,imgId){
-    $(inputId).addEventListener('change',e=>{const f=e.target.files[0],im=$(imgId);if(f){im.src=URL.createObjectURL(f);im.hidden=false;}});
+
+  function pathFromUrl(url){
+    const m=String(url||'').match(/\/object\/public\/[^/]+\/(.+)$/);
+    return m?decodeURIComponent(m[1]):'';
   }
-  bindPreview('productImage','productPreview');bindPreview('updateImage','updatePreview');
+
+  async function removeImage(url){
+    const p=pathFromUrl(url);
+    if(!p)return;
+    try{await db.storage.from(BUCKET).remove([p]);}catch(e){}
+  }
+
+  function bindPreview(inputId,imgId){
+    $(inputId).addEventListener('change',e=>{
+      const f=e.target.files[0],im=$(imgId);
+      if(f){
+        im.src=URL.createObjectURL(f);
+        im.hidden=false;
+      }
+    });
+  }
+  bindPreview('productImage','productPreview');
+  bindPreview('updateImage','updatePreview');
 
   /* ---------- Render ---------- */
   const tagClass=b=>/best/i.test(b)?'best':/promo|diskon/i.test(b)?'promo':/limited/i.test(b)?'limited':'';
   const inStock=p=>p.in_stock!==false;
   const gallery=p=>[p.image_url].concat(Array.isArray(p.images)?p.images:[]).filter(Boolean);
   const priceHtml=p=>(p.old_price?`<s>${safe(p.old_price)}</s>`:'')+safe(p.price||'Hubungi kami untuk harga');
-  function buyUrl(p){const wa=httpUrl(settings.whatsapp_url);return httpUrl(p.purchase_url)||(wa?wa+(wa.includes('?')?'&':'?')+'text='+encodeURIComponent('Halo EVORA, saya tertarik dengan '+p.name):'');}
+
+  function buyUrl(p){
+    const wa=httpUrl(settings.whatsapp_url);
+    return httpUrl(p.purchase_url)||(wa?wa+(wa.includes('?')?'&':'?')+'text='+encodeURIComponent('Halo EVORA, saya tertarik dengan '+p.name):'');
+  }
+
   function buyHtml(p){
     if(!inStock(p))return '<span class="buy off btn">Stok Habis</span>';
     const url=buyUrl(p);
-    return url?`<a class="buy btn" href="${safe(url)}" data-pid="${safe(p.id)}" data-name="${safe(p.name)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`:'<span class="buy off btn">Segera Tersedia</span>';
+    return url
+      ?`<a class="buy btn" href="${safe(url)}" data-pid="${safe(p.id)}" data-name="${safe(p.name)}" target="_blank" rel="noopener">Beli Sekarang ↗</a>`
+      :'<span class="buy off btn">Segera Tersedia</span>';
   }
+
   function openDetail(id){
-    const p=products.find(x=>x.id===id);if(!p)return;const g=gallery(p);
-    $('detailBody').innerHTML=(g.length?`<img class="dmain" id="dmain" src="${safe(g[0])}" alt="${safe(p.name)}">`:'<div class="bottle">EVORA</div>')+
+    const p=products.find(x=>x.id===id);
+    if(!p)return;
+    const g=gallery(p);
+    $('detailBody').innerHTML=
+      (g.length?`<img class="dmain" id="dmain" src="${safe(g[0])}" alt="${safe(p.name)}">`:'<div class="bottle">EVORA</div>')+
       (g.length>1?`<div class="dthumbs">${g.map((u,i)=>`<img src="${safe(u)}" alt="Foto ${i+1}" data-src="${safe(u)}" class="${i?'':'on'}">`).join('')}</div>`:'')+
       `<h2>${safe(p.name)}${p.badge?`<span class="badge">${safe(p.badge)}</span>`:''}</h2><div class="price big">${priceHtml(p)}</div><p class="ddesc">${safe(p.description)}</p>${buyHtml(p)}`;
     open('detailModal');
   }
+
   function renderCatalog(){
-    const el=$('catalogList'),shown=products.filter(p=>p.is_active!==false);
-    if(!shown.length){el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';$('dots').innerHTML='';return;}
+    const el=$('catalogList');
+    const shown=products.filter(p=>p.is_active!==false);
+    if(!shown.length){
+      el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';
+      $('dots').innerHTML='';
+      return;
+    }
     el.innerHTML=shown.map(p=>{
       const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
       return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
@@ -408,177 +601,532 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
     $('dots').innerHTML=shown.length>1?shown.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
     updateDots();
   }
+
   function renderPosts(){
     const el=$('updatePosts');
-    if(!posts.length){el.innerHTML='<div class="state">Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</div>';return;}
+    if(!posts.length){
+      el.innerHTML='<div class="state">Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</div>';
+      return;
+    }
     el.innerHTML=posts.map(p=>`<article class="update-post reveal">${p.image_url?`<img src="${safe(p.image_url)}" alt="${safe(p.title)}" loading="lazy">`:''}<div class="pb"><time datetime="${safe(p.created_at)}">${fmtDate(p.created_at)}</time><h3>${safe(p.title||'Info EVORA')}</h3><p>${safe(p.description)}</p></div></article>`).join('');
     observe();
   }
+
   function renderAdmin(){
     $('adminProductList').innerHTML=products.length?products.map((p,i)=>`<div class="admin-row${p.is_active===false?' off':''}">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.name)}${p.badge?`<span class="badge">${safe(p.badge)}</span>`:''}${p.is_active===false?'<span class="badge">Tersembunyi</span>':''}${p.in_stock===false?'<span class="badge">Habis</span>':''}</b><span>${p.old_price?`<s>${safe(p.old_price)}</s> `:''}${safe(p.price||'-')}</span></div><div class="btns">${hasOrder?`<button class="ico" data-up="${i}" ${i===0?'disabled':''} aria-label="Naik">↑</button><button class="ico" data-down="${i}" ${i===products.length-1?'disabled':''} aria-label="Turun">↓</button><button data-toggle="${p.id}">${p.is_active===false?'Tampilkan':'Sembunyikan'}</button>`:''}<button data-stock="${p.id}">${p.in_stock===false?'Stok Ada':'Tandai Habis'}</button><button data-edit="${p.id}">Edit</button><button class="del" data-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada produk.</p>';
+
     $('adminUpdateList').innerHTML=posts.length?posts.map(p=>`<div class="admin-row">${p.image_url?`<img class="cover" src="${safe(p.image_url)}" alt="">`:''}<div class="t"><b>${safe(p.title||'Info EVORA')}</b><span>${fmtDate(p.created_at)}</span></div><div class="btns"><button data-post-edit="${p.id}">Edit</button><button class="del" data-post-delete="${p.id}">Hapus</button></div></div>`).join(''):'<p class="hint">Belum ada postingan.</p>';
   }
+
   function showLoading(){
     $('catalogList').innerHTML='<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
     $('updatePosts').innerHTML='<div class="state">Memuat…</div>';
   }
+
   function showError(){
     const html='<div class="state err">Gagal memuat data. Periksa koneksi internet Anda.<br><button class="btn retry">Coba lagi</button></div>';
-    $('catalogList').innerHTML=html;$('updatePosts').innerHTML=html;
+    $('catalogList').innerHTML=html;
+    $('updatePosts').innerHTML=html;
     document.querySelectorAll('.retry').forEach(b=>b.onclick=()=>loadPublic(true));
   }
+
   async function loadPublic(showSkeleton){
     if(showSkeleton)showLoading();
     try{
       let pq=db.from('products').select('*');
       pq=hasOrder?pq.order('sort_order',{ascending:true}).order('created_at',{ascending:false}):pq.order('created_at',{ascending:false});
-      let [p,q,s]=await Promise.all([pq,db.from('posts').select('*').order('created_at',{ascending:false}),db.from('settings').select('*').eq('id',1).maybeSingle()]);
-      if(p.error&&hasOrder){hasOrder=false;p=await db.from('products').select('*').order('created_at',{ascending:false});}
-      if(p.error)throw p.error;if(q.error)throw q.error;
-      products=p.data||[];posts=q.data||[];settings=(s&&!s.error&&s.data)||{};
-      renderSettingsPublic();renderCatalog();renderPosts();renderAdmin();
-    }catch(err){console.error(err);showError();throw err;}
+      let [p,q,s]=await Promise.all([
+        pq,
+        db.from('posts').select('*').order('created_at',{ascending:false}),
+        db.from('settings').select('*').eq('id',1).maybeSingle()
+      ]);
+      if(p.error&&hasOrder){
+        hasOrder=false;
+        p=await db.from('products').select('*').order('created_at',{ascending:false});
+      }
+      if(p.error)throw p.error;
+      if(q.error)throw q.error;
+      products=p.data||[];
+      posts=q.data||[];
+      settings=(s&&!s.error&&s.data)||{};
+      renderSettingsPublic();
+      renderCatalog();
+      renderPosts();
+      renderAdmin();
+    }catch(err){
+      console.error(err);
+      showError();
+      throw err;
+    }
   }
 
   function renderSettingsPublic(){
     if(settings.tagline)document.querySelector('.tagline').textContent=settings.tagline;
-    const L=[['WhatsApp',settings.whatsapp_url],['Instagram',settings.instagram_url],['Threads',settings.threads_url],['TikTok',settings.tiktok_url],['Marketplace',settings.marketplace_url]].filter(l=>httpUrl(l[1]));
+    const L=[
+      ['WhatsApp',settings.whatsapp_url],
+      ['Instagram',settings.instagram_url],
+      ['Threads',settings.threads_url],
+      ['TikTok',settings.tiktok_url],
+      ['Marketplace',settings.marketplace_url]
+    ].filter(l=>httpUrl(l[1]));
     $('social').innerHTML=L.map(l=>`<a href="${safe(httpUrl(l[1]))}" data-social="${l[0]}" target="_blank" rel="noopener">${l[0]}</a>`).join('');
-    const c=[];if(settings.contact_email)c.push(safe(settings.contact_email));if(settings.contact_phone)c.push(safe(settings.contact_phone));
+    const c=[];
+    if(settings.contact_email)c.push(safe(settings.contact_email));
+    if(settings.contact_phone)c.push(safe(settings.contact_phone));
     $('contactLine').innerHTML=c.join(' · ');
   }
-  $('catalogList').addEventListener('click',e=>{const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}const d=e.target.closest('[data-detail]');if(d)openDetail(d.dataset.detail);});
-  $('detailBody').addEventListener('click',e=>{
-    const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}
-    const im=e.target.closest('.dthumbs img');if(im){$('dmain').src=im.dataset.src;document.querySelectorAll('.dthumbs img').forEach(x=>x.classList.toggle('on',x===im));}
+
+  $('catalogList').addEventListener('click',e=>{
+    const a=e.target.closest('a.buy');
+    if(a){
+      track('product_click',a.dataset.name,a.dataset.pid);
+      return;
+    }
+    const d=e.target.closest('[data-detail]');
+    if(d)openDetail(d.dataset.detail);
   });
-  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
-  $('social').addEventListener('click',e=>{const a=e.target.closest('a[data-social]');if(a)track('social_click',a.dataset.social);});
+
+  $('detailBody').addEventListener('click',e=>{
+    const a=e.target.closest('a.buy');
+    if(a){
+      track('product_click',a.dataset.name,a.dataset.pid);
+      return;
+    }
+    const im=e.target.closest('.dthumbs img');
+    if(im){
+      $('dmain').src=im.dataset.src;
+      document.querySelectorAll('.dthumbs img').forEach(x=>x.classList.toggle('on',x===im));
+    }
+  });
+
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{
+    if(e.target===m)m.classList.remove('open');
+  }));
+
+  $('social').addEventListener('click',e=>{
+    const a=e.target.closest('a[data-social]');
+    if(a)track('social_click',a.dataset.social);
+  });
 
   /* ---------- Slider controls ---------- */
   const cat=$('catalogList');
-  function step(dir){const c=cat.querySelector('.product');const w=c?c.offsetWidth+16:260;cat.scrollBy({left:dir*w*1.5,behavior:'smooth'});}
-  $('prevBtn').onclick=()=>step(-1);$('nextBtn').onclick=()=>step(1);
+  function step(dir){
+    const c=cat.querySelector('.product');
+    const w=c?c.offsetWidth+16:260;
+    cat.scrollBy({left:dir*w*1.5,behavior:'smooth'});
+  }
+  $('prevBtn').onclick=()=>step(-1);
+  $('nextBtn').onclick=()=>step(1);
+
   function updateDots(){
-    const cards=cat.querySelectorAll('.product'),dots=$('dots').children;if(!cards.length||!dots.length)return;
-    const w=cards[0].offsetWidth+16;const i=Math.min(cards.length-1,Math.round(cat.scrollLeft/w));
+    const cards=cat.querySelectorAll('.product'),dots=$('dots').children;
+    if(!cards.length||!dots.length)return;
+    const w=cards[0].offsetWidth+16;
+    const i=Math.min(cards.length-1,Math.round(cat.scrollLeft/w));
     for(let k=0;k<dots.length;k++)dots[k].className=k===i?'on':'';
   }
   cat.addEventListener('scroll',()=>requestAnimationFrame(updateDots),{passive:true});
-  cat.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
+  cat.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight')step(1);
+    if(e.key==='ArrowLeft')step(-1);
+  });
 
   /* ---------- Modal helpers ---------- */
-  const open=id=>$(id).classList.add('open'),close=id=>$(id).classList.remove('open');
+  const open=id=>$(id).classList.add('open');
+  const close=id=>$(id).classList.remove('open');
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>close(b.dataset.close));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')['loginModal','adminModal','detailModal'].forEach(close);});
-  $('tabs').onclick=e=>{const t=e.target.dataset.tab;if(!t)return;
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape')['loginModal','adminModal','detailModal'].forEach(close);
+  });
+  $('tabs').onclick=e=>{
+    const t=e.target.dataset.tab;
+    if(!t)return;
     document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
     ['tabStats','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==t);
-    if(t==='tabStats')loadStats();if(t==='tabSettings')fillSettings();};
+    if(t==='tabStats')loadStats();
+    if(t==='tabSettings')fillSettings();
+  };
+
   async function guarded(btn,fn){
-    if(busy)return;busy=true;const label=btn.textContent;btn.disabled=true;btn.textContent='Menyimpan…';
-    try{await fn();}catch(err){report(err);}finally{busy=false;btn.disabled=false;btn.textContent=label;}
+    if(busy)return;
+    busy=true;
+    const label=btn.textContent;
+    btn.disabled=true;
+    btn.textContent='Menyimpan…';
+    try{
+      await fn();
+    }catch(err){
+      report(err);
+    }finally{
+      busy=false;
+      btn.disabled=false;
+      btn.textContent=label;
+    }
   }
 
   /* ---------- Forms ---------- */
   let extraKeep=[];
+
   function renderExtra(){
     $('extraThumbs').innerHTML=extraKeep.map((u,i)=>`<div class="th"><img src="${safe(u)}" alt=""><button type="button" data-rm="${i}" aria-label="Hapus foto">×</button></div>`).join('');
   }
-  $('extraThumbs').onclick=e=>{const b=e.target.closest('button[data-rm]');if(b){extraKeep.splice(+b.dataset.rm,1);renderExtra();}};
-  $('productExtra').addEventListener('change',e=>{const n=e.target.files.length;$('extraHint').textContent=n?n+' foto baru dipilih, akan diunggah saat disimpan.':'';});
-  function clearForm(){extraKeep=[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';$('productOld').value='';$('productBadge').value='';$('productStock').checked=true;editingId=null;['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');$('productPreview').hidden=true;$('saveProduct').textContent='Tambah produk';$('productFormTitle').textContent='Tambah produk';$('cancelEdit').hidden=true;}
-  function clearPostForm(){editingPostId=null;['updateTitle','updateEditor','updateImage'].forEach(id=>$(id).value='');$('updatePreview').hidden=true;$('saveUpdate').textContent='Posting info';$('postFormTitle').textContent='Buat postingan info';$('cancelUpdateEdit').hidden=true;}
+
+  $('extraThumbs').onclick=e=>{
+    const b=e.target.closest('button[data-rm]');
+    if(b){
+      extraKeep.splice(+b.dataset.rm,1);
+      renderExtra();
+    }
+  };
+
+  $('productExtra').addEventListener('change',e=>{
+    const n=e.target.files.length;
+    $('extraHint').textContent=n?n+' foto baru dipilih, akan diunggah saat disimpan.':'';
+  });
+
+  function clearForm(){
+    extraKeep=[];
+    renderExtra();
+    $('productExtra').value='';
+    $('extraHint').textContent='';
+    $('productOld').value='';
+    $('productBadge').value='';
+    $('productStock').checked=true;
+    editingId=null;
+    ['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');
+    $('productPreview').hidden=true;
+    $('saveProduct').textContent='Tambah produk';
+    $('productFormTitle').textContent='Tambah produk';
+    $('cancelEdit').hidden=true;
+  }
+
+  function clearPostForm(){
+    editingPostId=null;
+    ['updateTitle','updateEditor','updateImage'].forEach(id=>$(id).value='');
+    $('updatePreview').hidden=true;
+    $('saveUpdate').textContent='Posting info';
+    $('postFormTitle').textContent='Buat postingan info';
+    $('cancelUpdateEdit').hidden=true;
+  }
 
   async function showAdmin(){
     const {data:{user}}=await db.auth.getUser();
-    if(!user||user.id!==ADMIN_UID){toast('Akun ini tidak memiliki akses admin EVORA.',true);await db.auth.signOut();return;}
-    isAdmin=true;close('loginModal');open('adminModal');loadStats();$('loginError').textContent='';$('adminEmail').value='';$('adminPassword').value='';
+    if(!user||user.id!==ADMIN_UID){
+      toast('Akun ini tidak memiliki akses admin EVORA.',true);
+      await db.auth.signOut();
+      return;
+    }
+    isAdmin=true;
+    close('loginModal');
+    open('adminModal');
+    loadStats();
+    $('loginError').textContent='';
+    $('adminEmail').value='';
+    $('adminPassword').value='';
     renderAdmin();
   }
-  $('adminOpen').onclick=()=>{open('loginModal');$('adminEmail').focus();};
+
+  $('adminOpen').onclick=()=>{
+    open('loginModal');
+    $('adminEmail').focus();
+  };
+
   $('loginButton').onclick=async()=>{
-    const email=$('adminEmail').value.trim(),password=$('adminPassword').value;
-    if(!email||!password){$('loginError').textContent='Email dan password wajib diisi.';return;}
+    const email=$('adminEmail').value.trim();
+    const password=$('adminPassword').value;
+    if(!email||!password){
+      $('loginError').textContent='Email dan password wajib diisi.';
+      return;
+    }
     $('loginButton').disabled=true;
     try{
       const {error}=await db.auth.signInWithPassword({email,password});
-      if(error){$('loginError').textContent=error.message==='Invalid login credentials'?'Email atau password salah.':error.message;return;}
+      if(error){
+        $('loginError').textContent=error.message==='Invalid login credentials'?'Email atau password salah.':error.message;
+        return;
+      }
       await showAdmin();
-    }catch(err){report(err);}finally{$('loginButton').disabled=false;}
+    }catch(err){
+      report(err);
+    }finally{
+      $('loginButton').disabled=false;
+    }
   };
-  ['adminEmail','adminPassword'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('loginButton').click();}));
 
-  $('saveProduct').onclick=function(){guarded(this,async()=>{
-    const name=$('productName').value.trim();
-    if(!name){$('productName').focus();throw new Error('Nama parfum wajib diisi.');}
-    const link=$('productUrl').value.trim();
-    if(link&&!httpUrl(link))throw new Error('Link pembelian harus diawali https://');
-    const old=products.find(p=>p.id===editingId),file=$('productImage').files[0];
-    if(!old&&!file)throw new Error('Pilih foto produk terlebih dahulu.');
-    const newFiles=Array.from($('productExtra').files);
-    if(extraKeep.length+newFiles.length>5)throw new Error('Maksimal 5 foto tambahan.');
-    const image=await uploadImage(file,'products');
-    const uploaded=[];for(const f of newFiles)uploaded.push(await uploadImage(f,'products'));
-    const row={name,price:$('productPrice').value.trim(),description:$('productDesc').value.trim(),purchase_url:link,image_url:image||(old&&old.image_url)||null,old_price:$('productOld').value.trim(),badge:$('productBadge').value,in_stock:$('productStock').checked,images:extraKeep.concat(uploaded)};
-    if(!editingId&&hasOrder)row.sort_order=products.length?Math.max(...products.map(x=>x.sort_order||0))+1:0;
-    const r=editingId?await db.from('products').update(row).eq('id',editingId):await db.from('products').insert(row);
-    if(r.error){if(image)removeImage(image);uploaded.forEach(removeImage);throw /badge|old_price|in_stock|images|column/i.test(r.error.message||'')?new Error('Jalankan upgrade2.sql di Supabase terlebih dahulu. ('+r.error.message+')'):r.error;}
-    if(image&&old&&old.image_url)removeImage(old.image_url);
-    if(old&&Array.isArray(old.images))old.images.filter(u=>!extraKeep.includes(u)).forEach(removeImage);
-    toast(editingId?'Produk diperbarui.':'Produk ditambahkan.');clearForm();await loadPublic();
-  });};
+  ['adminEmail','adminPassword'].forEach(id=>$(id).addEventListener('keydown',e=>{
+    if(e.key==='Enter')$('loginButton').click();
+  }));
+
+  /* ---------- Perbaikan error upload produk ---------- */
+  function productSaveError(err){
+    const message=String((err&&err.message)||'Kesalahan tidak diketahui.');
+    const code=String((err&&err.code)||'');
+    if(code==='PGRST204'||code==='42703'||/could not find the .* column|column .* does not exist|schema cache/i.test(message)){
+      return new Error('Kolom pada tabel products belum lengkap. Buka Supabase > SQL Editor, jalankan evora_fix_produk.sql satu kali, lalu muat ulang website. Detail: '+message);
+    }
+    if(code==='42501'||/row.level security|permission denied|not authorized/i.test(message)){
+      return new Error('Akses database ditolak (RLS/izin). Periksa policy tabel products untuk akun admin yang login. Detail: '+message);
+    }
+    return err instanceof Error?err:new Error(message);
+  }
+
+  $('saveProduct').onclick=function(){
+    guarded(this,async()=>{
+      const name=$('productName').value.trim();
+      if(!name){
+        $('productName').focus();
+        throw new Error('Nama parfum wajib diisi.');
+      }
+
+      const link=$('productUrl').value.trim();
+      if(link&&!httpUrl(link))
+        throw new Error('Link pembelian harus diawali https://');
+
+      const old=products.find(p=>p.id===editingId);
+      const file=$('productImage').files[0];
+
+      if(!old&&!file)
+        throw new Error('Pilih foto produk terlebih dahulu.');
+
+      const newFiles=Array.from($('productExtra').files);
+      if(extraKeep.length+newFiles.length>5)
+        throw new Error('Maksimal 5 foto tambahan.');
+
+      let mainImage='';
+      const uploaded=[];
+
+      try{
+        mainImage=await uploadImage(file,'products');
+        for(const f of newFiles){
+          uploaded.push(await uploadImage(f,'products'));
+        }
+
+        const row={
+          name,
+          price:$('productPrice').value.trim(),
+          description:$('productDesc').value.trim(),
+          purchase_url:link,
+          image_url:mainImage||(old&&old.image_url)||null,
+          old_price:$('productOld').value.trim(),
+          badge:$('productBadge').value,
+          in_stock:$('productStock').checked,
+          images:extraKeep.concat(uploaded)
+        };
+
+        if(!editingId&&hasOrder){
+          row.sort_order=products.length
+            ?Math.max(...products.map(x=>Number(x.sort_order)||0))+1
+            :0;
+        }
+
+        const result=editingId
+          ?await db.from('products').update(row).eq('id',editingId)
+          :await db.from('products').insert(row);
+
+        if(result.error)throw productSaveError(result.error);
+
+      }catch(err){
+        await Promise.all(
+          [mainImage,...uploaded].filter(Boolean).map(removeImage)
+        );
+        throw productSaveError(err);
+      }
+
+      if(mainImage&&old&&old.image_url)
+        await removeImage(old.image_url);
+
+      if(old&&Array.isArray(old.images)){
+        await Promise.all(
+          old.images.filter(u=>!extraKeep.includes(u)).map(removeImage)
+        );
+      }
+
+      toast(editingId?'Produk diperbarui.':'Produk ditambahkan.');
+      clearForm();
+      await loadPublic();
+    });
+  };
+
   $('cancelEdit').onclick=clearForm;
+
   $('adminProductList').onclick=async e=>{
-    const b=e.target.closest('button');if(!b||b.disabled)return;const edit=b.dataset.edit,del=b.dataset.delete;
-    if(b.dataset.toggle){try{const p=products.find(x=>x.id===b.dataset.toggle);const {error}=await db.from('products').update({is_active:p.is_active===false}).eq('id',p.id);if(error)throw error;toast(p.is_active===false?'Produk ditampilkan.':'Produk disembunyikan.');await loadPublic();}catch(err){report(err);}return;}
-    if(b.dataset.stock){try{const p=products.find(x=>x.id===b.dataset.stock);const {error}=await db.from('products').update({in_stock:p.in_stock===false}).eq('id',p.id);if(error)throw error;toast(p.in_stock===false?'Stok ditandai tersedia.':'Produk ditandai habis.');await loadPublic();}catch(err){report(err);}return;}
+    const b=e.target.closest('button');
+    if(!b||b.disabled)return;
+    const edit=b.dataset.edit,del=b.dataset.delete;
+
+    if(b.dataset.toggle){
+      try{
+        const p=products.find(x=>x.id===b.dataset.toggle);
+        const {error}=await db.from('products').update({is_active:p.is_active===false}).eq('id',p.id);
+        if(error)throw error;
+        toast(p.is_active===false?'Produk ditampilkan.':'Produk disembunyikan.');
+        await loadPublic();
+      }catch(err){report(err);}
+      return;
+    }
+
+    if(b.dataset.stock){
+      try{
+        const p=products.find(x=>x.id===b.dataset.stock);
+        const {error}=await db.from('products').update({in_stock:p.in_stock===false}).eq('id',p.id);
+        if(error)throw error;
+        toast(p.in_stock===false?'Stok ditandai tersedia.':'Produk ditandai habis.');
+        await loadPublic();
+      }catch(err){report(err);}
+      return;
+    }
+
     if(b.dataset.up!==undefined||b.dataset.down!==undefined){
-      const i=+(b.dataset.up!==undefined?b.dataset.up:b.dataset.down),j=b.dataset.up!==undefined?i-1:i+1;
-      const ids=products.map(x=>x.id);[ids[i],ids[j]]=[ids[j],ids[i]];
-      try{const res=await Promise.all(ids.map((id,n)=>db.from('products').update({sort_order:n}).eq('id',id)));const bad=res.find(r=>r.error);if(bad)throw bad.error;await loadPublic();}catch(err){report(err);}return;}
-    if(edit){const p=products.find(x=>x.id===edit);if(!p)return;editingId=p.id;
-      $('productName').value=p.name;$('productPrice').value=p.price||'';$('productDesc').value=p.description||'';$('productUrl').value=p.purchase_url||'';$('productImage').value='';$('productOld').value=p.old_price||'';$('productBadge').value=p.badge||'';$('productStock').checked=p.in_stock!==false;extraKeep=Array.isArray(p.images)?p.images.slice():[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';
-      if(p.image_url){$('productPreview').src=p.image_url;$('productPreview').hidden=false;}else $('productPreview').hidden=true;
-      $('saveProduct').textContent='Simpan perubahan';$('productFormTitle').textContent='Edit produk';$('cancelEdit').hidden=false;$('productName').scrollIntoView({behavior:'smooth',block:'center'});}
-    if(del&&confirm('Hapus produk ini?')){try{const p=products.find(x=>x.id===del);const {error}=await db.from('products').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearForm();toast('Produk dihapus.');await loadPublic();}catch(err){report(err);}}
+      const i=+(b.dataset.up!==undefined?b.dataset.up:b.dataset.down);
+      const j=b.dataset.up!==undefined?i-1:i+1;
+      const ids=products.map(x=>x.id);
+      [ids[i],ids[j]]=[ids[j],ids[i]];
+      try{
+        const res=await Promise.all(ids.map((id,n)=>db.from('products').update({sort_order:n}).eq('id',id)));
+        const bad=res.find(r=>r.error);
+        if(bad)throw bad.error;
+        await loadPublic();
+      }catch(err){report(err);}
+      return;
+    }
+
+    if(edit){
+      const p=products.find(x=>x.id===edit);
+      if(!p)return;
+      editingId=p.id;
+      $('productName').value=p.name;
+      $('productPrice').value=p.price||'';
+      $('productDesc').value=p.description||'';
+      $('productUrl').value=p.purchase_url||'';
+      $('productImage').value='';
+      $('productOld').value=p.old_price||'';
+      $('productBadge').value=p.badge||'';
+      $('productStock').checked=p.in_stock!==false;
+      extraKeep=Array.isArray(p.images)?p.images.slice():[];
+      renderExtra();
+      $('productExtra').value='';
+      $('extraHint').textContent='';
+      if(p.image_url){
+        $('productPreview').src=p.image_url;
+        $('productPreview').hidden=false;
+      }else $('productPreview').hidden=true;
+      $('saveProduct').textContent='Simpan perubahan';
+      $('productFormTitle').textContent='Edit produk';
+      $('cancelEdit').hidden=false;
+      $('productName').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    if(del&&confirm('Hapus produk ini?')){
+      try{
+        const p=products.find(x=>x.id===del);
+        const {error}=await db.from('products').delete().eq('id',del);
+        if(error)throw error;
+        if(p)removeImage(p.image_url);
+        clearForm();
+        toast('Produk dihapus.');
+        await loadPublic();
+      }catch(err){report(err);}
+    }
   };
 
-  $('saveUpdate').onclick=function(){guarded(this,async()=>{
-    const title=$('updateTitle').value.trim(),description=$('updateEditor').value.trim();
-    if(!title&&!description){$('updateTitle').focus();throw new Error('Isi judul atau deskripsi postingan.');}
-    const old=posts.find(p=>p.id===editingPostId);
-    const image=await uploadImage($('updateImage').files[0],'posts');
-    const row={title:title||'Info EVORA',description,image_url:image||(old&&old.image_url)||null};
-    const r=editingPostId?await db.from('posts').update(row).eq('id',editingPostId):await db.from('posts').insert(row);
-    if(r.error){if(image)removeImage(image);throw r.error;}
-    if(image&&old&&old.image_url)removeImage(old.image_url);
-    toast(editingPostId?'Postingan diperbarui.':'Postingan diterbitkan.');clearPostForm();await loadPublic();
-  });};
-  $('cancelUpdateEdit').onclick=clearPostForm;
-  $('adminUpdateList').onclick=async e=>{
-    const b=e.target.closest('button');if(!b)return;const edit=b.dataset.postEdit,del=b.dataset.postDelete;
-    if(edit){const p=posts.find(x=>x.id===edit);if(!p)return;editingPostId=p.id;
-      $('updateTitle').value=p.title||'';$('updateEditor').value=p.description||'';$('updateImage').value='';
-      if(p.image_url){$('updatePreview').src=p.image_url;$('updatePreview').hidden=false;}else $('updatePreview').hidden=true;
-      $('saveUpdate').textContent='Simpan perubahan';$('postFormTitle').textContent='Edit postingan';$('cancelUpdateEdit').hidden=false;$('updateTitle').scrollIntoView({behavior:'smooth',block:'center'});}
-    if(del&&confirm('Hapus postingan ini?')){try{const p=posts.find(x=>x.id===del);const {error}=await db.from('posts').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearPostForm();toast('Postingan dihapus.');await loadPublic();}catch(err){report(err);}}
+  /* ---------- Info / Postingan ---------- */
+  $('saveUpdate').onclick=function(){
+    guarded(this,async()=>{
+      const title=$('updateTitle').value.trim();
+      const description=$('updateEditor').value.trim();
+      if(!title&&!description){
+        $('updateTitle').focus();
+        throw new Error('Isi judul atau deskripsi postingan.');
+      }
+      const old=posts.find(p=>p.id===editingPostId);
+      const image=await uploadImage($('updateImage').files[0],'posts');
+      const row={
+        title:title||'Info EVORA',
+        description,
+        image_url:image||(old&&old.image_url)||null
+      };
+      const r=editingPostId
+        ?await db.from('posts').update(row).eq('id',editingPostId)
+        :await db.from('posts').insert(row);
+
+      if(r.error){
+        if(image)removeImage(image);
+        throw r.error;
+      }
+      if(image&&old&&old.image_url)removeImage(old.image_url);
+      toast(editingPostId?'Postingan diperbarui.':'Postingan diterbitkan.');
+      clearPostForm();
+      await loadPublic();
+    });
   };
-  $('adminLogout').onclick=async()=>{await db.auth.signOut();isAdmin=false;close('adminModal');clearForm();clearPostForm();toast('Anda sudah keluar.');};
+
+  $('cancelUpdateEdit').onclick=clearPostForm;
+
+  $('adminUpdateList').onclick=async e=>{
+    const b=e.target.closest('button');
+    if(!b)return;
+    const edit=b.dataset.postEdit,del=b.dataset.postDelete;
+
+    if(edit){
+      const p=posts.find(x=>x.id===edit);
+      if(!p)return;
+      editingPostId=p.id;
+      $('updateTitle').value=p.title||'';
+      $('updateEditor').value=p.description||'';
+      $('updateImage').value='';
+      if(p.image_url){
+        $('updatePreview').src=p.image_url;
+        $('updatePreview').hidden=false;
+      }else $('updatePreview').hidden=true;
+      $('saveUpdate').textContent='Simpan perubahan';
+      $('postFormTitle').textContent='Edit postingan';
+      $('cancelUpdateEdit').hidden=false;
+      $('updateTitle').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    if(del&&confirm('Hapus postingan ini?')){
+      try{
+        const p=posts.find(x=>x.id===del);
+        const {error}=await db.from('posts').delete().eq('id',del);
+        if(error)throw error;
+        if(p)removeImage(p.image_url);
+        clearPostForm();
+        toast('Postingan dihapus.');
+        await loadPublic();
+      }catch(err){report(err);}
+    }
+  };
+
+  $('adminLogout').onclick=async()=>{
+    await db.auth.signOut();
+    isAdmin=false;
+    close('adminModal');
+    clearForm();
+    clearPostForm();
+    toast('Anda sudah keluar.');
+  };
 
   /* ---------- Statistik ---------- */
   const nf=n=>Number(n||0).toLocaleString('id-ID');
+
   function barList(items,key,empty){
     if(!items||!items.length)return `<p class="hint">${empty}</p>`;
     const max=Math.max(...items.map(i=>+i[key]))||1;
     return `<div class="bl">${items.map(i=>`<div class="r"><span>${safe(i.name)}</span><b>${nf(i[key])}</b><div class="bar"><i style="width:${(i[key]/max*100).toFixed(1)}%"></i></div></div>`).join('')}</div>`;
   }
+
   function renderStats(s){
-    const daily=s.daily||[],max=Math.max(1,...daily.map(d=>d.visits));
+    const daily=s.daily||[];
+    const max=Math.max(1,...daily.map(d=>d.visits));
     const conv=s.range_visits?(s.range_clicks/s.range_visits*100).toFixed(1):'0.0';
-    const lbl=d=>{const p=String(d).split('-');return p[2]+'/'+p[1];};
+    const lbl=d=>{
+      const p=String(d).split('-');
+      return p[2]+'/'+p[1];
+    };
     const every=Math.ceil(daily.length/7);
-    const top=(s.top_products||[]);const best=top[0];
+    const top=(s.top_products||[]);
+    const best=top[0];
+
     $('statsBody').innerHTML=
       `<div class="cards"><div class="stat hl"><small>Kunjungan hari ini</small><b>${nf(s.today_visits)}</b></div><div class="stat"><small>Pengunjung unik hari ini</small><b>${nf(s.today_unique)}</b></div><div class="stat"><small>Klik beli hari ini</small><b>${nf(s.today_clicks)}</b></div>
       <div class="stat"><small>Kunjungan ${s.days} hari</small><b>${nf(s.range_visits)}</b></div><div class="stat"><small>Klik beli ${s.days} hari</small><b>${nf(s.range_clicks)}</b></div><div class="stat"><small>Rasio klik / kunjungan</small><b>${conv}%</b></div></div>
@@ -589,8 +1137,10 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       <div class="box"><h4>Klik tombol sosial & kontak</h4>${barList(s.social,'n','Belum ada klik.')}</div>
       <p class="hint" style="margin-top:12px">Hari dihitung dengan zona waktu WIB. Kunjungan Anda sendiri sebagai admin tidak dihitung. "Unik" dihitung per perangkat/browser.</p>
       <div class="admin-actions"><button class="secondary" id="refreshStats">Segarkan</button></div>`;
+
     $('refreshStats').onclick=()=>loadStats();
   }
+
   async function loadStats(){
     $('statsBody').innerHTML='<div class="state">Memuat statistik…</div>';
     try{
@@ -602,26 +1152,59 @@ h1{font-family:var(--heading);font-weight:400;color:var(--primary);font-size:cla
       $('statsBody').innerHTML='<div class="state err">Statistik belum aktif atau gagal dimuat.<br><span class="hint">Pastikan file <b>upgrade.sql</b> sudah dijalankan di Supabase SQL Editor.</span></div>';
     }
   }
-  $('range').onclick=e=>{const d=e.target.dataset.d;if(!d)return;statDays=+d;document.querySelectorAll('#range button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));loadStats();};
+
+  $('range').onclick=e=>{
+    const d=e.target.dataset.d;
+    if(!d)return;
+    statDays=+d;
+    document.querySelectorAll('#range button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));
+    loadStats();
+  };
 
   /* ---------- Pengaturan ---------- */
-  const SMAP={sTagline:'tagline',sWa:'whatsapp_url',sIg:'instagram_url',sTh:'threads_url',sTt:'tiktok_url',sMp:'marketplace_url',sEmail:'contact_email',sPhone:'contact_phone'};
-  function fillSettings(){Object.keys(SMAP).forEach(id=>$(id).value=settings[SMAP[id]]||'');}
-  $('saveSettings').onclick=function(){guarded(this,async()=>{
-    const row={id:1};
-    for(const id of Object.keys(SMAP)){const v=$(id).value.trim();row[SMAP[id]]=v;
-      if(/^s(Wa|Ig|Th|Tt|Mp)$/.test(id)&&v&&!httpUrl(v))throw new Error('Link harus diawali https://');}
-    const {error}=await db.from('settings').upsert(row);
-    if(error)throw new Error('Gagal menyimpan. Pastikan upgrade.sql sudah dijalankan. ('+error.message+')');
-    settings=Object.assign({},settings,row);renderSettingsPublic();renderCatalog();toast('Pengaturan tersimpan.');
-  });};
+  const SMAP={
+    sTagline:'tagline',
+    sWa:'whatsapp_url',
+    sIg:'instagram_url',
+    sTh:'threads_url',
+    sTt:'tiktok_url',
+    sMp:'marketplace_url',
+    sEmail:'contact_email',
+    sPhone:'contact_phone'
+  };
+
+  function fillSettings(){
+    Object.keys(SMAP).forEach(id=>$(id).value=settings[SMAP[id]]||'');
+  }
+
+  $('saveSettings').onclick=function(){
+    guarded(this,async()=>{
+      const row={id:1};
+      for(const id of Object.keys(SMAP)){
+        const v=$(id).value.trim();
+        row[SMAP[id]]=v;
+        if(/^s(Wa|Ig|Th|Tt|Mp)$/.test(id)&&v&&!httpUrl(v))
+          throw new Error('Link harus diawali https://');
+      }
+      const {error}=await db.from('settings').upsert(row);
+      if(error)throw new Error('Gagal menyimpan. Pastikan upgrade.sql sudah dijalankan. ('+error.message+')');
+      settings=Object.assign({},settings,row);
+      renderSettingsPublic();
+      renderCatalog();
+      toast('Pengaturan tersimpan.');
+    });
+  };
 
   /* ---------- Init ---------- */
   showLoading();
   loadPublic().catch(()=>{}).then(async()=>{
     const {data}=await db.auth.getSession();
-    if(data.session&&data.session.user.id===ADMIN_UID){isAdmin=true;await showAdmin();}
-    else track('visit','');
+    if(data.session&&data.session.user.id===ADMIN_UID){
+      isAdmin=true;
+      await showAdmin();
+    }else{
+      track('visit','');
+    }
   }).catch(report);
 })();
 </script>
