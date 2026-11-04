@@ -8,7 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA V4.9: mobile zoom fix, preserving EVORA Picks, INFO popup/contact, catalogs and dashboard -->
+<!-- EVORA V5.3: Control Center toggle fixed; keeps previous EVORA features -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -309,6 +309,32 @@ html,body { max-width:100%; overflow-x:clip; }
   #adminView .admin-side-brand b{font-size:12px}
 }
 
+
+/* EVORA V5.3 — Control Center: reliable collapse/expand on desktop and mobile */
+#adminView.admin-view {transition:grid-template-columns .24s ease;}
+#adminView .admin-toggle{cursor:pointer;touch-action:manipulation;flex-shrink:0;}
+#adminView .admin-toggle:focus-visible{outline:3px solid #9ab99b;outline-offset:2px;}
+#adminView.admin-view.sidebar-collapsed .admin-side-brand{min-width:0;overflow:hidden;}
+#adminView.admin-view.sidebar-collapsed .admin-side-brand small,#adminView.admin-view.sidebar-collapsed .side-label,#adminView.admin-view.sidebar-collapsed .side-help{display:none !important;}
+#adminView.admin-view.sidebar-collapsed .admin-side-brand b{font-size:0 !important;letter-spacing:0 !important;white-space:nowrap;}
+#adminView.admin-view.sidebar-collapsed .admin-side-brand b::after{content:'E';font-size:23px;letter-spacing:0;display:inline-block;color:#f5f7f0;}
+#adminView.admin-view.sidebar-collapsed .tabs button{min-width:0;}
+#adminView.admin-view.sidebar-collapsed .tabs button .tab-text{display:none !important;}
+@media(max-width:820px){
+  #adminView.admin-view.sidebar-collapsed{grid-template-columns:70px minmax(0,1fr);}
+  #adminView.admin-view.sidebar-collapsed .admin-sidebar{padding-left:5px;padding-right:5px;}
+  #adminView.admin-view.sidebar-collapsed .tabs button{justify-content:center;align-items:center;}
+}
+@media(max-width:540px){
+  #adminView.admin-view.sidebar-collapsed{grid-template-columns:60px minmax(0,1fr);}
+  #adminView.admin-view.sidebar-collapsed .admin-side-brand b::after{font-size:20px;}
+  #adminView .admin-user{gap:4px;}
+  #adminView .admin-toggle{min-width:58px;}
+}
+@media(max-width:360px){
+  #adminView.admin-view.sidebar-collapsed{grid-template-columns:56px minmax(0,1fr);}
+}
+@media(prefers-reduced-motion:reduce){#adminView.admin-view{transition:none;}}
 </style>
 </head>
 <body>
@@ -415,7 +441,7 @@ html,body { max-width:100%; overflow-x:clip; }
 <!-- Admin dashboard: halaman sendiri, bukan modal -->
 <div class="admin-view" id="adminView" hidden>
   <aside class="admin-sidebar" id="adminSidebar"><div class="admin-side-brand"><b>EVORA</b><small>CONTROL CENTER</small></div><div class="side-label">Menu Utama</div><nav class="tabs" id="tabs" aria-label="Navigasi dashboard admin"><button class="on" data-tab="tabStats" title="Ringkasan"><span class="nav-ico">⌂</span><span class="tab-text">Ringkasan</span></button><button data-tab="tabHome" title="Tampilan Beranda"><span class="nav-ico">◐</span><span class="tab-text">Tampilan Beranda</span></button><button data-tab="tabFeatured" title="Produk Pilihan"><span class="nav-ico">✦</span><span class="tab-text">Produk Pilihan</span></button><button data-tab="tabProducts" title="Kelola Produk"><span class="nav-ico">◈</span><span class="tab-text">Kelola Produk</span></button><button data-tab="tabPosts" title="INFO"><span class="nav-ico">▤</span><span class="tab-text">INFO</span></button><button data-tab="tabSettings" title="Pengaturan"><span class="nav-ico">⚙</span><span class="tab-text">Pengaturan</span></button></nav><div class="side-help"><b>EVORA Workspace</b><p>Setiap perubahan pada produk dan konten akan langsung tersimpan ke Supabase.</p></div></aside>
-  <div class="admin-main"><header class="admin-topbar"><div class="breadcrumbs">EVORA / <strong>Admin Workspace</strong></div><div class="admin-user"><button class="top-action admin-toggle" id="adminSidebarToggle" aria-controls="adminSidebar" aria-expanded="true">✕ Tutup</button><button class="top-action" id="viewWebsite">↗ Lihat Website</button><button class="top-action signout" id="adminLogout">Keluar</button><div class="avatar">AD</div></div></header>
+  <div class="admin-main"><header class="admin-topbar"><div class="breadcrumbs">EVORA / <strong>Admin Workspace</strong></div><div class="admin-user"><button class="top-action admin-toggle" id="adminSidebarToggle" aria-controls="adminSidebar" aria-expanded="true" aria-label="Tutup menu Control Center">✕ Tutup</button><button class="top-action" id="viewWebsite">↗ Lihat Website</button><button class="top-action signout" id="adminLogout">Keluar</button><div class="avatar">AD</div></div></header>
     <main class="admin-container"><div class="admin-pagehead"><div><span>EVORA / Management</span><h1 id="adminPageTitle">Ringkasan bisnis</h1><p id="adminPageSubtitle">Pantau performa toko dan aktivitas pengunjung.</p></div><div class="admin-date">SIGNATURE SCENT · EST. 2026</div></div>
       <section class="admin-section" id="tabStats"><div class="admin-banner"><div><h2>Welcome to EVORA Studio.</h2><p>Bangun pengalaman parfum yang semakin berkesan. Semua dalam satu dashboard.</p></div><button class="btn" data-goto="home">✦ Atur Beranda</button></div><div class="quick-stats"><div class="quick-box"><small>Jumlah Produk</small><b id="quickProducts">0</b><em>Seluruh katalog</em></div><div class="quick-box"><small>Produk Tampil</small><b id="quickVisible">0</b><em>Aktif di website</em></div><div class="quick-box"><small>INFO</small><b id="quickPosts">0</b><em>Postingan publik</em></div></div><div class="admin-surface"><h3>Analitik pengunjung</h3><p class="surface-intro">Statistik diperbarui dari data kunjungan website.</p><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div></section>
       <section class="admin-section" id="tabHome" hidden>
@@ -1298,6 +1324,7 @@ html,body { max-width:100%; overflow-x:clip; }
     if(btn){
       btn.setAttribute('aria-expanded', String(!collapsed));
       btn.textContent=collapsed?'☰ Menu':'✕ Tutup';
+      btn.setAttribute('aria-label', collapsed?'Buka menu Control Center':'Tutup menu Control Center');
     }
   }
   function getSavedSidebarState(){
@@ -1306,6 +1333,15 @@ html,body { max-width:100%; overflow-x:clip; }
   function saveSidebarState(collapsed){
     try{localStorage.setItem(ADMIN_SIDEBAR_KEY, collapsed?'1':'0');}catch(e){}
     applyAdminSidebarState(collapsed);
+  }
+
+  // Sambungkan tombol Control Center; berlaku untuk HP, tablet, dan desktop.
+  const adminSidebarToggle=$('adminSidebarToggle');
+  if(adminSidebarToggle){
+    adminSidebarToggle.addEventListener('click',()=>{
+      saveSidebarState(!$('adminView').classList.contains('sidebar-collapsed'));
+    });
+    applyAdminSidebarState(getSavedSidebarState());
   }
 
   /* ---------- Init ---------- */
