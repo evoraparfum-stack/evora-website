@@ -95,7 +95,7 @@
   const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   let products=[],posts=[],settings={},editingId=null,editingPostId=null,busy=false,hasOrder=true,isAdmin=false,statDays=14;
   const $=id=>document.getElementById(id);
-  const uuid=()=>crypto.randomUUID?uuid():[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const uuid=()=>typeof crypto.randomUUID==='function'?crypto.randomUUID():[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
   const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const httpUrl=u=>/^https?:\/\//i.test(String(u||'').trim())?String(u).trim():'';
   const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return '';}};
