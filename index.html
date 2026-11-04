@@ -494,6 +494,71 @@ button{line-height:1.1}
   .collection-bottom p{font-size:12px;line-height:1.75}
 }
 
+
+/* EVORA V5.3.6 — setelah produk ke-5 tampil kartu CTA ke katalog lengkap */
+#catalogList.catalog .catalog-cta-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:22px 18px;
+  border:1px solid #e0e8dc;
+  border-radius:20px;
+  background:linear-gradient(160deg,#f8faf5 0%,#edf4e7 56%,#f7faf6 100%);
+  min-height:100%;
+  box-shadow:0 16px 34px #2d462c0d;
+}
+#catalogList.catalog .catalog-cta-card .cta-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font:800 10px var(--ui);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#75856e;
+  margin-bottom:12px;
+}
+#catalogList.catalog .catalog-cta-card .cta-kicker::before{
+  content:'';
+  width:8px;height:8px;border-radius:50%;background:#97ae90;
+  box-shadow:0 0 0 6px #dfe9d8;
+  animation:ctaBlink 2s ease-in-out infinite;
+}
+#catalogList.catalog .catalog-cta-card h3{
+  height:auto;min-height:0;max-height:none;
+  -webkit-line-clamp:unset;line-clamp:unset;
+  display:block;
+  margin:0 0 10px;
+  font:600 clamp(24px,2vw,28px)/1.2 var(--heading);
+  color:#24382b;
+}
+#catalogList.catalog .catalog-cta-card .desc{
+  height:auto;min-height:0;max-height:none;
+  -webkit-line-clamp:unset;line-clamp:unset;
+  display:block;
+  margin:0 0 18px;
+  font:400 13px/1.8 var(--body);
+  color:#6c786c;
+}
+#catalogList.catalog .catalog-cta-card .cta-spacer{flex:1}
+#catalogList.catalog .catalog-cta-card .card-actions{margin-top:auto}
+#catalogList.catalog .catalog-cta-card .buy{
+  width:100%;
+  min-height:50px;
+  justify-content:center;
+  border-radius:999px;
+  box-shadow:0 14px 28px #31492f1d;
+}
+#catalogList.catalog .catalog-cta-card .buy span[aria-hidden="true"]{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;
+  background:#ffffff24;border:1px solid #ffffff26;
+}
+@media(max-width:650px){
+  #catalogList.catalog .catalog-cta-card{padding:20px 16px;border-radius:18px}
+  #catalogList.catalog .catalog-cta-card h3{font-size:25px}
+  #catalogList.catalog .catalog-cta-card .desc{font-size:12px;line-height:1.75}
+}
+
 </style>
 </head>
 <body>
@@ -778,11 +843,15 @@ button{line-height:1.1}
     if(!ids.length)return all.slice(0,5); // Sebelum admin memilih, 5 produk pertama sebagai default.
     return ids.map(id=>all.find(p=>String(p.id)===id)).filter(Boolean).slice(0,5);
   }
+  function catalogFullCtaCard(){
+    return `<article class="product catalog-cta-card"><div><span class="cta-kicker">Explore More</span><h3>Buka Katalog Lengkap EVORA</h3><p class="desc">Setelah melihat 5 produk pilihan, lanjutkan untuk menjelajahi seluruh koleksi parfum EVORA, promo menarik, dan aroma lainnya dalam satu halaman lengkap.</p></div><div class="cta-spacer"></div><div class="card-actions"><a class="buy" href="#koleksi">Masuk ke Katalog Lengkap <span aria-hidden="true">↗</span></a></div></article>`;
+  }
   function renderCatalog(){
     const el=$('catalogList'),shown=featuredProducts();
     if(!shown.length){el.innerHTML='<div class="state">Koleksi pilihan sedang disiapkan. Lihat katalog lengkap untuk menemukan produk lain.</div>';$('dots').innerHTML='';return;}
-    el.innerHTML=shown.map(productCard).join('');
-    $('dots').innerHTML=shown.length>1?shown.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
+    el.innerHTML=shown.map(productCard).join('')+catalogFullCtaCard();
+    const dotCount=shown.length+1;
+    $('dots').innerHTML=dotCount>1?Array.from({length:dotCount},(_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
     el.scrollLeft=0;
     updateDots();
   }
