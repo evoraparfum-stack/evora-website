@@ -119,6 +119,22 @@
 .preview.wide{width:170px;height:auto;aspect-ratio:4 / 5;object-fit:cover}
 @media(max-width:820px){.hero-art{height:auto;aspect-ratio:4 / 5;max-width:480px;justify-self:center}}
 @media(max-width:540px){.hero-art{height:auto;aspect-ratio:4 / 5;max-width:460px}}
+
+/* EVORA V4.2 — keamanan akun admin */
+.security-panel{margin-top:26px;border:1px solid #d9e4d6;background:linear-gradient(135deg,#fff,#f5f8f2);border-radius:15px;padding:30px}
+.security-panel h3{margin:0 0 8px;font:750 21px var(--ui);letter-spacing:-.03em;color:var(--forest)}
+.security-panel .surface-intro{margin:0 0 20px}
+.security-note{padding:13px 15px;border:1px solid #dce7d8;background:#eef4ec;border-radius:9px;color:#506c55;font:500 12px/1.7 var(--ui);margin:15px 0 20px}
+.security-panel .fields-2{align-items:start}
+.security-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.security-actions button{cursor:pointer}
+.password-status{margin:10px 0 0;font:600 12px/1.65 var(--ui);color:#44664c}
+.password-status.error{color:#9e403e}
+.auth-card[hidden]{display:none!important}
+.auth-link{background:none;border:0;color:#3b6545;text-decoration:underline;padding:12px 0;cursor:pointer;font:700 12px var(--ui)}
+.auth-footnote{font:500 12px/1.8 var(--ui);color:#708174;margin:16px 0 0}
+.auth-error{font:650 12px/1.6 var(--ui);color:#9c4540;min-height:17px}
+@media(max-width:640px){.security-panel{padding:20px}}
 </style>
 </head>
 <body>
@@ -188,7 +204,38 @@
 <!-- Admin login: full page, bukan pop-up -->
 <section class="auth-screen" id="loginView" hidden aria-label="Login admin">
   <div class="auth-illustration"><div class="auth-wordmark">EVORA</div><div class="auth-hero"><div class="small-overline">PRIVATE WORKSPACE / ADMIN</div><h2>Everything you need<br>to grow your<br><em>signature brand.</em></h2><p>Satu tempat untuk mengelola katalog, konten, performa, dan pengaturan website EVORA.</p></div><div class="auth-foot">EVORA SIGNATURE SCENT · EST. 2026</div></div>
-  <div class="auth-content"><button id="loginBack" class="back-link">← Kembali ke website</button><div class="auth-card"><div class="eyebrow">Administrator access</div><h1>Welcome back.</h1><p>Masuk ke dashboard untuk mengelola toko EVORA.</p><div class="field"><label for="adminEmail">Email admin</label><input id="adminEmail" type="email" autocomplete="username" placeholder="nama@email.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Masukkan password"></div><p id="loginError" role="alert" class="hint" style="color:#a1443b"></p><button id="loginButton" class="btn">Masuk ke Dashboard →</button><div class="auth-tip">Halaman ini khusus akun admin EVORA yang memiliki izin akses.</div></div></div>
+  <div class="auth-content">
+  <button id="loginBack" class="back-link">← Kembali ke website</button>
+  <div class="auth-card" id="loginCard">
+    <div class="eyebrow">Administrator access</div><h1>Welcome back.</h1>
+    <p>Masuk ke dashboard untuk mengelola toko EVORA.</p>
+    <div class="field"><label for="adminEmail">Email admin</label><input id="adminEmail" type="email" autocomplete="username" placeholder="nama@email.com"></div>
+    <div class="field"><label for="adminPassword">Kata sandi</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi"></div>
+    <p id="loginError" role="alert" class="auth-error"></p>
+    <button id="loginButton" class="btn">Masuk ke Dashboard →</button>
+    <button id="forgotLink" type="button" class="auth-link">Lupa kata sandi?</button>
+    <div class="auth-tip">Hanya akun admin EVORA yang memiliki izin akses.</div>
+  </div>
+  <div class="auth-card" id="forgotCard" hidden>
+    <div class="eyebrow">Account recovery</div><h1>Lupa kata sandi?</h1>
+    <p>Masukkan email admin yang terdaftar. Tautan pemulihan akan dikirim melalui Supabase Auth.</p>
+    <div class="field"><label for="forgotEmail">Email admin</label><input id="forgotEmail" type="email" autocomplete="email" placeholder="admin@email.com"></div>
+    <p id="forgotStatus" role="status" class="password-status"></p>
+    <button id="sendResetEmail" class="btn" type="button">Kirim tautan reset →</button>
+    <button id="backToLogin" class="auth-link" type="button">← Kembali ke login</button>
+    <p class="auth-footnote">Periksa folder Spam bila email tidak muncul. Link hanya bekerja jika URL website telah diizinkan di Supabase Auth.</p>
+  </div>
+  <div class="auth-card" id="recoveryCard" hidden>
+    <div class="eyebrow">Secure recovery</div><h1>Buat sandi baru.</h1>
+    <p>Tautan dari email memverifikasi akun. Setelah itu masukkan kode konfirmasi pribadi dan kata sandi baru.</p>
+    <p id="recoveryStatus" role="status" class="password-status"></p>
+    <div class="field"><label for="recoveryPassword">Kata sandi baru</label><input id="recoveryPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Minimal 12 karakter"></div>
+    <div class="field"><label for="recoveryRepeat">Konfirmasi kata sandi</label><input id="recoveryRepeat" type="password" minlength="12" autocomplete="new-password" placeholder="Ulangi kata sandi baru"></div>
+    <div class="field"><label for="recoveryConfirmCode">Kode konfirmasi admin (6 digit)</label><input id="recoveryConfirmCode" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="off" placeholder="••••••"></div>
+    <button id="finishRecovery" class="btn" type="button">Simpan kata sandi baru →</button>
+    <button id="recoveryBack" class="auth-link" type="button">← Kembali ke login</button>
+  </div>
+</div>
 </section>
 
 <!-- Admin dashboard: halaman sendiri, bukan modal -->
@@ -222,7 +269,24 @@
       </section>
       <section class="admin-section" id="tabProducts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="productFormTitle">Tambah produk</h3><p class="surface-intro">Kelola detail parfum dan foto produk secara langsung.</p><div class="field"><label for="productName">Nama parfum</label><input id="productName" maxlength="120" placeholder="Contoh: EVORA Amber Bloom"></div><div class="fields-2"><div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Rp149.000"></div><div class="field"><label for="productOld">Harga coret / promo</label><input id="productOld" maxlength="60" placeholder="Rp199.000"></div></div><div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Ceritakan aroma dan karakter parfum..."></textarea></div><div class="field"><label for="productUrl">Link pembelian</label><input id="productUrl" inputmode="url" placeholder="https://wa.me/... atau link marketplace"></div><div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div><div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div><div class="field"><label for="productImage">Foto utama produk</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="Preview foto produk" hidden><p class="hint">Rasio foto 1:1 paling sesuai untuk katalog.</p></div><div class="field"><label for="productExtra">Foto tambahan (maksimal 5)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div><div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Katalog saat ini</h3><p class="surface-intro">Edit, urutkan, sembunyikan atau hapus produk.</p><div class="admin-list" id="adminProductList"></div></div></div></section>
       <section class="admin-section" id="tabPosts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="postFormTitle">Buat postingan info</h3><p class="surface-intro">Bagikan promo, peluncuran produk, dan kabar baru.</p><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" maxlength="140" placeholder="Contoh: New Arrival — Signature Edition"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" maxlength="2000" placeholder="Tulis konten untuk pengunjung..."></textarea></div><div class="field"><label for="updateImage">Foto INFO (rasio 4:5)</label><input id="updateImage" type="file" accept="image/jpeg,image/png,image/webp"><img class="preview wide" id="updatePreview" alt="Preview foto INFO 4:5" hidden><p class="hint">Gunakan foto portrait 4:5, contoh 1080 × 1350 px. Foto lain akan menyesuaikan bingkai 4:5 saat ditampilkan.</p></div><p class="hint">Tanggal posting terisi otomatis saat diterbitkan.</p><div class="admin-actions"><button class="btn" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Daftar postingan</h3><p class="surface-intro">Konten terbaru langsung tampil di beranda toko.</p><div class="admin-list" id="adminUpdateList"></div></div></div></section>
-      <section class="admin-section" id="tabSettings" hidden><div class="admin-surface"><h3>Identitas & kanal penjualan</h3><p class="surface-intro">Atur informasi yang tampil untuk pengunjung. Kosongkan tautan yang tidak digunakan.</p><div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div><div class="fields-2"><div class="field"><label for="sWa">WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812..."></div><div class="field"><label for="sIg">Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div><div class="field"><label for="sTh">Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div><div class="field"><label for="sTt">TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div><div class="field"><label for="sMp">Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div><div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div><div class="field"><label for="sPhone">Nomor telepon</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div></div><div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div></div></section>
+      <section class="admin-section" id="tabSettings" hidden><div class="admin-surface"><h3>Identitas & kanal penjualan</h3><p class="surface-intro">Atur informasi yang tampil untuk pengunjung. Kosongkan tautan yang tidak digunakan.</p><div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div><div class="fields-2"><div class="field"><label for="sWa">WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812..."></div><div class="field"><label for="sIg">Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div><div class="field"><label for="sTh">Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div><div class="field"><label for="sTt">TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div><div class="field"><label for="sMp">Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div><div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div><div class="field"><label for="sPhone">Nomor telepon</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div></div><div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div></div>
+<div class="security-panel" aria-labelledby="securityTitle">
+  <h3 id="securityTitle">Keamanan Akun Admin</h3>
+  <p class="surface-intro">Ubah kata sandi akun Supabase yang sedang login tanpa perlu mengedit SQL atau kode website.</p>
+  <div class="security-note">Hanya untuk admin yang sudah login. Kode konfirmasi ini bukan pengganti verifikasi akun. Jika lupa sandi dan sudah logout, gunakan <b>Lupa kata sandi</b> pada halaman login.</div>
+  <div class="fields-2">
+    <div class="field"><label for="newAdminPassword">Kata sandi baru</label><input id="newAdminPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Minimal 12 karakter"></div>
+    <div class="field"><label for="confirmAdminPassword">Ulangi kata sandi baru</label><input id="confirmAdminPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Konfirmasi kata sandi baru"></div>
+  </div>
+  <div class="fields-2">
+    <div class="field"><label for="adminConfirmCode">Kode konfirmasi admin (6 digit)</label><input id="adminConfirmCode" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="off" placeholder="••••••"></div>
+    <div class="field"><label for="supabaseNonce">Kode verifikasi Supabase dari email (jika diminta)</label><input id="supabaseNonce" type="text" inputmode="numeric" maxlength="12" autocomplete="one-time-code" placeholder="Opsional"></div>
+  </div>
+  <p id="passwordStatus" class="password-status" role="status"></p>
+  <div class="security-actions"><button class="btn" id="saveAdminPassword" type="button">Ganti Kata Sandi →</button><button class="secondary" id="requestReauth" type="button">Kirim Kode Email Supabase</button></div>
+  <p class="auth-footnote">Jika opsi Secure password change aktif di Supabase, gunakan kode verifikasi asli yang dikirim Supabase ke email admin.</p>
+</div>
+</section>
     </main>
   </div>
 </div>
@@ -505,13 +569,20 @@
     const isFullCatalog=location.hash==='#koleksi';
     $('storeView').hidden=adminRoute||isFullCatalog;
     $('catalogView').hidden=!isFullCatalog;
-    $('adminView').hidden=!(adminRoute&&isAdmin);
-    $('loginView').hidden=!(adminRoute&&!isAdmin);
-    document.body.classList.toggle('in-admin',adminRoute&&isAdmin);
-    document.body.classList.toggle('in-login',adminRoute&&!isAdmin);
+    const route=adminRoute?((location.hash.match(/^#admin\/([^/?]+)/)||[])[1]||'overview'):'overview';
+    const isForgot=adminRoute&&route==='forgot';
+    const isRecovery=adminRoute&&route==='recovery';
+    const showDashboard=adminRoute&&isAdmin&&!isForgot&&!isRecovery;
+    const showAuth=adminRoute&&!showDashboard;
+    $('adminView').hidden=!showDashboard;
+    $('loginView').hidden=!showAuth;
+    $('loginCard').hidden=isForgot||isRecovery;
+    $('forgotCard').hidden=!isForgot;
+    $('recoveryCard').hidden=!isRecovery;
+    document.body.classList.toggle('in-admin',showDashboard);
+    document.body.classList.toggle('in-login',showAuth);
     if(adminRoute){
-      const route=(location.hash.match(/^#admin\/([^/?]+)/)||[])[1]||'overview';
-      if(isAdmin)selectAdminTab(adminTabMap[route]||'tabStats');
+      if(showDashboard)selectAdminTab(adminTabMap[route]||'tabStats');
       window.scrollTo(0,0);
     }else if(isFullCatalog){
       renderFullCatalog();
@@ -569,6 +640,129 @@
     }catch(err){report(err);}finally{$('loginButton').disabled=false;}
   };
   ['adminEmail','adminPassword'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('loginButton').click();}));
+
+  /* ---------- Ganti kata sandi & recovery (Supabase Auth) ---------- */
+  // Kode lokal hanyalah langkah konfirmasi UI, bukan rahasia keamanan server.
+  // Validasi identitas yang sesungguhnya harus selalu dilakukan oleh Supabase Auth.
+  const PASSWORD_CONFIRMATION_CODE='091202';
+  let recoveryConfirmed=false;
+  function passwordMessage(id,message,isError=false){
+    const el=$(id); el.textContent=message;el.classList.toggle('error',!!isError);
+  }
+  function verifyPasswordInputs(passId,repeatId,codeId){
+    const password=$(passId).value;
+    const repeat=$(repeatId).value;
+    const pin=$(codeId).value.trim();
+    if(pin!==PASSWORD_CONFIRMATION_CODE)throw new Error('Kode konfirmasi admin tidak sesuai.');
+    if(password.length<12||!/[A-Za-z]/.test(password)||!/[0-9]/.test(password))
+      throw new Error('Kata sandi baru minimal 12 karakter dan harus mengandung huruf serta angka.');
+    if(password!==repeat)throw new Error('Konfirmasi kata sandi tidak sama.');
+    return password;
+  }
+  async function requireAdminSession(){
+    const {data,error}=await db.auth.getUser();
+    if(error||data?.user?.id!==ADMIN_UID)throw new Error('Sesi admin tidak valid. Login kembali melalui halaman admin.');
+    return data.user;
+  }
+  async function applyNewPassword(password,nonce=''){
+    const payload={password};
+    if(nonce)payload.nonce=nonce;
+    const {error}=await db.auth.updateUser(payload);
+    if(error){
+      if(error.code==='reauthentication_needed'||/reauthenticat|nonce/i.test(error.message||''))
+        throw new Error('Supabase meminta verifikasi tambahan. Klik "Kirim Kode Email Supabase", masukkan kode dari email, lalu coba lagi. '+error.message);
+      throw error;
+    }
+  }
+  function clearPasswordFields(){
+    ['newAdminPassword','confirmAdminPassword','adminConfirmCode','supabaseNonce',
+      'recoveryPassword','recoveryRepeat','recoveryConfirmCode'].forEach(id=>{if($(id))$(id).value='';});
+  }
+  $('saveAdminPassword').onclick=async()=>{
+    const btn=$('saveAdminPassword');btn.disabled=true;
+    passwordMessage('passwordStatus','Memverifikasi akun dan memperbarui sandi...');
+    try{
+      const password=verifyPasswordInputs('newAdminPassword','confirmAdminPassword','adminConfirmCode');
+      await requireAdminSession();
+      await applyNewPassword(password,$('supabaseNonce').value.trim());
+      clearPasswordFields();
+      passwordMessage('passwordStatus','Kata sandi berhasil diubah. Silakan masuk lagi dengan kata sandi baru.');
+      toast('Kata sandi admin berhasil diubah.');
+      await db.auth.signOut();
+      isAdmin=false;
+      location.hash='#admin';
+      renderRoute();
+    }catch(err){passwordMessage('passwordStatus',err.message||'Gagal mengganti kata sandi.',true);}
+    finally{btn.disabled=false;}
+  };
+  $('requestReauth').onclick=async()=>{
+    const btn=$('requestReauth');btn.disabled=true;
+    try{
+      await requireAdminSession();
+      const {error}=await db.auth.reauthenticate();
+      if(error)throw error;
+      passwordMessage('passwordStatus','Kode verifikasi Supabase dikirim ke email admin. Masukkan kode tersebut pada kolom yang tersedia.');
+    }catch(err){passwordMessage('passwordStatus',err.message||'Tidak dapat mengirim kode email.',true);}
+    finally{btn.disabled=false;}
+  };
+  $('forgotLink').onclick=()=>{location.hash='#admin/forgot';renderRoute();};
+  $('backToLogin').onclick=()=>{location.hash='#admin';renderRoute();};
+  $('recoveryBack').onclick=()=>{location.hash='#admin';renderRoute();};
+  $('sendResetEmail').onclick=async()=>{
+    const btn=$('sendResetEmail');
+    const email=$('forgotEmail').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      passwordMessage('forgotStatus','Masukkan alamat email admin yang valid.',true);return;
+    }
+    // Reset melalui email hanya didukung pada URL website HTTP(S), bukan file://.
+    if(!/^https?:$/.test(location.protocol)){
+      passwordMessage('forgotStatus','Fitur reset email perlu dijalankan dari website EVORA yang sudah online (https://), bukan file lokal.',true);return;
+    }
+    btn.disabled=true;
+    passwordMessage('forgotStatus','Mengirim tautan pemulihan...');
+    try{
+      const redirect=new URL(location.href);
+      redirect.searchParams.set('evora_recovery','1');
+      redirect.hash='';
+      const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:redirect.toString()});
+      if(error)throw error;
+      passwordMessage('forgotStatus','Jika email terdaftar, tautan reset sudah dikirim. Silakan periksa Inbox / Spam.');
+    }catch(err){passwordMessage('forgotStatus',err.message||'Gagal mengirim email reset.',true);}
+    finally{btn.disabled=false;}
+  };
+  $('finishRecovery').onclick=async()=>{
+    const btn=$('finishRecovery');btn.disabled=true;
+    try{
+      if(!recoveryConfirmed)throw new Error('Buka tautan reset yang sah dari email admin sebelum mengganti kata sandi.');
+      const password=verifyPasswordInputs('recoveryPassword','recoveryRepeat','recoveryConfirmCode');
+      await requireAdminSession();
+      await applyNewPassword(password);
+      clearPasswordFields();
+      recoveryConfirmed=false;
+      await db.auth.signOut();
+      isAdmin=false;
+      passwordMessage('recoveryStatus','Kata sandi berhasil diubah. Silakan login kembali.');
+      location.hash='#admin';renderRoute();
+      toast('Kata sandi berhasil direset. Masuk dengan sandi baru.');
+    }catch(err){passwordMessage('recoveryStatus',err.message||'Gagal mereset sandi.',true);}
+    finally{btn.disabled=false;}
+  };
+  db.auth.onAuthStateChange((event,session)=>{
+    // Jangan melakukan await / panggilan auth di callback ini.
+    if(event==='PASSWORD_RECOVERY'){
+      recoveryConfirmed=session?.user?.id===ADMIN_UID;
+      if(recoveryConfirmed){
+        isAdmin=true;
+        location.hash='#admin/recovery';
+        renderRoute();
+        passwordMessage('recoveryStatus','Tautan email terverifikasi. Silakan tentukan kata sandi baru.');
+      }else{
+        location.hash='#admin/forgot';
+        renderRoute();
+        passwordMessage('forgotStatus','Tautan reset ini tidak terkait akun admin EVORA.',true);
+      }
+    }
+  });
 
   /* Simpan produk dengan penanganan error sesuai penyebab aslinya.
      Kolom tambahan membutuhkan satu kali migrasi SQL; bukan SQL yang dijalankan pengunjung. */
@@ -801,6 +995,16 @@
     try{
       const {data}=await db.auth.getSession();
       if(data?.session?.user?.id===ADMIN_UID)isAdmin=true;
+      if(new URLSearchParams(location.search).get('evora_recovery')==='1'){
+        recoveryConfirmed=!!data?.session?.user && data.session.user.id===ADMIN_UID;
+        const u=new URL(location.href);
+        u.searchParams.delete('evora_recovery');
+        // Hilangkan token callback dari address bar setelah Supabase selesai memprosesnya.
+        u.hash=recoveryConfirmed?'#admin/recovery':'#admin/forgot';
+        history.replaceState(null,'',u.pathname+u.search+u.hash);
+        if(recoveryConfirmed)passwordMessage('recoveryStatus','Tautan reset terverifikasi. Masukkan sandi baru dan kode konfirmasi.');
+        else passwordMessage('forgotStatus','Tautan reset tidak valid atau sudah kedaluwarsa. Minta tautan baru.',true);
+      }
     }catch(err){console.warn('Session check:',err);}
     renderRoute();
     try{await loadPublic();}catch(err){console.error(err);}
