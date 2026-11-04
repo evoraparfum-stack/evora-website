@@ -8,7 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA 4.4: responsive compact INFO cards and optional WhatsApp contact CTA -->
+<!-- EVORA 4.6: compact INFO cards with clickable detail popup on mobile and desktop -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -161,6 +161,42 @@
 @media(max-width:850px){.feed{grid-template-columns:1fr;max-width:620px;gap:15px}.updates{padding:52px 24px 58px}.update-post{grid-template-columns:minmax(135px,30%) minmax(0,1fr)}}
 
 @media(max-width:390px){.full-grid{gap:10px}.full-grid .product{padding:10px}.full-grid .product h3{font-size:15px}.full-grid .product .desc{font-size:10.5px}.full-grid .card-actions .btn,.full-grid .card-actions a.buy{font-size:8.5px;padding:9px 5px}}@media(max-width:540px){.updates{padding:43px 16px 51px}.updates .section-top{margin-bottom:20px}.updates h2{font-size:35px}.feed{gap:12px;max-width:480px}.update-post{grid-template-columns:112px minmax(0,1fr);border-radius:10px}.update-post .pb{padding:11px 12px 12px}.update-post h3{font-size:16px;margin:5px 0 6px;line-height:1.32}.update-post time{font-size:8.5px}.update-post .info-description{-webkit-line-clamp:2;line-clamp:2;font-size:11px;line-height:1.5}.update-post.expanded .info-description{-webkit-line-clamp:unset;line-clamp:unset}.info-more{font-size:10px;padding:5px 0 0}.info-contact-btn{font-size:10px;line-height:1.35;padding:9px 7px;margin-top:9px}.info-contact-choice{padding:12px}}
+
+
+/* EVORA 4.6 — detail INFO: klik kartu untuk membaca berita lengkap */
+.update-post{position:relative;cursor:pointer}
+.update-post:focus-within{outline:2px solid #557c60;outline-offset:3px}
+.info-open-hit{position:absolute;z-index:1;inset:0;border:0;background:transparent;color:transparent;cursor:pointer;padding:0;border-radius:12px}
+.info-open-hit:focus-visible{outline:3px solid #557c60;outline-offset:-3px}
+.update-post .info-contact-btn{position:relative;z-index:2}
+.info-read-detail{display:inline-flex;align-self:flex-start;margin-top:9px;color:#4a6c50;font:700 10px var(--ui);text-decoration:underline;text-underline-offset:3px}
+.info-modal{z-index:60;padding:18px;align-items:center;overscroll-behavior:contain}
+.info-modal-panel{width:min(100%,840px);padding:0;max-height:min(92dvh,900px);overflow:auto;position:relative;border-radius:18px;background:#fff;box-shadow:0 28px 85px #0b221c55;overscroll-behavior:contain}
+.info-modal-close{position:sticky;float:right;top:12px;right:12px;z-index:5;display:grid;place-items:center;width:39px;height:39px;margin:12px 12px -51px 0;border:1px solid #dce5d8;border-radius:50%;background:#fffffff2;color:#2d4736;font:500 26px/1 var(--ui);box-shadow:0 3px 15px #1230211c;cursor:pointer}
+.info-modal-close:hover{background:#edf3e9}
+.info-modal-layout{display:grid;grid-template-columns:minmax(0,38%) minmax(0,62%);min-height:330px}
+.info-modal-picture{background:linear-gradient(145deg,#f1f3eb,#e8eee4);display:flex;justify-content:center;align-items:flex-start}
+.info-modal-picture img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;display:block}
+.info-modal-copy{padding:43px 37px 40px;min-width:0}
+.info-modal-kicker{font:700 10px var(--ui);letter-spacing:.2em;color:#718674;text-transform:uppercase;margin:0 0 12px}
+.info-modal-copy time{display:block;color:#869388;font:600 11px var(--ui);margin-bottom:11px}
+.info-modal-copy h2{font:500 clamp(25px,3.1vw,36px)/1.25 var(--heading);color:#283f31;margin:0 0 20px;overflow-wrap:anywhere}
+.info-modal-description{white-space:pre-wrap;overflow-wrap:anywhere;font:400 14px/1.9 var(--body);color:#596b5e;margin:0}
+.info-modal-copy .info-contact-btn{font-size:12px;margin-top:25px;padding:13px 16px;min-height:46px}
+.info-modal-layout.no-photo{grid-template-columns:minmax(0,1fr)}
+.info-modal-layout.no-photo .info-modal-copy{padding-right:55px}
+body.info-is-open{overflow:hidden}
+@media(max-width:650px){
+ .info-modal{padding:10px;align-items:center}
+ .info-modal-panel{max-height:92dvh;max-height:92svh;border-radius:15px;width:100%}
+ .info-modal-layout{grid-template-columns:1fr}
+ .info-modal-picture{max-height:33dvh;overflow:hidden;align-items:center}
+ .info-modal-picture img{width:auto;max-width:100%;height:auto;max-height:33dvh;aspect-ratio:4/5;object-fit:contain}
+ .info-modal-copy,.info-modal-layout.no-photo .info-modal-copy{padding:25px 21px 28px}
+ .info-modal-copy h2{font-size:26px;margin-bottom:16px}
+ .info-modal-description{font-size:13px;line-height:1.8}
+ .info-modal-close{width:37px;height:37px;margin:10px 10px -47px 0}
+}
 </style>
 </head>
 <body>
@@ -316,8 +352,15 @@
     </main>
   </div>
 </div>
-<!-- Modal HANYA untuk detail produk -->
+<!-- Modal detail produk -->
 <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="Detail produk"><div class="panel dpanel"><div id="detailBody"></div><div class="admin-actions"><button class="secondary" data-close="detailModal">Tutup</button></div></div></div>
+<!-- Popup detail INFO, foto dan teks lengkap; tidak perlu kolom database baru -->
+<div class="modal info-modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-describedby="infoModalDescription">
+  <div class="panel info-modal-panel" role="document">
+    <button class="info-modal-close" id="closeInfoModal" type="button" aria-label="Tutup INFO">×</button>
+    <div id="infoModalBody"></div>
+  </div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -508,28 +551,67 @@
     if(/^62\d{8,13}$/.test(phone))return 'https://wa.me/'+phone+'?text='+encodeURIComponent(message);
     return '';
   }
+  // Popup menampilkan seluruh teks INFO dan gambar ukuran portrait 4:5.
+  let infoFocusReturn=null;
+  function showInfoModal(id,trigger){
+    const post=posts.find(p=>String(p.id)===String(id));
+    if(!post)return;
+    const wa=post.contact_enabled===true?infoContactUrl(post):'';
+    const title=String(post.title||'Info EVORA');
+    const description=String(post.description||'');
+    const photo=httpUrl(post.image_url);
+    $('infoModalBody').innerHTML=`<div class="info-modal-layout${photo?'':' no-photo'}">
+      ${photo?`<div class="info-modal-picture"><img src="${safe(photo)}" alt="${safe(title)}"></div>`:''}
+      <div class="info-modal-copy"><p class="info-modal-kicker">EVORA · INFO</p>
+        <time datetime="${safe(post.created_at)}">${fmtDate(post.created_at)}</time>
+        <h2 id="infoModalTitle">${safe(title)}</h2>
+        <p class="info-modal-description" id="infoModalDescription">${safe(description)}</p>
+        ${wa?`<a class="info-contact-btn" href="${safe(wa)}" data-info-contact="${safe(title)}" target="_blank" rel="noopener noreferrer">Hubungi EVORA untuk info lebih lanjut ↗</a>`:''}
+      </div></div>`;
+    infoFocusReturn=trigger||document.activeElement;
+    $('infoModal').classList.add('open');
+    document.body.classList.add('info-is-open');
+    $('infoModal').querySelector('.info-modal-panel').scrollTop=0;
+    $('closeInfoModal').focus();
+  }
+  function hideInfoModal(){
+    if(!$('infoModal').classList.contains('open'))return;
+    $('infoModal').classList.remove('open');
+    document.body.classList.remove('info-is-open');
+    $('infoModalBody').innerHTML='';
+    if(infoFocusReturn&&infoFocusReturn.isConnected)infoFocusReturn.focus();
+    infoFocusReturn=null;
+  }
   function renderPosts(){
     const el=$('updatePosts');
     if(!posts.length){el.innerHTML='<div class="state">Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</div>';return;}
     el.innerHTML=posts.map(p=>{
       const wa=p.contact_enabled===true?infoContactUrl(p):'';
       const desc=String(p.description||'');
-      return `<article class="update-post reveal${p.image_url?'':' no-photo'}">${p.image_url?`<img class="info-photo" src="${safe(p.image_url)}" alt="${safe(p.title)}" loading="lazy">`:''}<div class="pb"><time datetime="${safe(p.created_at)}">${fmtDate(p.created_at)}</time><h3>${safe(p.title||'Info EVORA')}</h3>${desc?`<p class="info-description">${safe(desc)}</p>${desc.length>125?'<button class="info-more" type="button" aria-expanded="false">Baca selengkapnya</button>':''}`:''}${wa?`<a class="info-contact-btn" href="${safe(wa)}" data-info-contact="${safe(p.title||'Info EVORA')}" target="_blank" rel="noopener noreferrer">Hubungi EVORA untuk info lebih lanjut ↗</a>`:''}</div></article>`;
+      return `<article class="update-post reveal${p.image_url?'':' no-photo'}">
+        ${p.image_url?`<img class="info-photo" src="${safe(p.image_url)}" alt="${safe(p.title)}" loading="lazy">`:''}
+        <div class="pb"><time datetime="${safe(p.created_at)}">${fmtDate(p.created_at)}</time>
+          <h3>${safe(p.title||'Info EVORA')}</h3>
+          ${desc?`<p class="info-description">${safe(desc)}</p>`:''}
+          <span class="info-read-detail" aria-hidden="true">Baca INFO selengkapnya ↗</span>
+          ${wa?`<a class="info-contact-btn" href="${safe(wa)}" data-info-contact="${safe(p.title||'Info EVORA')}" target="_blank" rel="noopener noreferrer">Hubungi EVORA untuk info lebih lanjut ↗</a>`:''}
+        </div>
+        <button class="info-open-hit" type="button" data-info-open="${safe(p.id)}" aria-label="Baca detail INFO: ${safe(p.title||'Info EVORA')}"></button>
+      </article>`;
     }).join('');
     observe();
   }
   $('updatePosts').addEventListener('click',e=>{
-    const more=e.target.closest('.info-more');
-    if(more){
-      const card=more.closest('.update-post');
-      const expanded=card.classList.toggle('expanded');
-      more.textContent=expanded?'Tampilkan lebih sedikit':'Baca selengkapnya';
-      more.setAttribute('aria-expanded',String(expanded));
-      return;
-    }
+    const link=e.target.closest('a[data-info-contact]');
+    if(link){track('social_click','INFO: '+link.dataset.infoContact);return;}
+    const button=e.target.closest('button[data-info-open]');
+    if(button)showInfoModal(button.dataset.infoOpen,button);
+  });
+  $('infoModalBody').addEventListener('click',e=>{
     const link=e.target.closest('a[data-info-contact]');
     if(link)track('social_click','INFO: '+link.dataset.infoContact);
   });
+  $('closeInfoModal').onclick=hideInfoModal;
   function renderAdmin(){
     if($('quickProducts'))$('quickProducts').textContent=products.length;
     if($('quickPosts'))$('quickPosts').textContent=posts.length;
@@ -573,7 +655,7 @@
     const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}
     const im=e.target.closest('.dthumbs img');if(im){$('dmain').src=im.dataset.src;document.querySelectorAll('.dthumbs img').forEach(x=>x.classList.toggle('on',x===im));}
   });
-  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+  document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m){if(m.id==='infoModal')hideInfoModal();else m.classList.remove('open');}}));
   $('social').addEventListener('click',e=>{const a=e.target.closest('a[data-social]');if(a)track('social_click',a.dataset.social);});
 
   /* ---------- Slider controls ---------- */
@@ -593,7 +675,14 @@
   const close=id=>$(id).classList.remove('open');
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>close(b.dataset.close));
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape')close('detailModal');
+    if(e.key==='Escape'){hideInfoModal();close('detailModal');}
+    if(e.key==='Tab'&&$('infoModal').classList.contains('open')){
+      const focusable=Array.from($('infoModal').querySelectorAll('button:not([disabled]),a[href]'));
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(!first)return;
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
   });
   const adminTabMap={
     overview:'tabStats',home:'tabHome',featured:'tabFeatured',products:'tabProducts',posts:'tabPosts',settings:'tabSettings'
@@ -628,6 +717,7 @@
     renderRoute();
   }
   function renderRoute(){
+    if($('infoModal').classList.contains('open'))hideInfoModal();
     const adminRoute=/^#admin(?:\/|$)/.test(location.hash);
     const isFullCatalog=location.hash==='#koleksi';
     $('storeView').hidden=adminRoute||isFullCatalog;
