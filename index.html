@@ -231,6 +231,81 @@ body.info-is-open{overflow:hidden}
   }
 }
 html,body { max-width:100%; overflow-x:clip; }
+
+/* EVORA V5.1 — navigasi admin samping di HP/tablet, bukan di atas. */
+@media (max-width:820px) {
+  #adminView.admin-view {
+    display:grid;
+    grid-template-columns:158px minmax(0,1fr);
+    align-items:start;
+    width:100%;
+    min-width:0;
+  }
+  #adminView.admin-view[hidden] { display:none !important; }
+  #adminView .admin-sidebar {
+    width:100%;height:100vh;height:100dvh;
+    position:sticky;top:0;align-self:start;z-index:18;
+    padding:19px 9px 14px;
+    gap:14px;
+    overflow-y:auto;overscroll-behavior:contain;
+  }
+  #adminView .admin-side-brand{padding:5px 7px 14px;border-bottom:1px solid #49634d}
+  #adminView .admin-side-brand b{font-size:18px;letter-spacing:.17em}
+  #adminView .admin-side-brand small{display:block;font-size:8px;letter-spacing:.1em;line-height:1.4}
+  #adminView .tabs {
+    display:flex;flex-direction:column;gap:5px;
+    width:100%;overflow-x:visible;
+  }
+  #adminView .tabs button {
+    display:flex;flex-direction:row;justify-content:flex-start;align-items:center;
+    width:100%;min-width:0;white-space:normal;
+    font-size:11px;line-height:1.35;text-align:left;
+    padding:12px 8px;gap:8px;
+  }
+  #adminView .nav-ico{width:18px;flex:0 0 18px;font-size:17px}
+  #adminView .admin-main{min-width:0;width:100%}
+  #adminView .admin-container{width:100%;min-width:0;padding:25px 15px 50px}
+  #adminView .admin-split,#adminView .featured-workspace{grid-template-columns:minmax(0,1fr)}
+  #adminView .admin-surface{min-width:0}
+}
+@media (max-width:540px) {
+  #adminView.admin-view{grid-template-columns:94px minmax(0,1fr)}
+  #adminView .admin-sidebar{padding:13px 5px;gap:11px}
+  #adminView .admin-side-brand{padding:3px 3px 12px;text-align:center}
+  #adminView .admin-side-brand b{font-size:13px;letter-spacing:.10em}
+  #adminView .admin-side-brand small{font-size:7px;letter-spacing:0}
+  #adminView .tabs{gap:5px}
+  #adminView .tabs button{
+    flex-direction:column;justify-content:center;text-align:center;
+    gap:5px;padding:11px 3px;font-size:9.5px;line-height:1.25;
+    overflow-wrap:break-word;min-height:58px;
+  }
+  #adminView .nav-ico{width:auto;flex:none;font-size:20px}
+  #adminView .admin-topbar{padding:0 9px;justify-content:flex-end;height:58px}
+  #adminView .breadcrumbs,#adminView .avatar{display:none}
+  #adminView .admin-user{gap:5px;min-width:0}
+  #adminView .top-action{padding:9px 7px;font-size:9px;white-space:normal}
+  #adminView .admin-container{padding:20px 9px 42px}
+  #adminView .admin-pagehead{margin-bottom:17px}
+  #adminView .admin-pagehead h1{font-size:clamp(21px,6.5vw,28px);letter-spacing:-.04em}
+  #adminView .admin-pagehead p{font-size:11px;line-height:1.55}
+  #adminView .admin-banner{padding:17px;gap:12px}
+  #adminView .admin-banner h2{font-size:22px}
+  #adminView .admin-banner .btn{white-space:normal}
+  #adminView .admin-surface{padding:14px 11px}
+  #adminView .admin-surface h3{font-size:15px}
+  #adminView .admin-row{padding:9px}
+  #adminView .admin-actions{gap:7px}
+  #adminView .admin-actions .btn,#adminView .admin-actions .secondary{max-width:100%}
+  #adminView .range{flex-wrap:wrap}
+  #adminView .range button{padding:8px 11px}
+}
+@media (max-width:360px) {
+  #adminView.admin-view{grid-template-columns:82px minmax(0,1fr)}
+  #adminView .tabs button{font-size:9px}
+  #adminView .admin-side-brand b{font-size:12px}
+}
+
 </style>
 </head>
 <body>
