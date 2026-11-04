@@ -8,7 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA 4.1: clean hero + 4:5 portrait photos + INFO section -->
+<!-- EVORA 4.4: responsive compact INFO cards and optional WhatsApp contact CTA -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -135,6 +135,31 @@
 .auth-footnote{font:500 12px/1.8 var(--ui);color:#708174;margin:16px 0 0}
 .auth-error{font:650 12px/1.6 var(--ui);color:#9c4540;min-height:17px}
 @media(max-width:640px){.security-panel{padding:20px}}
+
+/* EVORA 4.4 — kartu INFO lebih proporsional untuk PC dan HP */
+.updates-wrap{margin-top:34px}
+.updates{max-width:1180px;padding:64px 30px 70px}
+.updates .section-top{margin-bottom:24px}
+.feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:1080px;margin:0 auto;gap:18px}
+.update-post{display:grid;grid-template-columns:minmax(125px,34%) minmax(0,1fr);align-items:start;min-width:0;border:1px solid #e2e8df;border-radius:12px;box-shadow:0 5px 22px #33432a0b;overflow:hidden;background:#fff;transition:box-shadow .2s ease,transform .2s ease}
+.update-post:hover{box-shadow:0 12px 34px #33432a18;transform:translateY(-2px)}
+.update-post.no-photo{grid-template-columns:1fr}
+.update-post .info-photo{display:block;width:100%;height:auto;aspect-ratio:4 / 5;object-fit:cover;align-self:start;border-radius:0}
+.update-post .pb{display:flex;flex-direction:column;min-width:0;padding:18px 18px 17px}
+.update-post time{font-size:9px;letter-spacing:.08em}
+.update-post h3{font:600 19px/1.35 var(--heading);margin:8px 0 9px;overflow-wrap:anywhere}
+.update-post .info-description{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.65;color:#687466;margin:0}
+.update-post.expanded .info-description{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+.info-more{align-self:flex-start;background:transparent;border:0;color:#54745a;padding:7px 0 3px;text-decoration:underline;text-underline-offset:3px;font:700 10px var(--ui)}
+.info-contact-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:13px;border:1px solid #d0dfce;border-radius:7px;background:#eaf1e8;color:#2e4c34;text-decoration:none;text-align:center;padding:10px 9px;font:700 10.5px/1.4 var(--ui);transition:background .2s}
+.info-contact-btn:hover{background:#dce9d8}
+.info-contact-choice{padding:14px 15px;border:1px solid #dce6d8;background:#f7faf5;border-radius:10px;margin:16px 0}
+.info-contact-choice label{display:flex;align-items:flex-start;gap:11px;font:600 13px/1.5 var(--ui);cursor:pointer;color:#314b37;text-transform:none;letter-spacing:0}
+.info-contact-choice input[type="checkbox"]{accent-color:#355d3d;width:19px;height:19px;flex:none;margin-top:1px}
+.info-contact-choice small{display:block;font:400 11px/1.65 var(--body);color:#6e7f6c;margin-top:3px}
+.info-contact-choice .hint{font-size:11px;line-height:1.6;margin:9px 0 0 30px}
+@media(max-width:850px){.feed{grid-template-columns:1fr;max-width:620px;gap:15px}.updates{padding:52px 24px 58px}.update-post{grid-template-columns:minmax(135px,30%) minmax(0,1fr)}}
+@media(max-width:540px){.updates{padding:43px 16px 51px}.updates .section-top{margin-bottom:20px}.updates h2{font-size:35px}.feed{gap:12px;max-width:480px}.update-post{grid-template-columns:112px minmax(0,1fr);border-radius:10px}.update-post .pb{padding:11px 12px 12px}.update-post h3{font-size:16px;margin:5px 0 6px;line-height:1.32}.update-post time{font-size:8.5px}.update-post .info-description{-webkit-line-clamp:2;line-clamp:2;font-size:11px;line-height:1.5}.update-post.expanded .info-description{-webkit-line-clamp:unset;line-clamp:unset}.info-more{font-size:10px;padding:5px 0 0}.info-contact-btn{font-size:10px;line-height:1.35;padding:9px 7px;margin-top:9px}.info-contact-choice{padding:12px}}
 </style>
 </head>
 <body>
@@ -229,8 +254,8 @@
     <div class="eyebrow">Secure recovery</div><h1>Buat sandi baru.</h1>
     <p>Tautan dari email memverifikasi akun. Setelah itu masukkan kode konfirmasi pribadi dan kata sandi baru.</p>
     <p id="recoveryStatus" role="status" class="password-status"></p>
-    <div class="field"><label for="recoveryPassword">Kata sandi baru</label><input id="recoveryPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Minimal 12 karakter"></div>
-    <div class="field"><label for="recoveryRepeat">Konfirmasi kata sandi</label><input id="recoveryRepeat" type="password" minlength="12" autocomplete="new-password" placeholder="Ulangi kata sandi baru"></div>
+    <div class="field"><label for="recoveryPassword">Kata sandi baru</label><input id="recoveryPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Minimal 8 huruf"></div>
+    <div class="field"><label for="recoveryRepeat">Konfirmasi kata sandi</label><input id="recoveryRepeat" type="password" minlength="8" autocomplete="new-password" placeholder="Ulangi kata sandi baru"></div>
     <div class="field"><label for="recoveryConfirmCode">Kode konfirmasi admin (6 digit)</label><input id="recoveryConfirmCode" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="off" placeholder="••••••"></div>
     <button id="finishRecovery" class="btn" type="button">Simpan kata sandi baru →</button>
     <button id="recoveryBack" class="auth-link" type="button">← Kembali ke login</button>
@@ -268,15 +293,15 @@
         </div>
       </section>
       <section class="admin-section" id="tabProducts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="productFormTitle">Tambah produk</h3><p class="surface-intro">Kelola detail parfum dan foto produk secara langsung.</p><div class="field"><label for="productName">Nama parfum</label><input id="productName" maxlength="120" placeholder="Contoh: EVORA Amber Bloom"></div><div class="fields-2"><div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Rp149.000"></div><div class="field"><label for="productOld">Harga coret / promo</label><input id="productOld" maxlength="60" placeholder="Rp199.000"></div></div><div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Ceritakan aroma dan karakter parfum..."></textarea></div><div class="field"><label for="productUrl">Link pembelian</label><input id="productUrl" inputmode="url" placeholder="https://wa.me/... atau link marketplace"></div><div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div><div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div><div class="field"><label for="productImage">Foto utama produk</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="Preview foto produk" hidden><p class="hint">Rasio foto 1:1 paling sesuai untuk katalog.</p></div><div class="field"><label for="productExtra">Foto tambahan (maksimal 5)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div><div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Katalog saat ini</h3><p class="surface-intro">Edit, urutkan, sembunyikan atau hapus produk.</p><div class="admin-list" id="adminProductList"></div></div></div></section>
-      <section class="admin-section" id="tabPosts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="postFormTitle">Buat postingan info</h3><p class="surface-intro">Bagikan promo, peluncuran produk, dan kabar baru.</p><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" maxlength="140" placeholder="Contoh: New Arrival — Signature Edition"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" maxlength="2000" placeholder="Tulis konten untuk pengunjung..."></textarea></div><div class="field"><label for="updateImage">Foto INFO (rasio 4:5)</label><input id="updateImage" type="file" accept="image/jpeg,image/png,image/webp"><img class="preview wide" id="updatePreview" alt="Preview foto INFO 4:5" hidden><p class="hint">Gunakan foto portrait 4:5, contoh 1080 × 1350 px. Foto lain akan menyesuaikan bingkai 4:5 saat ditampilkan.</p></div><p class="hint">Tanggal posting terisi otomatis saat diterbitkan.</p><div class="admin-actions"><button class="btn" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Daftar postingan</h3><p class="surface-intro">Konten terbaru langsung tampil di beranda toko.</p><div class="admin-list" id="adminUpdateList"></div></div></div></section>
+      <section class="admin-section" id="tabPosts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="postFormTitle">Buat postingan info</h3><p class="surface-intro">Bagikan promo, peluncuran produk, dan kabar baru.</p><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" maxlength="140" placeholder="Contoh: New Arrival — Signature Edition"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" maxlength="2000" placeholder="Tulis konten untuk pengunjung..."></textarea></div><div class="field"><label for="updateImage">Foto INFO (rasio 4:5)</label><input id="updateImage" type="file" accept="image/jpeg,image/png,image/webp"><img class="preview wide" id="updatePreview" alt="Preview foto INFO 4:5" hidden><p class="hint">Gunakan foto portrait 4:5, contoh 1080 × 1350 px. Foto lain akan menyesuaikan bingkai 4:5 saat ditampilkan.</p></div><div class="info-contact-choice"><label for="updateContactEnabled"><input id="updateContactEnabled" type="checkbox" checked><span><b>Tambahkan tombol “Hubungi EVORA untuk info lebih lanjut”</b><small>Tombol mengarahkan pembaca ke WhatsApp EVORA dengan pesan yang menyebut judul INFO. Bisa dinyalakan atau dimatikan untuk setiap postingan.</small></span></label><p class="hint">Atur tautan WhatsApp di menu Pengaturan. Jika belum tersedia, tombol tidak ditampilkan sampai WhatsApp dikonfigurasi.</p></div><p class="hint">Tanggal posting terisi otomatis saat diterbitkan.</p><div class="admin-actions"><button class="btn" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Daftar postingan</h3><p class="surface-intro">Konten terbaru langsung tampil di beranda toko.</p><div class="admin-list" id="adminUpdateList"></div></div></div></section>
       <section class="admin-section" id="tabSettings" hidden><div class="admin-surface"><h3>Identitas & kanal penjualan</h3><p class="surface-intro">Atur informasi yang tampil untuk pengunjung. Kosongkan tautan yang tidak digunakan.</p><div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div><div class="fields-2"><div class="field"><label for="sWa">WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812..."></div><div class="field"><label for="sIg">Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div><div class="field"><label for="sTh">Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div><div class="field"><label for="sTt">TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div><div class="field"><label for="sMp">Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div><div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div><div class="field"><label for="sPhone">Nomor telepon</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div></div><div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div></div>
 <div class="security-panel" aria-labelledby="securityTitle">
   <h3 id="securityTitle">Keamanan Akun Admin</h3>
-  <p class="surface-intro">Ubah kata sandi akun Supabase yang sedang login tanpa perlu mengedit SQL atau kode website.</p>
+  <p class="surface-intro">Ubah kata sandi akun Supabase yang sedang login. Gunakan minimal 8 huruf; angka dan simbol boleh ditambahkan.</p>
   <div class="security-note">Hanya untuk admin yang sudah login. Kode konfirmasi ini bukan pengganti verifikasi akun. Jika lupa sandi dan sudah logout, gunakan <b>Lupa kata sandi</b> pada halaman login.</div>
   <div class="fields-2">
-    <div class="field"><label for="newAdminPassword">Kata sandi baru</label><input id="newAdminPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Minimal 12 karakter"></div>
-    <div class="field"><label for="confirmAdminPassword">Ulangi kata sandi baru</label><input id="confirmAdminPassword" type="password" minlength="12" autocomplete="new-password" placeholder="Konfirmasi kata sandi baru"></div>
+    <div class="field"><label for="newAdminPassword">Kata sandi baru</label><input id="newAdminPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Minimal 8 huruf"></div>
+    <div class="field"><label for="confirmAdminPassword">Ulangi kata sandi baru</label><input id="confirmAdminPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Konfirmasi kata sandi baru"></div>
   </div>
   <div class="fields-2">
     <div class="field"><label for="adminConfirmCode">Kode konfirmasi admin (6 digit)</label><input id="adminConfirmCode" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="off" placeholder="••••••"></div>
@@ -461,12 +486,49 @@
     if(url){photo.src=url;photo.hidden=false;photo.style.objectFit=settings.hero_image_fit==='cover'?'cover':'contain';$('heroVisual').classList.add('has-photo');}
     else{photo.hidden=true;photo.removeAttribute('src');$('heroVisual').classList.remove('has-photo');}
   }
+  // Tautan WA diambil dari Pengaturan; tidak ada nomor pribadi yang ditanam di kode.
+  function infoContactUrl(post){
+    const message='Halo EVORA, saya ingin bertanya lebih lanjut mengenai INFO: '+String(post.title||'Info EVORA').slice(0,140)+'.';
+    const wa=httpUrl(settings.whatsapp_url);
+    if(wa){
+      try{
+        const u=new URL(wa);
+        const host=u.hostname.toLowerCase();
+        if(host==='wa.me'||host==='wa.link'||host==='whatsapp.com'||host.endsWith('.whatsapp.com')){
+          // Link WA pendek kadang tidak mendukung parameter text; tetap buka link aslinya.
+          if(host!=='wa.link')u.searchParams.set('text',message);
+          return u.toString();
+        }
+      }catch(e){}
+    }
+    let phone=String(settings.contact_phone||'').replace(/\D/g,'');
+    if(phone.startsWith('0'))phone='62'+phone.slice(1);
+    else if(phone.startsWith('8'))phone='62'+phone;
+    if(/^62\d{8,13}$/.test(phone))return 'https://wa.me/'+phone+'?text='+encodeURIComponent(message);
+    return '';
+  }
   function renderPosts(){
     const el=$('updatePosts');
     if(!posts.length){el.innerHTML='<div class="state">Ikuti terus informasi terbaru dari EVORA. Update katalog dan promo akan tampil di sini.</div>';return;}
-    el.innerHTML=posts.map(p=>`<article class="update-post reveal">${p.image_url?`<img src="${safe(p.image_url)}" alt="${safe(p.title)}" loading="lazy">`:''}<div class="pb"><time datetime="${safe(p.created_at)}">${fmtDate(p.created_at)}</time><h3>${safe(p.title||'Info EVORA')}</h3><p>${safe(p.description)}</p></div></article>`).join('');
+    el.innerHTML=posts.map(p=>{
+      const wa=p.contact_enabled===true?infoContactUrl(p):'';
+      const desc=String(p.description||'');
+      return `<article class="update-post reveal${p.image_url?'':' no-photo'}">${p.image_url?`<img class="info-photo" src="${safe(p.image_url)}" alt="${safe(p.title)}" loading="lazy">`:''}<div class="pb"><time datetime="${safe(p.created_at)}">${fmtDate(p.created_at)}</time><h3>${safe(p.title||'Info EVORA')}</h3>${desc?`<p class="info-description">${safe(desc)}</p>${desc.length>125?'<button class="info-more" type="button" aria-expanded="false">Baca selengkapnya</button>':''}`:''}${wa?`<a class="info-contact-btn" href="${safe(wa)}" data-info-contact="${safe(p.title||'Info EVORA')}" target="_blank" rel="noopener noreferrer">Hubungi EVORA untuk info lebih lanjut ↗</a>`:''}</div></article>`;
+    }).join('');
     observe();
   }
+  $('updatePosts').addEventListener('click',e=>{
+    const more=e.target.closest('.info-more');
+    if(more){
+      const card=more.closest('.update-post');
+      const expanded=card.classList.toggle('expanded');
+      more.textContent=expanded?'Tampilkan lebih sedikit':'Baca selengkapnya';
+      more.setAttribute('aria-expanded',String(expanded));
+      return;
+    }
+    const link=e.target.closest('a[data-info-contact]');
+    if(link)track('social_click','INFO: '+link.dataset.infoContact);
+  });
   function renderAdmin(){
     if($('quickProducts'))$('quickProducts').textContent=products.length;
     if($('quickPosts'))$('quickPosts').textContent=posts.length;
@@ -613,7 +675,7 @@
   $('extraThumbs').onclick=e=>{const b=e.target.closest('button[data-rm]');if(b){extraKeep.splice(+b.dataset.rm,1);renderExtra();}};
   $('productExtra').addEventListener('change',e=>{const n=e.target.files.length;$('extraHint').textContent=n?n+' foto baru dipilih, akan diunggah saat disimpan.':'';});
   function clearForm(){extraKeep=[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';$('productOld').value='';$('productBadge').value='';$('productStock').checked=true;editingId=null;['productName','productPrice','productDesc','productUrl','productImage'].forEach(id=>$(id).value='');$('productPreview').hidden=true;$('saveProduct').textContent='Tambah produk';$('productFormTitle').textContent='Tambah produk';$('cancelEdit').hidden=true;}
-  function clearPostForm(){editingPostId=null;['updateTitle','updateEditor','updateImage'].forEach(id=>$(id).value='');$('updatePreview').hidden=true;$('saveUpdate').textContent='Posting info';$('postFormTitle').textContent='Buat postingan info';$('cancelUpdateEdit').hidden=true;}
+  function clearPostForm(){editingPostId=null;['updateTitle','updateEditor','updateImage'].forEach(id=>$(id).value='');$('updateContactEnabled').checked=true;$('updatePreview').hidden=true;$('saveUpdate').textContent='Posting info';$('postFormTitle').textContent='Buat postingan info';$('cancelUpdateEdit').hidden=true;}
 
   async function showAdmin(){
     const {data:{user},error}=await db.auth.getUser();
@@ -654,8 +716,8 @@
     const repeat=$(repeatId).value;
     const pin=$(codeId).value.trim();
     if(pin!==PASSWORD_CONFIRMATION_CODE)throw new Error('Kode konfirmasi admin tidak sesuai.');
-    if(password.length<12||!/[A-Za-z]/.test(password)||!/[0-9]/.test(password))
-      throw new Error('Kata sandi baru minimal 12 karakter dan harus mengandung huruf serta angka.');
+    if((password.match(/[A-Za-z]/g)||[]).length<8)
+      throw new Error('Kata sandi baru wajib memiliki minimal 8 huruf. Angka atau simbol boleh ditambahkan.');
     if(password!==repeat)throw new Error('Konfirmasi kata sandi tidak sama.');
     return password;
   }
@@ -847,7 +909,7 @@
     if(!title&&!description){$('updateTitle').focus();throw new Error('Isi judul atau deskripsi postingan.');}
     const old=posts.find(p=>p.id===editingPostId);
     const image=await uploadImage($('updateImage').files[0],'posts');
-    const row={title:title||'Info EVORA',description,image_url:image||(old&&old.image_url)||null};
+    const row={title:title||'Info EVORA',description,image_url:image||(old&&old.image_url)||null,contact_enabled:$('updateContactEnabled').checked};
     const r=editingPostId?await db.from('posts').update(row).eq('id',editingPostId):await db.from('posts').insert(row);
     if(r.error){if(image)removeImage(image);throw r.error;}
     if(image&&old&&old.image_url)removeImage(old.image_url);
@@ -857,7 +919,7 @@
   $('adminUpdateList').onclick=async e=>{
     const b=e.target.closest('button');if(!b)return;const edit=b.dataset.postEdit,del=b.dataset.postDelete;
     if(edit){const p=posts.find(x=>x.id===edit);if(!p)return;editingPostId=p.id;
-      $('updateTitle').value=p.title||'';$('updateEditor').value=p.description||'';$('updateImage').value='';
+      $('updateTitle').value=p.title||'';$('updateEditor').value=p.description||'';$('updateContactEnabled').checked=p.contact_enabled===true;$('updateImage').value='';
       if(p.image_url){$('updatePreview').src=p.image_url;$('updatePreview').hidden=false;}else $('updatePreview').hidden=true;
       $('saveUpdate').textContent='Simpan perubahan';$('postFormTitle').textContent='Edit postingan';$('cancelUpdateEdit').hidden=false;$('updateTitle').scrollIntoView({behavior:'smooth',block:'center'});}
     if(del&&confirm('Hapus postingan ini?')){try{const p=posts.find(x=>x.id===del);const {error}=await db.from('posts').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearPostForm();toast('Postingan dihapus.');await loadPublic();}catch(err){report(err);}}
@@ -985,7 +1047,7 @@
       if(/^s(Wa|Ig|Th|Tt|Mp)$/.test(id)&&v&&!httpUrl(v))throw new Error('Link harus diawali https://');}
     const {error}=await db.from('settings').upsert(row);
     if(error)throw new Error('Gagal menyimpan. Pastikan upgrade.sql sudah dijalankan. ('+error.message+')');
-    settings=Object.assign({},settings,row);renderSettingsPublic();renderCatalog();toast('Pengaturan tersimpan.');
+    settings=Object.assign({},settings,row);renderSettingsPublic();renderCatalog();renderPosts();toast('Pengaturan tersimpan.');
   });};
 
   /* ---------- Init ---------- */
