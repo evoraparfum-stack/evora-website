@@ -8,9 +8,9 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA V5.3.1: Sidebar admin bisa tersembunyi penuh untuk area edit yang lebar; fitur lainnya tetap -->
-<style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
-:root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
+<!-- EVORA V5.3.3: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+:root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Fraunces',Georgia,serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--ui:'Plus Jakarta Sans',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
 /* Public website */
 .app{min-height:100vh;background:var(--cream)}.site-nav{background:#fbfaf6;border-bottom:1px solid #e9e6dc;position:sticky;top:0;z-index:10}.site-nav-inner{max-width:1230px;margin:auto;height:82px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}.wordmark{text-decoration:none;display:inline-flex;flex-direction:column;align-items:flex-start;gap:0;line-height:1}.wordmark strong{font-family:var(--ui);font-size:28px;letter-spacing:.27em;font-weight:800}.wordmark small{font-size:8px;letter-spacing:.38em;font-weight:600;margin-top:6px;color:#7e8278}.nav-links{display:flex;align-items:center;gap:36px}.nav-links a{text-decoration:none;font:600 12px var(--ui);transition:color .2s}.nav-links a:hover{color:#8a997b}.nav-end{display:flex;align-items:center;gap:14px}.nav-label{font-size:10px;color:#8b8e82;letter-spacing:.15em}.nav-dot{width:8px;height:8px;background:#7f9b7a;display:inline-block;border-radius:50%;margin-right:7px}
@@ -385,6 +385,60 @@ html,body { max-width:100%; overflow-x:clip; }
   #catalogList.catalog .product .desc {
     font-size: 12px;
   }
+}
+
+
+/* EVORA V5.3.3 — Tipografi premium, lebih jelas dibaca di HP/PC.
+   Fraunces untuk headline editorial; Plus Jakarta Sans untuk informasi produk,
+   tombol, navigasi, deskripsi, harga, dan Control Center. */
+body{font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.hero h1,.section-heading h2,.updates h2,.catalog-hero h1,.catalog-outro h2{
+  font-family:var(--heading);letter-spacing:-.035em;
+}
+.hero p,.catalog-hero p,.section-heading p,.catalog-outro p{
+  color:#59665b;line-height:1.85;
+}
+/* Judul parfum menggunakan sans-serif agar nama panjang tetap jelas. */
+.product h3,.full-grid .product h3,#catalogList.catalog .product h3{
+  font-family:var(--ui);font-weight:700;letter-spacing:-.035em;
+}
+.product .desc,.full-grid .product .desc,#catalogList.catalog .product .desc{
+  font-family:var(--body);font-weight:400;color:#5a695d;letter-spacing:0;
+}
+.product .price,.full-grid .price,#catalogList.catalog .product .price{
+  font-family:var(--ui);font-weight:800;letter-spacing:-.025em;color:#294733;
+}
+#catalogList.catalog .product h3{
+  font-size:18px;line-height:1.42;height:2.84em;min-height:2.84em;max-height:2.84em;
+}
+#catalogList.catalog .product .desc{
+  font-size:12.5px;line-height:1.7;height:3.4em;min-height:3.4em;max-height:3.4em;
+}
+#catalogList.catalog .product .price{font-size:17px}
+/* Detail: deskripsi lengkap tetap utuh dan lebih nyaman dibaca. */
+.dpanel h2{font-family:var(--ui);font-weight:700;letter-spacing:-.035em}
+.ddesc{font:400 14px/1.9 var(--body);color:#506251}
+/* INFO: judul jelas, isi tidak terlalu pucat. */
+.update-post h3{font-family:var(--ui);font-weight:700;letter-spacing:-.03em}
+.update-post .info-description{color:#56675a;line-height:1.75}
+.info-modal-copy h2{font-family:var(--heading);letter-spacing:-.03em}
+.info-modal-description{font-family:var(--body);color:#4e6052;line-height:1.85}
+/* Control Center lebih nyaman saat mengedit detail panjang. */
+.admin-view,.auth-screen{font-family:var(--ui)}
+.admin-surface .surface-intro,.admin-pagehead p{line-height:1.8;color:#68796c}
+.field label{font-size:12px;line-height:1.55}
+.field textarea{line-height:1.75}
+@media(max-width:650px){
+  .full-grid .product h3{font-size:15px;line-height:1.4}
+  .full-grid .product .desc{font-size:12px;line-height:1.65;color:#5a695d}
+  .full-grid .card-actions .btn,.full-grid .card-actions a.buy{font-size:10px;letter-spacing:0}
+}
+@media(max-width:540px){
+  #catalogList.catalog .product h3{
+    font-size:18px;line-height:1.42;height:2.84em;min-height:2.84em;max-height:2.84em;
+  }
+  #catalogList.catalog .product .desc{font-size:12.5px;line-height:1.7}
+  .hero p{font-size:14px}
 }
 
 </style>
