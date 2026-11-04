@@ -336,39 +336,6 @@ html,body { max-width:100%; overflow-x:clip; }
 }
 @media(prefers-reduced-motion:reduce){#adminView.admin-view{transition:none;}}
 </style>
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="./icons/evora-192.png">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="EVORA">
-<meta name="application-name" content="EVORA">
-<style id="evora-pwa-styles">
-/* EVORA V5.4: Install app without disturbing katalog, INFO, and admin. */
-.ev-install-launch{position:fixed;z-index:25;right:max(15px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));border:1px solid #e6e8dd;background:#273e32;color:#fff;box-shadow:0 8px 26px #233b2f35;border-radius:999px;padding:11px 17px;font:700 12px/1.3 var(--ui),system-ui,sans-serif;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 30px)}
-.ev-install-launch:hover{background:#395947}
-.ev-install-launch svg{width:17px;height:17px;flex:none}
-body.in-admin .ev-install-launch,body.in-login .ev-install-launch{display:none}
-.ev-install-backdrop[hidden]{display:none!important}
-.ev-install-backdrop{position:fixed;inset:0;background:#102318b9;z-index:100;display:grid;place-items:center;padding:22px;overflow-y:auto;overscroll-behavior:contain}
-.ev-install-sheet{width:min(100%,440px);border:1px solid #dfe6da;background:#fbfcf8;border-radius:20px;box-shadow:0 20px 70px #0004;padding:26px;position:relative;color:#253c2d}
-.ev-install-x{position:absolute;right:15px;top:15px;border:0;border-radius:100%;background:#eaf0e7;color:#284334;width:34px;height:34px;font-size:20px;line-height:1}
-.ev-install-head{display:flex;align-items:center;gap:15px;padding-right:24px}
-.ev-install-head img{height:64px;width:64px;border-radius:16px;flex:none}
-.ev-install-head small{color:#8c996b;font:800 9px var(--ui);letter-spacing:.16em}
-.ev-install-head h2{font:700 23px var(--ui);margin:5px 0 1px}
-.ev-install-sheet p{font:400 13px/1.85 var(--body);color:#6d7c6e;margin:20px 0 15px}
-.ev-install-info{font:500 13px/1.9 var(--ui);padding:15px;border-radius:12px;background:#edf3e8;color:#4b624f}
-.ev-install-info strong{color:#2d4a36}
-.ev-install-info ol{margin:8px 0 0;padding-left:19px}
-.ev-install-info li{margin:5px 0}
-.ev-install-button{width:100%;display:block;margin-top:19px;text-align:center;border:0;background:#273e32;color:#fff;border-radius:10px;font:800 13px var(--ui);padding:14px 19px;min-height:46px}
-.ev-install-button:hover{background:#3b5a44}
-.ev-install-button[hidden]{display:none}
-.ev-install-note{display:block;margin-top:14px;font:500 11px/1.6 var(--ui);color:#79887a}
-@media(max-width:540px){.ev-install-launch{font-size:11px;padding:10px 13px;bottom:max(12px,env(safe-area-inset-bottom))}.ev-install-sheet{padding:23px 18px}.ev-install-head h2{font-size:21px}}
-@media (display-mode:standalone){.ev-install-launch{display:none}}
-</style>
 </head>
 <body>
 <div class="app" id="storeView">
@@ -1400,85 +1367,6 @@ body.in-admin .ev-install-launch,body.in-login .ev-install-launch{display:none}
     if(!location.hash.startsWith('#admin')&&!isAdmin)track('visit','');
   })();
 
-})();
-</script>
-<!-- Tombol PWA: pasang EVORA ke layar utama HP atau menu aplikasi PC -->
-<button id="evoraInstallLaunch" type="button" class="ev-install-launch" aria-haspopup="dialog" aria-controls="evoraInstallDialog" aria-label="Pasang aplikasi EVORA">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 18v2h14v-2"/></svg><span>Pasang EVORA</span>
-</button>
-<div id="evoraInstallDialog" class="ev-install-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="evoraInstallTitle">
-  <section class="ev-install-sheet">
-    <button id="evoraInstallClose" class="ev-install-x" type="button" aria-label="Tutup">×</button>
-    <div class="ev-install-head"><img src="./icons/evora-192.png" alt="Logo EVORA"><div><small>EVORA · SIGNATURE SCENT</small><h2 id="evoraInstallTitle">Simpan EVORA</h2></div></div>
-    <p>Akses toko dan katalog EVORA dari ikon di layar utama HP atau daftar aplikasi komputer, seperti membuka aplikasi biasa.</p>
-    <div id="evoraInstallInfo" class="ev-install-info" aria-live="polite">Mendeteksi cara pemasangan untuk perangkatmu…</div>
-    <button id="evoraInstallAction" type="button" class="ev-install-button" hidden>Pasang EVORA Sekarang</button>
-    <small class="ev-install-note">Aplikasi tetap membutuhkan internet untuk memuat katalog dan INFO terbaru. Tidak memerlukan Play Store.</small>
-  </section>
-</div>
-<script id="evora-pwa-install-script">
-/* EVORA V5.4 — PWA install UI + service-worker registration. */
-(() => {
-  const launch=document.getElementById('evoraInstallLaunch');
-  const modal=document.getElementById('evoraInstallDialog');
-  const close=document.getElementById('evoraInstallClose');
-  const info=document.getElementById('evoraInstallInfo');
-  const action=document.getElementById('evoraInstallAction');
-  if(!launch||!modal||!close||!info||!action)return;
-  let installPrompt=null;
-  const standalone=()=>window.matchMedia('(display-mode:standalone)').matches||navigator.standalone===true;
-  const iphone=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-  const android=()=>/Android/i.test(navigator.userAgent);
-  const secure=()=>location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1';
-  const manualInstructions=()=>{
-    if(standalone())return '<strong>EVORA sudah terpasang.</strong> Buka EVORA dari ikon aplikasi perangkatmu.';
-    if(!secure())return '<strong>Perlu HTTPS.</strong> Fitur pemasangan aplikasi bekerja setelah website diunggah ke hosting HTTPS. Membuka file <code>index.html</code> langsung dari penyimpanan tidak dapat mengaktifkan instalasi PWA.';
-    if(iphone())return '<strong>iPhone / iPad</strong><ol><li>Buka website EVORA di Safari.</li><li>Ketuk menu halaman atau tombol <strong>Bagikan</strong>.</li><li>Pilih <strong>Tambahkan ke Layar Utama</strong>.</li><li>Aktifkan <strong>Buka sebagai Aplikasi</strong> jika tersedia, lalu pilih <strong>Tambah</strong>.</li></ol>';
-    if(android())return '<strong>Android</strong><ol><li>Buka EVORA di Chrome.</li><li>Ketuk menu <strong>⋮</strong> di Chrome.</li><li>Pilih <strong>Instal aplikasi</strong> atau <strong>Tambahkan ke layar utama</strong>.</li><li>Konfirmasi instalasi.</li></ol>';
-    return '<strong>Komputer / Laptop</strong><ol><li>Buka EVORA di Chrome atau Microsoft Edge.</li><li>Klik ikon <strong>Instal</strong> di sebelah kolom alamat, atau buka menu <strong>⋮</strong>.</li><li>Pilih <strong>Instal EVORA</strong> / <strong>Apps → Install this site as an app</strong>.</li><li>Ikon EVORA akan tersedia di daftar aplikasi atau menu Start.</li></ol>';
-  };
-  function updateContent(){
-    if(installPrompt && !standalone()){
-      info.innerHTML='<strong>Siap dipasang.</strong> Tekan tombol di bawah, kemudian setujui permintaan pemasangan dari browser.';
-      action.hidden=false;
-    }else{
-      info.innerHTML=manualInstructions();
-      action.hidden=true;
-    }
-    launch.hidden=standalone();
-  }
-  let opener=null;
-  function show(){opener=document.activeElement;updateContent();modal.hidden=false;close.focus();}
-  function hide(){modal.hidden=true;opener?.focus?.();}
-  launch.addEventListener('click',show);
-  close.addEventListener('click',hide);
-  modal.addEventListener('click',e=>{if(e.target===modal)hide();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){e.preventDefault();hide();}});
-  window.addEventListener('beforeinstallprompt',e=>{
-    e.preventDefault();installPrompt=e;updateContent();
-  });
-  action.addEventListener('click',()=>{
-    if(!installPrompt){updateContent();return;}
-    const prompt=installPrompt;
-    installPrompt=null;
-    // Must be invoked synchronously from the user click.
-    prompt.prompt();
-    action.hidden=true;
-    info.innerHTML='<strong>Ikuti konfirmasi dari browser.</strong> Jika instalasi belum muncul, gunakan petunjuk pemasangan manual pada menu browser.';
-    Promise.resolve(prompt.userChoice).then(result=>{
-      if(result&&result.outcome==='accepted')hide();
-      else updateContent();
-    }).catch(()=>updateContent());
-  });
-  window.addEventListener('appinstalled',()=>{installPrompt=null;hide();updateContent();});
-  updateContent();
-  if('serviceWorker' in navigator && secure()){
-    window.addEventListener('load',()=>{
-      navigator.serviceWorker.register('./service-worker.js',{scope:'./'}).catch(err=>{
-        console.warn('EVORA service worker tidak dapat diaktifkan:',err);
-      });
-    });
-  }
 })();
 </script>
 </body>
