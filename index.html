@@ -8,6 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
+<!-- EVORA 4.0: editable hero + curated slider + complete catalog -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -27,6 +28,81 @@
 @media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:50px}.hero-art{height:420px;max-width:580px;width:100%;margin:auto}.hero h1{font-size:64px}.auth-screen{grid-template-columns:1fr}.auth-illustration{display:none}.auth-content{min-height:100vh}.admin-view{display:block}.admin-sidebar{position:sticky;top:0;z-index:18;width:100%;height:auto;padding:10px 18px;gap:5px}.admin-side-brand{padding:8px 4px;border:0}.admin-side-brand b{font-size:20px}.admin-side-brand small{display:none}.side-label,.side-help{display:none}.tabs{display:flex;flex-direction:row;gap:5px;overflow-x:auto}.tabs button{width:auto;flex:none;white-space:nowrap;padding:11px 12px;font-size:11px}.admin-topbar{height:62px}.catalog{grid-template-columns:repeat(2,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.site-section{padding:68px 24px}.updates{padding:70px 24px}}
 @media(max-width:540px){.site-nav-inner{height:67px;padding:0 17px}.wordmark strong{font-size:22px}.nav-links{gap:16px}.nav-links a{font-size:11px}.nav-end{display:none}.hero{padding:35px 18px 55px;gap:35px}.hero h1{font-size:clamp(48px,13vw,65px)}.hero-art{height:360px;border-radius:125px 125px 8px 8px}.hero-art .float-note{left:14px;bottom:19px;padding:11px}.bottle-shape{transform:translate(-50%,-35%) scale(.83)}.hero-art .art-caption{display:none}.ticker{gap:12px 22px}.ticker i{display:none}.ticker span{font-size:9px}.site-section{padding:58px 16px}.section-heading{align-items:start;flex-direction:column}.section-heading p{text-align:left}.catalog{grid-template-columns:1fr;gap:15px}.product{max-width:520px;width:100%;margin:auto}.ph{aspect-ratio:1/.73}.product h3{font-size:22px}.updates{padding:55px 16px}.site-footer{padding:48px 18px 25px}.auth-content{padding:28px 22px}.auth-card h1{font-size:38px}.admin-topbar{padding:0 16px}.admin-user{gap:7px}.avatar{display:none}.top-action{padding:9px 10px;font-size:10px}.admin-container{padding:26px 14px 60px}.admin-banner{flex-direction:column;align-items:start;padding:22px}.admin-pagehead{align-items:start}.admin-date{display:none}.quick-stats{gap:8px}.quick-box{padding:14px 12px}.quick-box small{font-size:10px}.quick-box b{font-size:25px}.admin-surface{padding:19px 15px}.fields-2,.cards,.two{grid-template-columns:1fr}.admin-row{flex-wrap:wrap}.admin-row .btns{width:100%;justify-content:flex-start}.admin-row img{width:48px;height:48px}.chart{height:135px}.box{padding:17px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* EVORA 4 — editorial hero, curated slider and full-catalog experience */
+.hero-art.has-photo{background:linear-gradient(140deg,#e8e8dd,#d7dfd0)}
+.hero-art.has-photo:before{opacity:.25}
+.hero-user-photo{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-position:center;object-fit:contain}
+.hero-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:#365540;text-align:center;padding:45px 15px;background:radial-gradient(circle at 50% 40%,#f5f4e9b8,#cdd9c9 75%)}
+.hero-fallback:after{content:"";position:absolute;inset:20px;border:1px solid #ffffff8e;border-radius:155px 155px 4px 4px;pointer-events:none}
+.hero-fallback strong{font:800 clamp(45px,6vw,77px) var(--ui);letter-spacing:.2em;padding-left:.2em}
+.hero-fallback small{font:700 10px var(--ui);letter-spacing:.2em}
+.hero-fallback span{font:500 12px var(--heading);letter-spacing:.04em}
+.hero-art.has-photo .hero-fallback{display:none}
+.hero-art .float-note{pointer-events:none}
+/* 1–5 product horizontal slider on homepage */
+#catalogList.catalog{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;padding:7px 7px 24px;scroll-snap-type:x mandatory;scroll-padding:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain}
+#catalogList.catalog::-webkit-scrollbar{display:none}
+#catalogList.catalog .product{flex:0 0 clamp(225px,26vw,290px);scroll-snap-align:start;margin:0}
+#catalogList.catalog .state{min-width:100%}
+#catalogList.catalog .skel{flex:0 0 260px}
+.slider-wrap{position:relative}
+#prevBtn,#nextBtn{display:grid;place-items:center;position:absolute;top:42%;height:46px;width:46px;z-index:3;border:1px solid #dce4db;border-radius:50%;background:#fffc;color:var(--forest);font-size:27px;box-shadow:0 8px 22px #283c321f;backdrop-filter:blur(10px);transition:transform .2s}
+#prevBtn:hover,#nextBtn:hover{transform:scale(1.05);background:#fff}
+#prevBtn{left:-22px}#nextBtn{right:-22px}
+#dots{display:flex;align-items:center;justify-content:center;gap:7px;min-height:16px;margin-top:8px}
+#dots i{width:7px;height:7px;background:#d7ddd3;border-radius:50%;transition:all .2s}
+#dots i.on{width:22px;border-radius:10px;background:var(--forest)}
+.collection-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:35px;padding-top:28px;border-top:1px solid var(--line)}
+.collection-bottom p{font:400 14px/1.7 var(--body);color:#7b8479;margin:0}
+.collection-bottom .site-button{white-space:nowrap}
+/* full catalog page */
+.catalog-page{min-height:100vh;background:#fbfbf7}
+.catalog-hero{background:linear-gradient(118deg,#edf1e8,#e4eadf 60%,#e9eee6);border-bottom:1px solid #e1e5dd;position:relative;overflow:hidden}
+.catalog-hero:after{content:"EVORA";font:800 170px var(--ui);letter-spacing:.14em;position:absolute;right:-110px;top:15%;color:#ffffff61;pointer-events:none}
+.catalog-hero-inner{max-width:1230px;margin:auto;padding:78px 32px 72px;position:relative;z-index:1}
+.catalog-hero h1{font:500 clamp(41px,5.6vw,71px)/1.15 var(--heading);letter-spacing:-.04em;margin:15px 0 18px;color:var(--forest)}
+.catalog-hero h1 em{color:#aa926a;font-weight:400}
+.catalog-hero p{max-width:520px;font:400 15px/1.9 var(--body);color:#6e7c70;margin:0}
+.catalog-hero-count{margin-top:28px;font:700 11px var(--ui);letter-spacing:.12em;color:#788b78;text-transform:uppercase}
+.catalog-hero-count span{font-size:16px;color:var(--forest)}
+.catalog-main{max-width:1230px;margin:auto;padding:51px 32px 65px}
+.catalog-toolbar{display:grid;grid-template-columns:2fr 1fr 1fr;gap:15px;padding:24px;background:#fff;border:1px solid #e4e9e0;border-radius:14px;box-shadow:0 12px 40px #26422a08}
+.search-wrap{display:grid;gap:9px}.search-wrap label{font:700 11px var(--ui);color:#556b59}
+.search-wrap input,.search-wrap select{height:49px;border:1px solid #dde5dd;border-radius:9px;padding:0 15px;background:#fbfcf9;color:var(--forest);font:500 13px var(--ui);width:100%;min-width:0}
+.search-wrap input:focus,.search-wrap select:focus{outline:2px solid #c2d4bf;border-color:#729879}
+.catalog-results{display:flex;align-items:center;justify-content:space-between;margin:28px 2px 23px;color:#566c58;font:600 12px var(--ui)}
+.link-reset{background:none;border:0;padding:8px 0;color:#6f9476;text-decoration:underline;font:600 12px var(--ui)}
+.full-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.full-grid .product{height:100%}
+.catalog-empty{grid-column:1/-1;text-align:center;padding:70px 15px;border:1px dashed #cdd9cb;border-radius:14px;color:#839283;background:#fff}
+.catalog-empty b{display:block;font:500 26px var(--heading);color:var(--forest);margin-bottom:10px}
+.catalog-outro{text-align:center;padding:75px 20px 50px;margin-top:76px;border-top:1px solid #e2e8df}
+.catalog-outro span{font:700 11px var(--ui);letter-spacing:.22em;color:#829480}
+.catalog-outro h2{font:500 clamp(30px,4vw,48px) var(--heading);color:var(--forest);margin:15px 0}
+.catalog-outro p{color:#77877a;line-height:1.75;margin:0 auto 25px;max-width:440px}
+.catalog-page-footer{padding:23px;text-align:center;background:#263c2f;color:#e5eee2;font:600 10px var(--ui);letter-spacing:.3em}
+/* Admin editor and featured manager */
+.home-image-preview{width:100%;max-width:280px;max-height:310px;object-fit:contain;background:linear-gradient(120deg,#e9efe6,#f7f8f4);border:1px solid #d7e1d4;border-radius:12px;margin:9px 0}
+.home-tip-panel{position:sticky;top:25px}.tip-art{min-height:245px;border-radius:11px;background:linear-gradient(135deg,#dce8d5,#c4d5be 60%,#e1ebd9);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:22px;color:#35523b}
+.tip-art span{font:800 30px var(--ui);letter-spacing:.27em;padding-left:.27em}.tip-art b{font:500 28px/1.25 var(--heading)}
+.tip-note b{font:800 12px var(--ui);color:#466b4b;display:block;margin-top:17px}.tip-note p{font:400 12px/1.7 var(--ui);color:#778578;margin:5px 0}
+.featured-admin-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.featured-counter{white-space:nowrap;padding:11px 15px;border-radius:100px;background:#ebf2e8;color:var(--forest);font:800 12px var(--ui)}
+.featured-workspace{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}
+.featured-workspace h4{margin:0 0 13px;font:800 13px var(--ui);color:#3d5540}
+.featured-selected,.featured-candidates{display:grid;gap:10px;max-height:570px;overflow:auto;padding:4px 2px}
+.featured-mini{display:flex;align-items:center;gap:10px;border:1px solid #e5ece2;background:#fbfcf9;border-radius:9px;padding:9px}
+.featured-mini img,.featured-mini .mini-placeholder{width:48px;height:48px;object-fit:contain;border-radius:7px;background:#e6ecdf;display:grid;place-items:center;color:#90a08b;font-size:10px;flex:none}
+.featured-mini .text{flex:1;min-width:0}.featured-mini .text b{font:700 12px var(--ui);color:var(--forest);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.featured-mini .text small{font:500 10px var(--ui);color:#8a9588}
+.featured-mini .controls{display:flex;gap:5px}.featured-mini button{background:#fff;border:1px solid #dbe6d9;border-radius:6px;padding:8px 9px;color:#45674c;font:700 11px var(--ui)}.featured-mini button:disabled{opacity:.4;cursor:not-allowed}
+.featured-candidate{cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px;background:#fff;border:1px solid #e3ebe0;border-radius:9px}
+.featured-candidate:hover{background:#f6f9f4}.featured-candidate input{accent-color:#38563d;width:19px;height:19px;flex:none}
+.featured-candidate img,.featured-candidate .mini-placeholder{width:44px;height:44px;object-fit:contain;border-radius:7px;background:#eff2e9;display:grid;place-items:center;flex:none;color:#96a48f;font:700 9px var(--ui)}.featured-candidate span{font:600 12px/1.5 var(--ui);color:#425845}
+.featured-candidate.is-picked{background:#f0f7eb;border-color:#a8c4a6}.featured-note{padding:24px 13px;border:1px dashed #cadbc7;border-radius:9px;color:#819282;font:500 12px/1.8 var(--ui)}
+@media(max-width:900px){.catalog-toolbar{grid-template-columns:1fr 1fr}.catalog-toolbar .search-wrap:first-child{grid-column:1/-1}.full-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-workspace{grid-template-columns:1fr}.home-tip-panel{position:static}}
+@media(max-width:650px){.catalog-hero-inner{padding:55px 19px}.catalog-main{padding:24px 16px 45px}.catalog-toolbar{grid-template-columns:1fr;padding:17px}.catalog-toolbar .search-wrap:first-child{grid-column:auto}.full-grid{grid-template-columns:1fr;gap:16px}.full-grid .product{max-width:520px;width:100%;margin:auto}.catalog-home-link{display:none}.collection-bottom{flex-direction:column;align-items:stretch;text-align:center;gap:15px}.collection-bottom .site-button{justify-content:center}.featured-admin-head{flex-direction:column}.hero-fallback strong{font-size:52px}#catalogList.catalog .product{flex-basis:min(78vw,310px)}#prevBtn,#nextBtn{height:40px;width:40px;top:39%}#prevBtn{left:-9px}#nextBtn{right:-9px}.catalog-hero:after{font-size:90px;right:-50px}}
+
 </style>
 </head>
 <body>
@@ -34,33 +110,64 @@
   <nav class="site-nav" aria-label="Navigasi toko">
     <div class="site-nav-inner">
       <a href="#" class="wordmark"><strong>EVORA</strong><small>SIGNATURE SCENT</small></a>
-      <div class="nav-links"><a href="#katalog">Koleksi</a><a href="#informasi">Info & Promo</a></div>
+      <div class="nav-links"><a href="#katalog">Pilihan EVORA</a><a href="#koleksi">Katalog Lengkap</a><a href="#informasi">Info & Promo</a></div>
       <div class="nav-end"><span class="nav-label"><i class="nav-dot"></i> DISCOVER YOUR SCENT</span><a class="site-button outline" href="#katalog">Explore Collection ↗</a></div>
     </div>
   </nav>
   <header class="hero">
     <div>
-      <div class="eyebrow">Every scent has a story</div>
-      <h1>Your scent.<br><em>Your signature.</em></h1>
-      <p>Lebih dari sekadar parfum. EVORA menghadirkan aroma yang menyatu dengan karakter, momen, dan kepercayaan dirimu — untuk setiap cerita yang ingin dikenang.</p>
-      <div class="hero-actions"><a href="#katalog" class="site-button">Jelajahi Koleksi <span>↗</span></a><span class="hero-promise">Scent of Confidence · Est. 2026</span></div>
+      <div class="eyebrow" id="heroEyebrow">Every scent has a story</div>
+      <h1><span id="heroTitle">Your scent.</span><br><em id="heroHighlight">Your signature.</em></h1>
+      <p id="heroDescription">Lebih dari sekadar parfum. EVORA menghadirkan aroma yang menyatu dengan karakter, momen, dan kepercayaan dirimu — untuk setiap cerita yang ingin dikenang.</p>
+      <div class="hero-actions"><a href="#katalog" class="site-button"><span id="heroCtaText">Jelajahi Koleksi</span> <span>↗</span></a><span class="hero-promise">Scent of Confidence · Est. 2026</span></div>
     </div>
-    <div class="hero-art" aria-label="Ilustrasi botol parfum EVORA">
+    <div class="hero-art" id="heroVisual" aria-label="Foto utama koleksi EVORA">
+      <div class="hero-fallback" id="heroFallback"><small>THE ART OF PERSONAL SCENT</small><strong>EVORA</strong><span>Signature Scent · Est. 2026</span></div>
+      <img id="heroPhoto" class="hero-user-photo" alt="Foto pilihan EVORA" hidden>
       <span class="hero-number">01 / SIGNATURE</span>
-      <div class="bottle-shadow"></div>
-      <div class="bottle-shape"><div class="bottle-label"><b>EVORA</b><small>SIGNATURE SCENT</small></div></div>
       <div class="float-note"><b>Find your signature</b><span>Distinctive fragrance, timeless impression.</span></div>
       <span class="art-caption">SCENT OF CONFIDENCE</span>
     </div>
   </header>
   <div class="ticker"><span>CURATED FRAGRANCES</span><i></i><span>MADE FOR YOUR STORY</span><i></i><span>EVERYDAY ELEGANCE</span></div>
   <section class="site-section" id="katalog">
-    <div class="section-heading"><div><span class="section-overline">Find your signature scent</span><h2>The Collection</h2></div><p>Temukan aroma yang paling sesuai dengan kesan dan kepribadianmu.</p></div>
+    <div class="section-heading"><div><span class="section-overline">Handpicked for you</span><h2>EVORA Picks</h2></div><p>Hingga lima parfum pilihan yang kami kurasi khusus untukmu. Geser untuk menjelajah.</p></div>
     <div class="slider-wrap"><button class="nav-btn prev" id="prevBtn" aria-label="Sebelumnya">‹</button><div class="catalog" id="catalogList" aria-live="polite" tabindex="0" aria-label="Katalog parfum"></div><button class="nav-btn next" id="nextBtn" aria-label="Berikutnya">›</button></div>
     <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="collection-bottom"><p>Masih banyak cerita aroma yang bisa kamu temukan.</p><a class="site-button" href="#koleksi">Lihat Katalog Lengkap <span aria-hidden="true">↗</span></a></div>
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">What's happening</span><h2>Stories & Updates</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
   <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">EVORA<small>SIGNATURE SCENT</small></div><p class="footer-desc">Your scent. Your signature. Temukan aroma yang mencerminkan jati dirimu.</p></div><div><div class="social" id="social"></div><div class="contactline" id="contactLine"></div></div></div><div class="footer-bottom"><span>© 2026 EVORA. Crafted with confidence.</span><button id="adminOpen" class="admin-entry">Masuk Admin</button></div></footer>
+</div>
+
+<!-- Halaman katalog lengkap: terpisah dari beranda, masih dalam satu HTML -->
+<div id="catalogView" class="catalog-page" hidden>
+  <nav class="site-nav" aria-label="Navigasi katalog lengkap">
+    <div class="site-nav-inner">
+      <a href="#" class="wordmark"><strong>EVORA</strong><small>SIGNATURE SCENT</small></a>
+      <div class="nav-links"><a href="#">Beranda</a><a href="#katalog">Pilihan EVORA</a></div>
+      <a href="#" class="site-button outline catalog-home-link">← Kembali ke Beranda</a>
+    </div>
+  </nav>
+  <header class="catalog-hero">
+    <div class="catalog-hero-inner">
+      <span class="section-overline">Explore every signature</span>
+      <h1>Find your <em>perfect scent.</em></h1>
+      <p>Jelajahi seluruh koleksi parfum EVORA. Cari aroma favoritmu, lihat detailnya, lalu pesan dengan mudah.</p>
+      <div class="catalog-hero-count"><span id="fullTotal">0</span> pilihan aroma menantimu</div>
+    </div>
+  </header>
+  <main class="catalog-main">
+    <div class="catalog-toolbar">
+      <div class="search-wrap"><label for="catalogSearch">Cari parfum</label><input id="catalogSearch" type="search" placeholder="Cari nama atau karakter aroma…" autocomplete="off"></div>
+      <div class="search-wrap"><label for="catalogFilter">Tampilkan</label><select id="catalogFilter"><option value="all">Semua produk</option><option value="stock">Stok tersedia</option><option value="new">Produk baru</option><option value="best">Best seller</option><option value="promo">Sedang promo</option></select></div>
+      <div class="search-wrap"><label for="catalogSort">Urutkan</label><select id="catalogSort"><option value="default">Urutan katalog</option><option value="newest">Terbaru</option><option value="az">Nama A – Z</option><option value="low">Harga terendah</option><option value="high">Harga tertinggi</option></select></div>
+    </div>
+    <div class="catalog-results"><strong id="catalogCount">0 produk</strong><button id="resetCatalogFilters" class="link-reset" type="button">Reset pencarian</button></div>
+    <div class="full-grid" id="fullCatalog" aria-live="polite"></div>
+    <div class="catalog-outro"><span>EVORA · SIGNATURE SCENT</span><h2>Setiap aroma punya ceritanya.</h2><p>Belum menemukan yang pas? Hubungi kami untuk rekomendasi aroma yang mencerminkan dirimu.</p><a href="#" class="site-button outline">Kembali ke Beranda</a></div>
+  </main>
+  <footer class="catalog-page-footer">EVORA SIGNATURE SCENT · EST. 2026</footer>
 </div>
 
 <!-- Admin login: full page, bukan pop-up -->
@@ -71,10 +178,33 @@
 
 <!-- Admin dashboard: halaman sendiri, bukan modal -->
 <div class="admin-view" id="adminView" hidden>
-  <aside class="admin-sidebar"><div class="admin-side-brand"><b>EVORA</b><small>CONTROL CENTER</small></div><div class="side-label">Menu Utama</div><nav class="tabs" id="tabs" aria-label="Navigasi dashboard admin"><button class="on" data-tab="tabStats"><span class="nav-ico">⌂</span>Ringkasan</button><button data-tab="tabProducts"><span class="nav-ico">◈</span>Kelola Produk</button><button data-tab="tabPosts"><span class="nav-ico">▤</span>Info & Promo</button><button data-tab="tabSettings"><span class="nav-ico">⚙</span>Pengaturan</button></nav><div class="side-help"><b>EVORA Workspace</b><p>Setiap perubahan pada produk dan konten akan langsung tersimpan ke Supabase.</p></div></aside>
+  <aside class="admin-sidebar"><div class="admin-side-brand"><b>EVORA</b><small>CONTROL CENTER</small></div><div class="side-label">Menu Utama</div><nav class="tabs" id="tabs" aria-label="Navigasi dashboard admin"><button class="on" data-tab="tabStats"><span class="nav-ico">⌂</span>Ringkasan</button><button data-tab="tabHome"><span class="nav-ico">◐</span>Tampilan Beranda</button><button data-tab="tabFeatured"><span class="nav-ico">✦</span>Produk Pilihan</button><button data-tab="tabProducts"><span class="nav-ico">◈</span>Kelola Produk</button><button data-tab="tabPosts"><span class="nav-ico">▤</span>Info & Promo</button><button data-tab="tabSettings"><span class="nav-ico">⚙</span>Pengaturan</button></nav><div class="side-help"><b>EVORA Workspace</b><p>Setiap perubahan pada produk dan konten akan langsung tersimpan ke Supabase.</p></div></aside>
   <div class="admin-main"><header class="admin-topbar"><div class="breadcrumbs">EVORA / <strong>Admin Workspace</strong></div><div class="admin-user"><button class="top-action" id="viewWebsite">↗ Lihat Website</button><button class="top-action signout" id="adminLogout">Keluar</button><div class="avatar">AD</div></div></header>
     <main class="admin-container"><div class="admin-pagehead"><div><span>EVORA / Management</span><h1 id="adminPageTitle">Ringkasan bisnis</h1><p id="adminPageSubtitle">Pantau performa toko dan aktivitas pengunjung.</p></div><div class="admin-date">SIGNATURE SCENT · EST. 2026</div></div>
-      <section class="admin-section" id="tabStats"><div class="admin-banner"><div><h2>Welcome to EVORA Studio.</h2><p>Bangun pengalaman parfum yang semakin berkesan. Semua dalam satu dashboard.</p></div><button class="btn" data-goto="products">+ Tambah Produk</button></div><div class="quick-stats"><div class="quick-box"><small>Jumlah Produk</small><b id="quickProducts">0</b><em>Seluruh katalog</em></div><div class="quick-box"><small>Produk Tampil</small><b id="quickVisible">0</b><em>Aktif di website</em></div><div class="quick-box"><small>Info & Promo</small><b id="quickPosts">0</b><em>Postingan publik</em></div></div><div class="admin-surface"><h3>Analitik pengunjung</h3><p class="surface-intro">Statistik diperbarui dari data kunjungan website.</p><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div></section>
+      <section class="admin-section" id="tabStats"><div class="admin-banner"><div><h2>Welcome to EVORA Studio.</h2><p>Bangun pengalaman parfum yang semakin berkesan. Semua dalam satu dashboard.</p></div><button class="btn" data-goto="home">✦ Atur Beranda</button></div><div class="quick-stats"><div class="quick-box"><small>Jumlah Produk</small><b id="quickProducts">0</b><em>Seluruh katalog</em></div><div class="quick-box"><small>Produk Tampil</small><b id="quickVisible">0</b><em>Aktif di website</em></div><div class="quick-box"><small>Info & Promo</small><b id="quickPosts">0</b><em>Postingan publik</em></div></div><div class="admin-surface"><h3>Analitik pengunjung</h3><p class="surface-intro">Statistik diperbarui dari data kunjungan website.</p><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div></section>
+      <section class="admin-section" id="tabHome" hidden>
+        <div class="admin-split">
+          <div class="admin-surface">
+            <h3>Visual & cerita beranda</h3><p class="surface-intro">Ubah foto utama, judul, deskripsi dan tombol beranda kapan saja. Foto disimpan di Supabase Storage.</p>
+            <div class="field"><label for="homeImage">Foto utama EVORA</label><input id="homeImage" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint">Disarankan foto portrait beresolusi 1200 × 1500 px atau lebih, maksimal 15 MB. Gambar akan dikompres otomatis.</p></div>
+            <img class="home-image-preview" id="homeImagePreview" alt="Preview foto utama" hidden>
+            <div class="field"><label for="homeFit">Penyesuaian gambar</label><select id="homeFit"><option value="contain">Utuh — seluruh botol terlihat</option><option value="cover">Penuh — memenuhi bingkai (mungkin terpotong)</option></select></div>
+            <div class="field chk"><label><input id="homeRemoveImage" type="checkbox"> Hapus foto saat ini dan gunakan tampilan tipografi EVORA</label></div>
+            <div class="field"><label for="homeEyebrow">Teks kecil di atas judul</label><input id="homeEyebrow" maxlength="80" placeholder="Every scent has a story"></div>
+            <div class="fields-2"><div class="field"><label for="homeTitle">Judul baris pertama</label><input id="homeTitle" maxlength="70" placeholder="Your scent."></div><div class="field"><label for="homeHighlight">Judul baris kedua</label><input id="homeHighlight" maxlength="70" placeholder="Your signature."></div></div>
+            <div class="field"><label for="homeDescription">Deskripsi beranda</label><textarea id="homeDescription" maxlength="420" placeholder="Ceritakan keunikan parfum EVORA..."></textarea></div>
+            <div class="field"><label for="homeButtonText">Teks tombol utama</label><input id="homeButtonText" maxlength="40" placeholder="Jelajahi Koleksi"></div>
+            <div class="admin-actions"><button class="btn" id="saveHome">Simpan Tampilan Beranda</button><a class="secondary" href="#" id="previewHome" style="text-decoration:none">↗ Lihat Beranda</a></div>
+          </div>
+          <div class="admin-surface home-tip-panel"><h3>Tips foto yang membuat brand menonjol</h3><p class="surface-intro">Foto produk milikmu akan menggantikan visual statis di beranda.</p><div class="tip-art"><span>EVORA</span><b>Let your product<br>tell the story.</b></div><div class="tip-note"><b>01 · Pencahayaan</b><p>Gunakan cahaya lembut dan latar yang bersih agar botol menonjol.</p><b>02 · Komposisi</b><p>Berikan ruang di sekeliling botol agar tampil profesional di layar HP dan laptop.</p><b>03 · Foto asli</b><p>Unggah foto produk EVORA sendiri untuk membangun kepercayaan pelanggan.</p></div></div>
+        </div>
+      </section>
+      <section class="admin-section" id="tabFeatured" hidden>
+        <div class="admin-surface">
+          <div class="featured-admin-head"><div><h3>Pilih produk untuk slider beranda</h3><p class="surface-intro">Maksimal 5 produk pilihan. Atur urutan tampilnya tanpa mengubah katalog lengkap.</p></div><div class="featured-counter" id="featuredCount">0 / 5 dipilih</div></div>
+          <div class="featured-workspace"><div><h4>Urutan produk pilihan</h4><div id="featuredSelected" class="featured-selected"></div><div class="admin-actions"><button class="btn" id="saveFeatured">Simpan Pilihan Beranda</button><button class="secondary" id="resetFeatured" type="button">Batalkan Perubahan</button></div></div><div><h4>Pilih dari katalog aktif</h4><div id="featuredCandidates" class="featured-candidates"></div></div></div>
+        </div>
+      </section>
       <section class="admin-section" id="tabProducts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="productFormTitle">Tambah produk</h3><p class="surface-intro">Kelola detail parfum dan foto produk secara langsung.</p><div class="field"><label for="productName">Nama parfum</label><input id="productName" maxlength="120" placeholder="Contoh: EVORA Amber Bloom"></div><div class="fields-2"><div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Rp149.000"></div><div class="field"><label for="productOld">Harga coret / promo</label><input id="productOld" maxlength="60" placeholder="Rp199.000"></div></div><div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Ceritakan aroma dan karakter parfum..."></textarea></div><div class="field"><label for="productUrl">Link pembelian</label><input id="productUrl" inputmode="url" placeholder="https://wa.me/... atau link marketplace"></div><div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div><div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div><div class="field"><label for="productImage">Foto utama produk</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="Preview foto produk" hidden><p class="hint">Rasio foto 1:1 paling sesuai untuk katalog.</p></div><div class="field"><label for="productExtra">Foto tambahan (maksimal 5)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div><div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Katalog saat ini</h3><p class="surface-intro">Edit, urutkan, sembunyikan atau hapus produk.</p><div class="admin-list" id="adminProductList"></div></div></div></section>
       <section class="admin-section" id="tabPosts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="postFormTitle">Buat postingan info</h3><p class="surface-intro">Bagikan promo, peluncuran produk, dan kabar baru.</p><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" maxlength="140" placeholder="Contoh: New Arrival — Signature Edition"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" maxlength="2000" placeholder="Tulis konten untuk pengunjung..."></textarea></div><div class="field"><label for="updateImage">Foto postingan</label><input id="updateImage" type="file" accept="image/*"><img class="preview wide" id="updatePreview" alt="Preview postingan" hidden></div><p class="hint">Tanggal posting terisi otomatis saat diterbitkan.</p><div class="admin-actions"><button class="btn" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Daftar postingan</h3><p class="surface-intro">Konten terbaru langsung tampil di beranda toko.</p><div class="admin-list" id="adminUpdateList"></div></div></div></section>
       <section class="admin-section" id="tabSettings" hidden><div class="admin-surface"><h3>Identitas & kanal penjualan</h3><p class="surface-intro">Atur informasi yang tampil untuk pengunjung. Kosongkan tautan yang tidak digunakan.</p><div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div><div class="fields-2"><div class="field"><label for="sWa">WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812..."></div><div class="field"><label for="sIg">Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div><div class="field"><label for="sTh">Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div><div class="field"><label for="sTt">TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div><div class="field"><label for="sMp">Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div><div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div><div class="field"><label for="sPhone">Nomor telepon</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div></div><div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div></div></section>
@@ -93,7 +223,7 @@
   const ADMIN_UID='cae0cfb9-7bc3-42d9-aa5f-e51d65a928ae';
   const BUCKET='evora-images';
   const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-  let products=[],posts=[],settings={},editingId=null,editingPostId=null,busy=false,hasOrder=true,isAdmin=false,statDays=14;
+  let products=[],posts=[],settings={},editingId=null,editingPostId=null,busy=false,hasOrder=true,isAdmin=false,statDays=14,featuredDraft=[],featuredDirty=false;
   const $=id=>document.getElementById(id);
   const uuid=()=>typeof crypto.randomUUID==='function'?crypto.randomUUID():[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
   const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -150,7 +280,7 @@
   async function uploadImage(file,folder){
     if(!file)return '';
     if(file.size>15*1024*1024)throw new Error('Ukuran foto terlalu besar (maks 15 MB).');
-    const blob=await shrink(file,1600),type=blob.type||file.type;
+    const blob=await shrink(file,folder==='hero'?2200:1600),type=blob.type||file.type;
     const ext=type==='image/png'?'png':type==='image/webp'?'webp':'jpg';
     const path=`${folder}/${uuid()}.${ext}`;
     const {error}=await db.storage.from(BUCKET).upload(path,blob,{upsert:false,contentType:type,cacheControl:'31536000'});
@@ -167,7 +297,9 @@
   function bindPreview(inputId,imgId){
     $(inputId).addEventListener('change',e=>{const f=e.target.files[0],im=$(imgId);if(f){im.src=URL.createObjectURL(f);im.hidden=false;}});
   }
-  bindPreview('productImage','productPreview');bindPreview('updateImage','updatePreview');
+  bindPreview('productImage','productPreview');bindPreview('updateImage','updatePreview');bindPreview('homeImage','homeImagePreview');
+  $('homeImage').addEventListener('change',()=>{if($('homeImage').files[0])$('homeRemoveImage').checked=false;});
+  $('homeRemoveImage').addEventListener('change',()=>{if($('homeRemoveImage').checked){$('homeImage').value='';$('homeImagePreview').hidden=true;}});
 
   /* ---------- Render ---------- */
   const tagClass=b=>/best/i.test(b)?'best':/promo|diskon/i.test(b)?'promo':/limited/i.test(b)?'limited':'';
@@ -187,15 +319,67 @@
       `<h2>${safe(p.name)}${p.badge?`<span class="badge">${safe(p.badge)}</span>`:''}</h2><div class="price big">${priceHtml(p)}</div><p class="ddesc">${safe(p.description)}</p>${buyHtml(p)}`;
     open('detailModal');
   }
+  function productCard(p){
+    const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
+    return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
+  }
+  const activeProducts=()=>products.filter(p=>p.is_active!==false);
+  function currentFeaturedIds(){
+    return Array.isArray(settings.featured_product_ids)?settings.featured_product_ids.map(String).slice(0,5):[];
+  }
+  function featuredProducts(){
+    const all=activeProducts(),ids=currentFeaturedIds();
+    if(!ids.length)return all.slice(0,5); // Sebelum admin memilih, 5 produk pertama sebagai default.
+    return ids.map(id=>all.find(p=>String(p.id)===id)).filter(Boolean).slice(0,5);
+  }
   function renderCatalog(){
-    const el=$('catalogList'),shown=products.filter(p=>p.is_active!==false);
-    if(!shown.length){el.innerHTML='<div class="state">Katalog sedang diperbarui. Silakan cek kembali.</div>';$('dots').innerHTML='';return;}
-    el.innerHTML=shown.map(p=>{
-      const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
-      return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
-    }).join('');
+    const el=$('catalogList'),shown=featuredProducts();
+    if(!shown.length){el.innerHTML='<div class="state">Koleksi pilihan sedang disiapkan. Lihat katalog lengkap untuk menemukan produk lain.</div>';$('dots').innerHTML='';return;}
+    el.innerHTML=shown.map(productCard).join('');
     $('dots').innerHTML=shown.length>1?shown.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join(''):'';
+    el.scrollLeft=0;
     updateDots();
+  }
+  const productPriceNumber=p=>{
+    const digits=String(p.price||'').replace(/[^0-9]/g,'');
+    return digits?Number(digits):Number.POSITIVE_INFINITY;
+  };
+  function renderFullCatalog(){
+    let all=activeProducts();
+    $('fullTotal').textContent=all.length.toLocaleString('id-ID');
+    const q=$('catalogSearch').value.trim().toLocaleLowerCase('id');
+    const filter=$('catalogFilter').value,sort=$('catalogSort').value;
+    all=all.filter(p=>{
+      const text=String(p.name||'')+' '+String(p.description||'')+' '+String(p.badge||'');
+      if(q&&!text.toLocaleLowerCase('id').includes(q))return false;
+      if(filter==='stock')return inStock(p);
+      if(filter==='new')return /baru|new/i.test(p.badge||'');
+      if(filter==='best')return /best/i.test(p.badge||'');
+      if(filter==='promo')return Boolean(p.old_price)||/promo/i.test(p.badge||'');
+      return true;
+    });
+    if(sort==='az')all.sort((a,b)=>String(a.name).localeCompare(String(b.name),'id'));
+    if(sort==='newest')all.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+    if(sort==='low'||sort==='high')all.sort((a,b)=>{
+      const aa=productPriceNumber(a),bb=productPriceNumber(b);
+      if(!Number.isFinite(aa))return Number.isFinite(bb)?1:0;
+      if(!Number.isFinite(bb))return -1;
+      return sort==='low'?aa-bb:bb-aa;
+    });
+    $('catalogCount').textContent=all.length+' produk ditemukan';
+    $('fullCatalog').innerHTML=all.length?all.map(productCard).join(''):'<div class="catalog-empty"><b>Belum menemukan aroma yang cocok?</b>Ubah kata pencarian atau filter untuk melihat lebih banyak koleksi EVORA.</div>';
+  }
+  ['catalogSearch','catalogFilter','catalogSort'].forEach(id=>$(id).addEventListener(id==='catalogSearch'?'input':'change',renderFullCatalog));
+  $('resetCatalogFilters').onclick=()=>{$('catalogSearch').value='';$('catalogFilter').value='all';$('catalogSort').value='default';renderFullCatalog();};
+  function renderHero(){
+    $('heroEyebrow').textContent=settings.hero_eyebrow||'Every scent has a story';
+    $('heroTitle').textContent=settings.hero_title||'Your scent.';
+    $('heroHighlight').textContent=settings.hero_highlight||'Your signature.';
+    $('heroDescription').textContent=settings.hero_description||'Lebih dari sekadar parfum. EVORA menghadirkan aroma yang menyatu dengan karakter, momen, dan kepercayaan dirimu — untuk setiap cerita yang ingin dikenang.';
+    $('heroCtaText').textContent=settings.hero_button_text||'Jelajahi Koleksi';
+    const url=httpUrl(settings.hero_image_url),photo=$('heroPhoto');
+    if(url){photo.src=url;photo.hidden=false;photo.style.objectFit=settings.hero_image_fit==='cover'?'cover':'contain';$('heroVisual').classList.add('has-photo');}
+    else{photo.hidden=true;photo.removeAttribute('src');$('heroVisual').classList.remove('has-photo');}
   }
   function renderPosts(){
     const el=$('updatePosts');
@@ -228,18 +412,20 @@
       if(p.error&&hasOrder){hasOrder=false;p=await db.from('products').select('*').order('created_at',{ascending:false});}
       if(p.error)throw p.error;if(q.error)throw q.error;
       products=p.data||[];posts=q.data||[];settings=(s&&!s.error&&s.data)||{};
-      renderSettingsPublic();renderCatalog();renderPosts();renderAdmin();
+      renderSettingsPublic();renderHero();renderCatalog();renderFullCatalog();renderPosts();renderAdmin();renderFeaturedEditor();
     }catch(err){console.error(err);showError();throw err;}
   }
 
   function renderSettingsPublic(){
-    if(settings.tagline)document.querySelector('.tagline').textContent=settings.tagline;
+    // Tagline lama disimpan di settings, tetapi tidak ada lagi elemen .tagline di desain premium.
     const L=[['WhatsApp',settings.whatsapp_url],['Instagram',settings.instagram_url],['Threads',settings.threads_url],['TikTok',settings.tiktok_url],['Marketplace',settings.marketplace_url]].filter(l=>httpUrl(l[1]));
     $('social').innerHTML=L.map(l=>`<a href="${safe(httpUrl(l[1]))}" data-social="${l[0]}" target="_blank" rel="noopener">${l[0]}</a>`).join('');
     const c=[];if(settings.contact_email)c.push(safe(settings.contact_email));if(settings.contact_phone)c.push(safe(settings.contact_phone));
     $('contactLine').innerHTML=c.join(' · ');
   }
-  $('catalogList').addEventListener('click',e=>{const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}const d=e.target.closest('[data-detail]');if(d)openDetail(d.dataset.detail);});
+  function onProductClick(e){const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}const d=e.target.closest('[data-detail]');if(d)openDetail(d.dataset.detail);}
+  $('catalogList').addEventListener('click',onProductClick);
+  $('fullCatalog').addEventListener('click',onProductClick);
   $('detailBody').addEventListener('click',e=>{
     const a=e.target.closest('a.buy');if(a){track('product_click',a.dataset.name,a.dataset.pid);return;}
     const im=e.target.closest('.dthumbs img');if(im){$('dmain').src=im.dataset.src;document.querySelectorAll('.dthumbs img').forEach(x=>x.classList.toggle('on',x===im));}
@@ -249,11 +435,11 @@
 
   /* ---------- Slider controls ---------- */
   const cat=$('catalogList');
-  function step(dir){const c=cat.querySelector('.product');const w=c?c.offsetWidth+16:260;cat.scrollBy({left:dir*w*1.5,behavior:'smooth'});}
+  function step(dir){const c=cat.querySelector('.product');const w=c?c.offsetWidth+20:280;cat.scrollBy({left:dir*w,behavior:'smooth'});}
   $('prevBtn').onclick=()=>step(-1);$('nextBtn').onclick=()=>step(1);
   function updateDots(){
     const cards=cat.querySelectorAll('.product'),dots=$('dots').children;if(!cards.length||!dots.length)return;
-    const w=cards[0].offsetWidth+16;const i=Math.min(cards.length-1,Math.round(cat.scrollLeft/w));
+    const w=cards[0].offsetWidth+20;const i=Math.min(cards.length-1,Math.round(cat.scrollLeft/w));
     for(let k=0;k<dots.length;k++)dots[k].className=k===i?'on':'';
   }
   cat.addEventListener('scroll',()=>requestAnimationFrame(updateDots),{passive:true});
@@ -267,17 +453,19 @@
     if(e.key==='Escape')close('detailModal');
   });
   const adminTabMap={
-    overview:'tabStats', products:'tabProducts', posts:'tabPosts', settings:'tabSettings'
+    overview:'tabStats',home:'tabHome',featured:'tabFeatured',products:'tabProducts',posts:'tabPosts',settings:'tabSettings'
   };
   const tabNames={
     tabStats:['Ringkasan bisnis','Pantau performa toko dan aktivitas pengunjung.'],
+    tabHome:['Tampilan beranda','Ganti foto utama, teks dan tombol dari dashboard.'],
+    tabFeatured:['Produk pilihan beranda','Pilih maksimal lima parfum unggulan dan atur urutannya.'],
     tabProducts:['Kelola produk','Atur katalog, foto, harga dan ketersediaan parfum.'],
     tabPosts:['Info & promo','Publikasikan kabar terbaru untuk pelanggan.'],
     tabSettings:['Pengaturan website','Perbarui profil, kontak dan tautan toko.']
   };
   function selectAdminTab(tab){
     if(!Object.values(adminTabMap).includes(tab))tab='tabStats';
-    ['tabStats','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==tab);
+    ['tabStats','tabHome','tabFeatured','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==tab);
     document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{
       const active=b.dataset.tab===tab;
       b.classList.toggle('on',active);
@@ -287,6 +475,8 @@
     $('adminPageTitle').textContent=tabNames[tab][0];
     $('adminPageSubtitle').textContent=tabNames[tab][1];
     if(tab==='tabStats')loadStats();
+    if(tab==='tabHome')fillHome();
+    if(tab==='tabFeatured')renderFeaturedEditor();
     if(tab==='tabSettings')fillSettings();
   }
   function navigateAdmin(tab='overview'){
@@ -296,7 +486,9 @@
   }
   function renderRoute(){
     const adminRoute=/^#admin(?:\/|$)/.test(location.hash);
-    $('storeView').hidden=adminRoute;
+    const isFullCatalog=location.hash==='#koleksi';
+    $('storeView').hidden=adminRoute||isFullCatalog;
+    $('catalogView').hidden=!isFullCatalog;
     $('adminView').hidden=!(adminRoute&&isAdmin);
     $('loginView').hidden=!(adminRoute&&!isAdmin);
     document.body.classList.toggle('in-admin',adminRoute&&isAdmin);
@@ -305,7 +497,12 @@
       const route=(location.hash.match(/^#admin\/([^/?]+)/)||[])[1]||'overview';
       if(isAdmin)selectAdminTab(adminTabMap[route]||'tabStats');
       window.scrollTo(0,0);
-    }
+    }else if(isFullCatalog){
+      renderFullCatalog();
+      window.scrollTo(0,0);
+    }else if(location.hash==='#katalog'||location.hash==='#informasi'){
+      requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView({behavior:'smooth'}));
+    }else{window.scrollTo(0,0);}
   }
   window.addEventListener('hashchange',renderRoute);
   $('tabs').onclick=e=>{
@@ -432,7 +629,7 @@
       $('productName').value=p.name;$('productPrice').value=p.price||'';$('productDesc').value=p.description||'';$('productUrl').value=p.purchase_url||'';$('productImage').value='';$('productOld').value=p.old_price||'';$('productBadge').value=p.badge||'';$('productStock').checked=p.in_stock!==false;extraKeep=Array.isArray(p.images)?p.images.slice():[];renderExtra();$('productExtra').value='';$('extraHint').textContent='';
       if(p.image_url){$('productPreview').src=p.image_url;$('productPreview').hidden=false;}else $('productPreview').hidden=true;
       $('saveProduct').textContent='Simpan perubahan';$('productFormTitle').textContent='Edit produk';$('cancelEdit').hidden=false;$('productName').scrollIntoView({behavior:'smooth',block:'center'});}
-    if(del&&confirm('Hapus produk ini?')){try{const p=products.find(x=>x.id===del);const {error}=await db.from('products').delete().eq('id',del);if(error)throw error;if(p)removeImage(p.image_url);clearForm();toast('Produk dihapus.');await loadPublic();}catch(err){report(err);}}
+    if(del&&confirm('Hapus produk ini?')){try{const p=products.find(x=>x.id===del);const {error}=await db.from('products').delete().eq('id',del);if(error)throw error;if(p){await Promise.all([p.image_url,...(Array.isArray(p.images)?p.images:[])].filter(Boolean).map(removeImage));}clearForm();toast('Produk dihapus.');await loadPublic();}catch(err){report(err);}}
   };
 
   $('saveUpdate').onclick=function(){guarded(this,async()=>{
@@ -494,6 +691,79 @@
     }
   }
   $('range').onclick=e=>{const d=e.target.dataset.d;if(!d)return;statDays=+d;document.querySelectorAll('#range button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));loadStats();};
+
+  /* ---------- Pengaturan Beranda ---------- */
+  const HOME_FIELDS={homeEyebrow:'hero_eyebrow',homeTitle:'hero_title',homeHighlight:'hero_highlight',homeDescription:'hero_description',homeButtonText:'hero_button_text',homeFit:'hero_image_fit'};
+  function fillHome(){
+    for(const [id,key] of Object.entries(HOME_FIELDS))$(id).value=settings[key]||({homeEyebrow:'Every scent has a story',homeTitle:'Your scent.',homeHighlight:'Your signature.',homeButtonText:'Jelajahi Koleksi',homeFit:'contain',homeDescription:'Lebih dari sekadar parfum. EVORA menghadirkan aroma yang menyatu dengan karakter, momen, dan kepercayaan dirimu — untuk setiap cerita yang ingin dikenang.'}[id]||'');
+    $('homeImage').value='';$('homeRemoveImage').checked=false;
+    const url=httpUrl(settings.hero_image_url);
+    $('homeImagePreview').hidden=!url;
+    if(url)$('homeImagePreview').src=url;
+  }
+  $('saveHome').onclick=function(){guarded(this,async()=>{
+    const oldImage=httpUrl(settings.hero_image_url);
+    const file=$('homeImage').files[0];
+    const shouldRemove=$('homeRemoveImage').checked;
+    let newImage='';
+    try{
+      newImage=await uploadImage(file,'hero');
+      const row={id:1};
+      for(const [id,key] of Object.entries(HOME_FIELDS))row[key]=$(id).value.trim();
+      row.hero_image_url=newImage||(shouldRemove?null:oldImage||null);
+      const {error}=await db.from('settings').upsert(row);
+      if(error)throw error;
+      settings={...settings,...row};
+    }catch(err){
+      if(newImage)await removeImage(newImage);
+      throw new Error('Gagal menyimpan beranda. Periksa SQL upgrade serta izin Storage dan settings. '+(err.message||err));
+    }
+    if(oldImage&&(newImage||shouldRemove))await removeImage(oldImage);
+    renderHero();fillHome();toast('Tampilan beranda berhasil diperbarui.');
+  });};
+
+  /* ---------- Kurasi Produk Pilihan: max 5, urutan disimpan sekaligus di settings ---------- */
+  function renderFeaturedEditor(){
+    if(!featuredDirty){featuredDraft=currentFeaturedIds().filter(id=>products.some(p=>String(p.id)===id&&p.is_active!==false));}
+    const all=activeProducts();
+    featuredDraft=featuredDraft.filter(id=>all.some(p=>String(p.id)===id)).slice(0,5);
+    $('featuredCount').textContent=featuredDraft.length+' / 5 dipilih';
+    $('featuredSelected').innerHTML=featuredDraft.length?featuredDraft.map((id,i)=>{
+      const p=all.find(x=>String(x.id)===id);
+      return `<div class="featured-mini">${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:'<div class="mini-placeholder">EVORA</div>'}<div class="text"><b>${safe(p.name)}</b><small>Posisi ${i+1} di slider</small></div><div class="controls"><button type="button" data-feature-up="${i}" ${i===0?'disabled':''} aria-label="Pindahkan naik">↑</button><button type="button" data-feature-down="${i}" ${i===featuredDraft.length-1?'disabled':''} aria-label="Pindahkan turun">↓</button><button type="button" data-feature-remove="${safe(id)}" aria-label="Hapus dari pilihan">×</button></div></div>`;
+    }).join(''):'<div class="featured-note">Belum ada pilihan khusus. Sebelum disimpan, beranda menampilkan hingga 5 produk pertama dari katalog aktif.</div>';
+    $('featuredCandidates').innerHTML=all.length?all.map(p=>{
+      const picked=featuredDraft.includes(String(p.id));
+      return `<label class="featured-candidate${picked?' is-picked':''}"><input type="checkbox" data-feature-pick="${safe(p.id)}" ${picked?'checked':''}>${p.image_url?`<img src="${safe(p.image_url)}" alt="">`:'<span class="mini-placeholder">EVORA</span>'}<span>${safe(p.name)}<br><small>${safe(p.price||'')}</small></span></label>`;
+    }).join(''):'<div class="featured-note">Tambahkan produk aktif terlebih dahulu di menu Kelola Produk.</div>';
+  }
+  $('featuredCandidates').addEventListener('change',e=>{
+    const input=e.target.closest('input[data-feature-pick]');if(!input)return;
+    const id=input.dataset.featurePick;
+    if(input.checked){
+      if(featuredDraft.length>=5){input.checked=false;toast('Maksimal 5 produk pilihan. Hapus salah satu produk terlebih dahulu.',true);return;}
+      if(!featuredDraft.includes(id))featuredDraft.push(id);
+    }else featuredDraft=featuredDraft.filter(x=>x!==id);
+    featuredDirty=true;renderFeaturedEditor();
+  });
+  $('featuredSelected').onclick=e=>{
+    const btn=e.target.closest('button');if(!btn)return;
+    if(btn.dataset.featureRemove){featuredDraft=featuredDraft.filter(id=>id!==btn.dataset.featureRemove);}
+    else if(btn.dataset.featureUp!==undefined||btn.dataset.featureDown!==undefined){
+      const i=Number(btn.dataset.featureUp!==undefined?btn.dataset.featureUp:btn.dataset.featureDown),j=btn.dataset.featureUp!==undefined?i-1:i+1;
+      if(j>=0&&j<featuredDraft.length)[featuredDraft[i],featuredDraft[j]]=[featuredDraft[j],featuredDraft[i]];
+    }
+    featuredDirty=true;renderFeaturedEditor();
+  };
+  $('resetFeatured').onclick=()=>{featuredDirty=false;renderFeaturedEditor();toast('Perubahan pilihan dibatalkan.');};
+  $('saveFeatured').onclick=function(){guarded(this,async()=>{
+    if(featuredDraft.length>5)throw new Error('Maksimal lima produk pilihan.');
+    const row={id:1,featured_product_ids:featuredDraft.slice()};
+    const {error}=await db.from('settings').upsert(row);
+    if(error)throw new Error('Pilihan gagal disimpan. Jalankan SQL EVORA v4 dan pastikan policy settings mengizinkan admin. '+error.message);
+    settings={...settings,...row};featuredDirty=false;
+    renderFeaturedEditor();renderCatalog();toast('Produk pilihan beranda tersimpan.');
+  });};
 
   /* ---------- Pengaturan ---------- */
   const SMAP={sTagline:'tagline',sWa:'whatsapp_url',sIg:'instagram_url',sTh:'threads_url',sTt:'tiktok_url',sMp:'marketplace_url',sEmail:'contact_email',sPhone:'contact_phone'};
