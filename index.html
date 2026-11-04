@@ -8,7 +8,7 @@
 <meta property="og:title" content="EVORA — Signature Scent">
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
-<!-- EVORA V5.3: Control Center toggle fixed; keeps previous EVORA features -->
+<!-- EVORA V5.3.1: Sidebar admin bisa tersembunyi penuh untuk area edit yang lebar; fitur lainnya tetap -->
 <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--ui:'Manrope',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -310,31 +310,32 @@ html,body { max-width:100%; overflow-x:clip; }
 }
 
 
-/* EVORA V5.3 — Control Center: reliable collapse/expand on desktop and mobile */
-#adminView.admin-view {transition:grid-template-columns .24s ease;}
+/* EVORA V5.3.1 — Sidebar tertutup sepenuhnya saat mengedit.
+   Tombol ☰ di header tetap terlihat untuk membuka menu lagi di HP, tablet dan PC. */
 #adminView .admin-toggle{cursor:pointer;touch-action:manipulation;flex-shrink:0;}
 #adminView .admin-toggle:focus-visible{outline:3px solid #9ab99b;outline-offset:2px;}
-#adminView.admin-view.sidebar-collapsed .admin-side-brand{min-width:0;overflow:hidden;}
-#adminView.admin-view.sidebar-collapsed .admin-side-brand small,#adminView.admin-view.sidebar-collapsed .side-label,#adminView.admin-view.sidebar-collapsed .side-help{display:none !important;}
-#adminView.admin-view.sidebar-collapsed .admin-side-brand b{font-size:0 !important;letter-spacing:0 !important;white-space:nowrap;}
-#adminView.admin-view.sidebar-collapsed .admin-side-brand b::after{content:'E';font-size:23px;letter-spacing:0;display:inline-block;color:#f5f7f0;}
-#adminView.admin-view.sidebar-collapsed .tabs button{min-width:0;}
-#adminView.admin-view.sidebar-collapsed .tabs button .tab-text{display:none !important;}
-@media(max-width:820px){
-  #adminView.admin-view.sidebar-collapsed{grid-template-columns:70px minmax(0,1fr);}
-  #adminView.admin-view.sidebar-collapsed .admin-sidebar{padding-left:5px;padding-right:5px;}
-  #adminView.admin-view.sidebar-collapsed .tabs button{justify-content:center;align-items:center;}
+#adminView.admin-view.sidebar-collapsed{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) !important;
+  width:100%;
+}
+#adminView.admin-view.sidebar-collapsed .admin-sidebar{display:none !important;}
+#adminView.admin-view.sidebar-collapsed .admin-main{
+  grid-column:1/-1;
+  width:100%;min-width:0;
+}
+#adminView.admin-view.sidebar-collapsed .admin-container{
+  max-width:none;
+  width:100%;
 }
 @media(max-width:540px){
-  #adminView.admin-view.sidebar-collapsed{grid-template-columns:60px minmax(0,1fr);}
-  #adminView.admin-view.sidebar-collapsed .admin-side-brand b::after{font-size:20px;}
   #adminView .admin-user{gap:4px;}
   #adminView .admin-toggle{min-width:58px;}
+  #adminView.admin-view.sidebar-collapsed .admin-container{padding:20px 14px 45px;}
 }
 @media(max-width:360px){
-  #adminView.admin-view.sidebar-collapsed{grid-template-columns:56px minmax(0,1fr);}
+  #adminView.admin-view.sidebar-collapsed .admin-container{padding:18px 11px 40px;}
 }
-@media(prefers-reduced-motion:reduce){#adminView.admin-view{transition:none;}}
 </style>
 </head>
 <body>
@@ -1320,10 +1321,12 @@ html,body { max-width:100%; overflow-x:clip; }
     const wrap=$('adminView');
     if(!wrap)return;
     wrap.classList.toggle('sidebar-collapsed',!!collapsed);
+    const sidebar=$('adminSidebar');
+    if(sidebar)sidebar.setAttribute('aria-hidden',String(!!collapsed));
     const btn=$('adminSidebarToggle');
     if(btn){
       btn.setAttribute('aria-expanded', String(!collapsed));
-      btn.textContent=collapsed?'☰ Menu':'✕ Tutup';
+      btn.textContent=collapsed?'☰ Buka Menu':'✕ Tutup';
       btn.setAttribute('aria-label', collapsed?'Buka menu Control Center':'Tutup menu Control Center');
     }
   }
