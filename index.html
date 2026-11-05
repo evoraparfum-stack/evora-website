@@ -9,7 +9,7 @@
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
 <!-- V5.3.5: titik Explore More berkedip lembut -->
-<!-- EVORA V5.3.4: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
+<!-- EVORA V5.3.8: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
 <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Fraunces',Georgia,serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--ui:'Plus Jakarta Sans',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -581,7 +581,8 @@ button{line-height:1.1}
 .comments-display-head{display:flex;gap:16px;justify-content:space-between;align-items:center;margin-bottom:20px}
 .comments-display h3,.comment-form h3{color:#2b4633;margin:0;font:700 21px/1.4 var(--ui);letter-spacing:-.04em}
 .comments-mark{font:800 9px var(--ui);letter-spacing:.12em;color:#80967c}
-.comments-feed{display:grid;gap:12px;max-height:650px;overflow:auto;overscroll-behavior:contain}
+.comments-feed{display:grid;gap:12px;max-height:none;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#c6d5c0 transparent;scrollbar-gutter:stable}
+.comments-scroll-hint{margin:10px 2px 0;text-align:right;color:#879584;font:600 10px/1.5 var(--ui)}.comments-feed::-webkit-scrollbar{width:6px}.comments-feed::-webkit-scrollbar-thumb{background:#c6d5c0;border-radius:20px}.comments-feed::-webkit-scrollbar-track{background:transparent}
 .comments-empty{padding:24px 10px;color:#819180;font:400 13px/1.8 var(--body);margin:0}
 .comment-card{display:flex;gap:13px;padding:17px;background:#f8faf6;border:1px solid #eaf0e6;border-radius:13px}
 .comment-avatar{flex:0 0 37px;width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#dce8d8;color:#32573c;font:800 15px var(--ui)}
@@ -616,7 +617,7 @@ button{line-height:1.1}
 .comments-admin-actions button{border:1px solid #cadac8;border-radius:8px;background:#edf5e9;color:#34543a;padding:10px 15px;min-height:39px;font:750 11px var(--ui)}
 .comments-admin-actions button.delete-comment{background:#fff6f4;color:#a54843;border-color:#f0d8d5}
 .comments-admin-actions button:disabled{opacity:.5}
-@media(max-width:840px){.comments-layout{grid-template-columns:1fr}.comments-feed{max-height:430px}}
+@media(max-width:840px){.comments-layout{grid-template-columns:1fr}}
 @media(max-width:540px){.comments-section{padding:53px 15px 62px}.comments-intro{text-align:left}.comments-intro h2{font-size:34px}.comments-intro p{font-size:13px}.comments-display,.comment-form{padding:19px;border-radius:15px}.comments-mark{font-size:8px}.comment-form-foot .site-button{width:100%}.comments-display h3{font-size:18px}}
 
 </style>
@@ -653,12 +654,13 @@ button{line-height:1.1}
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">Kabar EVORA</span><h2>INFO</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
 
+  <!-- EVORA V5.3.8: maksimal 5 komentar terlihat, sisanya scroll di panel -->
   <!-- Komentar pengunjung: bagian terakhir beranda sebelum footer -->
   <section class="comments-section" id="komentar" aria-labelledby="commentsTitle">
     <div class="comments-inner">
       <div class="comments-intro"><span class="section-overline">SUARA PELANGGAN</span><h2 id="commentsTitle">Cerita tentang <em>EVORA.</em></h2><p>Sudah menemukan aroma favoritmu? Bagikan pengalaman atau pesan untuk EVORA. Komentar akan tampil setelah disetujui admin.</p></div>
       <div class="comments-layout">
-        <div class="comments-display"><div class="comments-display-head"><h3>Komentar pelanggan</h3><span class="comments-mark">✦ EVORA COMMUNITY</span></div><div id="publicComments" class="comments-feed" aria-live="polite"><p class="comments-empty">Memuat komentar…</p></div></div>
+        <div class="comments-display"><div class="comments-display-head"><h3>Komentar pelanggan</h3><span class="comments-mark">✦ EVORA COMMUNITY</span></div><div id="publicComments" class="comments-feed" aria-live="polite"><p class="comments-empty">Memuat komentar…</p></div><p id="publicCommentsHint" class="comments-scroll-hint" hidden>Geser ke bawah untuk membaca komentar lainnya ↓</p></div>
         <form id="commentForm" class="comment-form" autocomplete="on"><span class="comment-form-overline">TINGGALKAN PESAN</span><h3>Bagikan ceritamu.</h3><p>Masukkan nama dan komentar. Tidak perlu membuat akun.</p><label for="commentName">Nama</label><input id="commentName" name="name" type="text" maxlength="60" minlength="2" placeholder="Nama kamu" autocomplete="name" required><label for="commentMessage">Komentar</label><textarea id="commentMessage" name="message" maxlength="500" minlength="5" rows="5" placeholder="Bagaimana pengalamanmu dengan EVORA?" required></textarea><div class="comment-honeypot" aria-hidden="true"><label for="commentWebsite">Kosongkan kolom ini</label><input id="commentWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div><div class="comment-form-foot"><small>Maksimal 500 karakter · Komentar ditinjau admin</small><button id="submitComment" type="submit" class="site-button">Kirim Komentar <span aria-hidden="true">↗</span></button></div><p id="commentStatus" class="comment-status" role="status" aria-live="polite"></p></form>
       </div>
     </div>
@@ -1118,15 +1120,36 @@ button{line-height:1.1}
   const commentStatus=(message,isError=false)=>{
     const el=$('commentStatus');el.textContent=message;el.classList.toggle('error',!!isError);
   };
+  function fitPublicCommentsViewport(){
+    const el=$('publicComments');
+    if(!el)return;
+    const cards=Array.from(el.querySelectorAll('.comment-card'));
+    const hint=$('publicCommentsHint');
+    if(hint)hint.hidden=cards.length<=5;
+    if(cards.length>5){
+      const visible=cards.slice(0,5);
+      const styles=getComputedStyle(el);
+      const gap=parseFloat(styles.rowGap||styles.gap||'12')||12;
+      const height=visible.reduce((sum,card)=>sum+card.getBoundingClientRect().height,0)+gap*(visible.length-1);
+      el.style.maxHeight=Math.ceil(height)+'px';
+      el.style.overflowY='auto';
+    }else{
+      el.style.maxHeight='none';
+      el.style.overflowY='visible';
+    }
+  }
+  window.addEventListener('resize',()=>requestAnimationFrame(fitPublicCommentsViewport),{passive:true});
   async function loadComments(){
     const el=$('publicComments');
     const {data,error}=await db.from('site_comments').select('id,name,message,created_at')
-      .eq('status','approved').order('created_at',{ascending:false}).limit(12);
+      .eq('status','approved').order('created_at',{ascending:false}).limit(100);
     if(error){
       el.innerHTML='<p class="comments-empty">Komentar belum tersedia. Coba lagi setelah pengaturan komentar diaktifkan.</p>';
+      requestAnimationFrame(fitPublicCommentsViewport);
       return;
     }
     el.innerHTML=data?.length?data.map(c=>`<article class="comment-card"><div class="comment-avatar" aria-hidden="true">${safe(String(c.name||'E').charAt(0).toUpperCase())}</div><div class="comment-content"><div class="comment-byline"><strong>${safe(c.name)}</strong><time datetime="${safe(c.created_at)}">${fmtDate(c.created_at)}</time></div><p>${safe(c.message)}</p></div></article>`).join(''):'<p class="comments-empty">Belum ada komentar yang diterbitkan. Jadilah yang pertama berbagi cerita!</p>';
+    requestAnimationFrame(fitPublicCommentsViewport);
   }
   $('commentForm').addEventListener('submit',async e=>{
     e.preventDefault();
