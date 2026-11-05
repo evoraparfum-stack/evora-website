@@ -559,6 +559,66 @@ button{line-height:1.1}
   #catalogList.catalog .catalog-cta-card .desc{font-size:12px;line-height:1.75}
 }
 
+
+/* EVORA V5.3.7 — label berada di bawah foto, bukan menutupi produk */
+.product .ph{margin-bottom:8px}
+.product .product-badge-row{display:flex;align-items:center;min-height:32px;padding:0 13px;margin:0 0 6px}
+.product .product-badge-row .tag{position:static;display:inline-flex;align-items:center;justify-content:center;max-width:100%;white-space:normal;line-height:1.2;text-align:center;min-height:24px;padding:5px 11px;font:800 9px/1.2 var(--ui);letter-spacing:.07em;box-shadow:none}
+#catalogList.catalog .product-badge-row{padding:0 15px}
+.full-grid .product .product-badge-row{padding:0;margin-bottom:7px}
+.full-grid .product .ph{margin-bottom:5px}
+@media(max-width:650px){.full-grid .product .product-badge-row{min-height:29px}.full-grid .product .tag{font-size:8px;padding:5px 9px}}
+/* EVORA — komentar pelanggan tepat sebelum footer beranda */
+.comments-section{background:linear-gradient(155deg,#f8f9f4,#ecf2e9 70%,#f8f9f4);border-top:1px solid #e3e9df;padding:78px 26px 87px}
+.comments-inner{max-width:1180px;margin:0 auto}
+.comments-intro{text-align:center;max-width:650px;margin:0 auto 37px}
+.comments-intro .section-overline{margin-bottom:12px}
+.comments-intro h2{font:600 clamp(33px,4.7vw,50px)/1.2 var(--heading);color:#293f30;letter-spacing:-.035em;margin:0 0 13px}
+.comments-intro h2 em{color:#899d7b;font-weight:500}
+.comments-intro p{font:400 14px/1.8 var(--body);color:#6e7e6d;margin:0}
+.comments-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:22px;align-items:start}
+.comments-display,.comment-form{background:#fff;border:1px solid #e0e9dc;border-radius:19px;padding:28px;box-shadow:0 12px 38px #263e2709;min-width:0}
+.comments-display-head{display:flex;gap:16px;justify-content:space-between;align-items:center;margin-bottom:20px}
+.comments-display h3,.comment-form h3{color:#2b4633;margin:0;font:700 21px/1.4 var(--ui);letter-spacing:-.04em}
+.comments-mark{font:800 9px var(--ui);letter-spacing:.12em;color:#80967c}
+.comments-feed{display:grid;gap:12px;max-height:650px;overflow:auto;overscroll-behavior:contain}
+.comments-empty{padding:24px 10px;color:#819180;font:400 13px/1.8 var(--body);margin:0}
+.comment-card{display:flex;gap:13px;padding:17px;background:#f8faf6;border:1px solid #eaf0e6;border-radius:13px}
+.comment-avatar{flex:0 0 37px;width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#dce8d8;color:#32573c;font:800 15px var(--ui)}
+.comment-content{min-width:0;flex:1}.comment-byline{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;justify-content:space-between}
+.comment-byline strong{font:750 12px var(--ui);color:#314d3a;overflow-wrap:anywhere}.comment-byline time{font:500 10px var(--ui);color:#899487}
+.comment-content p{white-space:pre-wrap;overflow-wrap:anywhere;font:400 13px/1.75 var(--body);color:#607161;margin:9px 0 0}
+.comment-form{display:flex;flex-direction:column;gap:10px}
+.comment-form-overline{color:#889985;font:800 9px var(--ui);letter-spacing:.22em}
+.comment-form > p:not(.comment-status){font:400 12px/1.7 var(--body);color:#778777;margin:0 0 4px}
+.comment-form label{font:750 11px var(--ui);color:#465e4a;margin-top:5px}
+.comment-form input,.comment-form textarea{width:100%;border-radius:10px;border:1px solid #dce6d9;background:#fbfdf9;padding:13px 15px;outline:none;color:#2b4232;font:500 14px/1.5 var(--body)}
+.comment-form input:focus,.comment-form textarea:focus{border-color:#729c7b;box-shadow:0 0 0 3px #d9e8d3}
+.comment-form textarea{resize:vertical;min-height:128px}
+.comment-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.comment-form-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-top:5px}
+.comment-form-foot small{color:#929d8e;font:500 10px/1.6 var(--ui)}
+.comment-form-foot .site-button{padding:12px 18px;min-height:45px;border-radius:9px;white-space:nowrap}
+.comment-form-foot .site-button:disabled{opacity:.55;cursor:wait}
+.comment-status{min-height:18px;font:700 12px/1.55 var(--body);color:#346e42;margin:0}
+.comment-status.error{color:#9c4440}
+.comments-admin-tools{display:flex;justify-content:space-between;align-items:center;gap:13px;margin:6px 0 19px;flex-wrap:wrap}
+.comments-admin-count{font:750 12px var(--ui);color:#627962}
+.comments-admin-list{display:grid;gap:12px}
+.comments-admin-item{padding:19px;border:1px solid #e0e9dd;border-radius:13px;background:#fdfefb;min-width:0}
+.comments-admin-item-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.comments-admin-item-head strong{font:800 13px var(--ui);color:#2e4b35;overflow-wrap:anywhere}
+.comments-admin-item > small{font:500 10px var(--ui);color:#8e9a8c}
+.comments-admin-item > p{white-space:pre-wrap;overflow-wrap:anywhere;color:#5b6c5a;font:500 13px/1.75 var(--body);margin:13px 0}
+.comment-state{border-radius:999px;padding:5px 10px;font:800 10px var(--ui);white-space:nowrap}
+.comment-state.pending{background:#fff2db;color:#946322}.comment-state.approved{background:#e5f4e8;color:#317046}
+.comments-admin-actions{display:flex;gap:8px;flex-wrap:wrap}
+.comments-admin-actions button{border:1px solid #cadac8;border-radius:8px;background:#edf5e9;color:#34543a;padding:10px 15px;min-height:39px;font:750 11px var(--ui)}
+.comments-admin-actions button.delete-comment{background:#fff6f4;color:#a54843;border-color:#f0d8d5}
+.comments-admin-actions button:disabled{opacity:.5}
+@media(max-width:840px){.comments-layout{grid-template-columns:1fr}.comments-feed{max-height:430px}}
+@media(max-width:540px){.comments-section{padding:53px 15px 62px}.comments-intro{text-align:left}.comments-intro h2{font-size:34px}.comments-intro p{font-size:13px}.comments-display,.comment-form{padding:19px;border-radius:15px}.comments-mark{font-size:8px}.comment-form-foot .site-button{width:100%}.comments-display h3{font-size:18px}}
+
 </style>
 </head>
 <body>
@@ -592,6 +652,17 @@ button{line-height:1.1}
     <div class="collection-bottom"><div class="collection-bottom-copy"><span class="collection-kicker">EXPLORE MORE</span><strong>Buka Katalog Lengkap EVORA</strong><p>Temukan seluruh koleksi parfum, promo pilihan, dan lebih banyak aroma yang bisa kamu jelajahi dalam satu halaman lengkap.</p></div><a class="site-button collection-cta" href="#koleksi">Masuk ke Katalog Lengkap <span aria-hidden="true">↗</span></a></div>
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">Kabar EVORA</span><h2>INFO</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
+
+  <!-- Komentar pengunjung: bagian terakhir beranda sebelum footer -->
+  <section class="comments-section" id="komentar" aria-labelledby="commentsTitle">
+    <div class="comments-inner">
+      <div class="comments-intro"><span class="section-overline">SUARA PELANGGAN</span><h2 id="commentsTitle">Cerita tentang <em>EVORA.</em></h2><p>Sudah menemukan aroma favoritmu? Bagikan pengalaman atau pesan untuk EVORA. Komentar akan tampil setelah disetujui admin.</p></div>
+      <div class="comments-layout">
+        <div class="comments-display"><div class="comments-display-head"><h3>Komentar pelanggan</h3><span class="comments-mark">✦ EVORA COMMUNITY</span></div><div id="publicComments" class="comments-feed" aria-live="polite"><p class="comments-empty">Memuat komentar…</p></div></div>
+        <form id="commentForm" class="comment-form" autocomplete="on"><span class="comment-form-overline">TINGGALKAN PESAN</span><h3>Bagikan ceritamu.</h3><p>Masukkan nama dan komentar. Tidak perlu membuat akun.</p><label for="commentName">Nama</label><input id="commentName" name="name" type="text" maxlength="60" minlength="2" placeholder="Nama kamu" autocomplete="name" required><label for="commentMessage">Komentar</label><textarea id="commentMessage" name="message" maxlength="500" minlength="5" rows="5" placeholder="Bagaimana pengalamanmu dengan EVORA?" required></textarea><div class="comment-honeypot" aria-hidden="true"><label for="commentWebsite">Kosongkan kolom ini</label><input id="commentWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div><div class="comment-form-foot"><small>Maksimal 500 karakter · Komentar ditinjau admin</small><button id="submitComment" type="submit" class="site-button">Kirim Komentar <span aria-hidden="true">↗</span></button></div><p id="commentStatus" class="comment-status" role="status" aria-live="polite"></p></form>
+      </div>
+    </div>
+  </section>
   <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">EVORA<small>SIGNATURE SCENT</small></div><p class="footer-desc">Your scent. Your signature. Temukan aroma yang mencerminkan jati dirimu.</p></div><div><div class="social" id="social"></div><div class="contactline" id="contactLine"></div></div></div><div class="footer-bottom"><span>© 2026 EVORA. Crafted with confidence.</span><button id="adminOpen" class="admin-entry">Masuk Admin</button></div></footer>
 </div>
 
@@ -664,7 +735,7 @@ button{line-height:1.1}
 
 <!-- Admin dashboard: halaman sendiri, bukan modal -->
 <div class="admin-view" id="adminView" hidden>
-  <aside class="admin-sidebar" id="adminSidebar"><div class="admin-side-brand"><b>EVORA</b><small>CONTROL CENTER</small></div><div class="side-label">Menu Utama</div><nav class="tabs" id="tabs" aria-label="Navigasi dashboard admin"><button class="on" data-tab="tabStats" title="Ringkasan"><span class="nav-ico">⌂</span><span class="tab-text">Ringkasan</span></button><button data-tab="tabHome" title="Tampilan Beranda"><span class="nav-ico">◐</span><span class="tab-text">Tampilan Beranda</span></button><button data-tab="tabFeatured" title="Produk Pilihan"><span class="nav-ico">✦</span><span class="tab-text">Produk Pilihan</span></button><button data-tab="tabProducts" title="Kelola Produk"><span class="nav-ico">◈</span><span class="tab-text">Kelola Produk</span></button><button data-tab="tabPosts" title="INFO"><span class="nav-ico">▤</span><span class="tab-text">INFO</span></button><button data-tab="tabSettings" title="Pengaturan"><span class="nav-ico">⚙</span><span class="tab-text">Pengaturan</span></button></nav><div class="side-help"><b>EVORA Workspace</b><p>Setiap perubahan pada produk dan konten akan langsung tersimpan ke Supabase.</p></div></aside>
+  <aside class="admin-sidebar" id="adminSidebar"><div class="admin-side-brand"><b>EVORA</b><small>CONTROL CENTER</small></div><div class="side-label">Menu Utama</div><nav class="tabs" id="tabs" aria-label="Navigasi dashboard admin"><button class="on" data-tab="tabStats" title="Ringkasan"><span class="nav-ico">⌂</span><span class="tab-text">Ringkasan</span></button><button data-tab="tabHome" title="Tampilan Beranda"><span class="nav-ico">◐</span><span class="tab-text">Tampilan Beranda</span></button><button data-tab="tabFeatured" title="Produk Pilihan"><span class="nav-ico">✦</span><span class="tab-text">Produk Pilihan</span></button><button data-tab="tabProducts" title="Kelola Produk"><span class="nav-ico">◈</span><span class="tab-text">Kelola Produk</span></button><button data-tab="tabPosts" title="INFO"><span class="nav-ico">▤</span><span class="tab-text">INFO</span></button><button data-tab="tabComments" title="Komentar Pelanggan"><span class="nav-ico">✉</span><span class="tab-text">Komentar</span></button><button data-tab="tabSettings" title="Pengaturan"><span class="nav-ico">⚙</span><span class="tab-text">Pengaturan</span></button></nav><div class="side-help"><b>EVORA Workspace</b><p>Setiap perubahan pada produk dan konten akan langsung tersimpan ke Supabase.</p></div></aside>
   <div class="admin-main"><header class="admin-topbar"><div class="breadcrumbs">EVORA / <strong>Admin Workspace</strong></div><div class="admin-user"><button class="top-action admin-toggle" id="adminSidebarToggle" aria-controls="adminSidebar" aria-expanded="true" aria-label="Tutup menu Control Center">✕ Tutup</button><button class="top-action" id="viewWebsite">↗ Lihat Website</button><button class="top-action signout" id="adminLogout">Keluar</button><div class="avatar">AD</div></div></header>
     <main class="admin-container"><div class="admin-pagehead"><div><span>EVORA / Management</span><h1 id="adminPageTitle">Ringkasan bisnis</h1><p id="adminPageSubtitle">Pantau performa toko dan aktivitas pengunjung.</p></div><div class="admin-date">SIGNATURE SCENT · EST. 2026</div></div>
       <section class="admin-section" id="tabStats"><div class="admin-banner"><div><h2>Welcome to EVORA Studio.</h2><p>Bangun pengalaman parfum yang semakin berkesan. Semua dalam satu dashboard.</p></div><button class="btn" data-goto="home">✦ Atur Beranda</button></div><div class="quick-stats"><div class="quick-box"><small>Jumlah Produk</small><b id="quickProducts">0</b><em>Seluruh katalog</em></div><div class="quick-box"><small>Produk Tampil</small><b id="quickVisible">0</b><em>Aktif di website</em></div><div class="quick-box"><small>INFO</small><b id="quickPosts">0</b><em>Postingan publik</em></div></div><div class="admin-surface"><h3>Analitik pengunjung</h3><p class="surface-intro">Statistik diperbarui dari data kunjungan website.</p><div class="range" id="range"><button data-d="7">7 hari</button><button data-d="14" class="on">14 hari</button><button data-d="30">30 hari</button></div><div id="statsBody"><div class="state">Memuat statistik…</div></div></div></section>
@@ -693,6 +764,10 @@ button{line-height:1.1}
       </section>
       <section class="admin-section" id="tabProducts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="productFormTitle">Tambah produk</h3><p class="surface-intro">Kelola detail parfum dan foto produk secara langsung.</p><div class="field"><label for="productName">Nama parfum</label><input id="productName" maxlength="120" placeholder="Contoh: EVORA Amber Bloom"></div><div class="fields-2"><div class="field"><label for="productPrice">Harga</label><input id="productPrice" maxlength="60" placeholder="Rp149.000"></div><div class="field"><label for="productOld">Harga coret / promo</label><input id="productOld" maxlength="60" placeholder="Rp199.000"></div></div><div class="field"><label for="productDesc">Deskripsi singkat</label><textarea id="productDesc" maxlength="600" placeholder="Ceritakan aroma dan karakter parfum..."></textarea></div><div class="field"><label for="productUrl">Link pembelian</label><input id="productUrl" inputmode="url" placeholder="https://wa.me/... atau link marketplace"></div><div class="field"><label for="productBadge">Label produk</label><select id="productBadge"><option value="">Tanpa label</option><option>Baru</option><option>Best Seller</option><option>Limited</option><option>Promo</option></select></div><div class="field chk"><label><input type="checkbox" id="productStock" checked> Stok tersedia</label></div><div class="field"><label for="productImage">Foto utama produk</label><input id="productImage" type="file" accept="image/*"><img class="preview" id="productPreview" alt="Preview foto produk" hidden><p class="hint">Rasio foto 1:1 (5:5) paling sesuai. Di EVORA PICKS foto akan memenuhi bingkai persegi; tepi foto non-persegi mungkin terpotong.</p></div><div class="field"><label for="productExtra">Foto tambahan (maksimal 5)</label><input id="productExtra" type="file" accept="image/*" multiple><div class="thumbs" id="extraThumbs"></div><p class="hint" id="extraHint"></p></div><div class="admin-actions"><button class="btn" id="saveProduct">Tambah produk</button><button class="secondary" id="cancelEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Katalog saat ini</h3><p class="surface-intro">Edit, urutkan, sembunyikan atau hapus produk.</p><div class="admin-list" id="adminProductList"></div></div></div></section>
       <section class="admin-section" id="tabPosts" hidden><div class="admin-split"><div class="admin-surface"><h3 id="postFormTitle">Buat postingan info</h3><p class="surface-intro">Bagikan promo, peluncuran produk, dan kabar baru.</p><div class="field"><label for="updateTitle">Judul postingan</label><input id="updateTitle" maxlength="140" placeholder="Contoh: New Arrival — Signature Edition"></div><div class="field"><label for="updateEditor">Deskripsi / informasi</label><textarea id="updateEditor" maxlength="2000" placeholder="Tulis konten untuk pengunjung..."></textarea></div><div class="field"><label for="updateImage">Foto INFO (rasio 4:5)</label><input id="updateImage" type="file" accept="image/jpeg,image/png,image/webp"><img class="preview wide" id="updatePreview" alt="Preview foto INFO 4:5" hidden><p class="hint">Gunakan foto portrait 4:5, contoh 1080 × 1350 px. Foto lain akan menyesuaikan bingkai 4:5 saat ditampilkan.</p></div><div class="info-contact-choice"><label for="updateContactEnabled"><input id="updateContactEnabled" type="checkbox" checked><span><b>Tambahkan tombol “Hubungi EVORA untuk info lebih lanjut”</b><small>Tombol mengarahkan pembaca ke WhatsApp EVORA dengan pesan yang menyebut judul INFO. Bisa dinyalakan atau dimatikan untuk setiap postingan.</small></span></label><p class="hint">Sebelum mengaktifkan, isi WhatsApp/telepon di Pengaturan. Untuk pertama kali, jalankan SQL perbaikan INFO yang tersedia dalam paket V4.8.</p></div><p class="hint">Tanggal posting terisi otomatis saat diterbitkan.</p><div class="admin-actions"><button class="btn" id="saveUpdate">Posting info</button><button class="secondary" id="cancelUpdateEdit" hidden>Batal edit</button></div></div><div class="admin-surface"><h3>Daftar postingan</h3><p class="surface-intro">Konten terbaru langsung tampil di beranda toko.</p><div class="admin-list" id="adminUpdateList"></div></div></div></section>
+
+      <section class="admin-section" id="tabComments" hidden>
+        <div class="admin-surface"><h3>Moderasi komentar pelanggan</h3><p class="surface-intro">Komentar baru tidak langsung muncul di beranda. Setujui komentar yang sesuai, sembunyikan bila perlu, atau hapus spam. Seluruh keputusan disimpan di Supabase.</p><div class="comments-admin-tools"><span id="adminCommentsCount" class="comments-admin-count">Memuat komentar…</span><button type="button" class="secondary" id="reloadAdminComments">↻ Segarkan</button></div><div id="adminCommentsList" class="comments-admin-list"><p class="hint">Membuka daftar komentar…</p></div></div>
+      </section>
       <section class="admin-section" id="tabSettings" hidden><div class="admin-surface"><h3>Identitas & kanal penjualan</h3><p class="surface-intro">Atur informasi yang tampil untuk pengunjung. Kosongkan tautan yang tidak digunakan.</p><div class="field"><label for="sTagline">Tagline</label><input id="sTagline" maxlength="80" placeholder="Scent of Confidence"></div><div class="fields-2"><div class="field"><label for="sWa">WhatsApp</label><input id="sWa" inputmode="url" placeholder="https://wa.me/62812..."></div><div class="field"><label for="sIg">Instagram</label><input id="sIg" inputmode="url" placeholder="https://instagram.com/..."></div><div class="field"><label for="sTh">Threads</label><input id="sTh" inputmode="url" placeholder="https://threads.net/@..."></div><div class="field"><label for="sTt">TikTok</label><input id="sTt" inputmode="url" placeholder="https://tiktok.com/@..."></div><div class="field"><label for="sMp">Marketplace</label><input id="sMp" inputmode="url" placeholder="https://shopee.co.id/..."></div><div class="field"><label for="sEmail">Email kontak</label><input id="sEmail" type="email" placeholder="halo@evora.id"></div><div class="field"><label for="sPhone">Nomor telepon</label><input id="sPhone" placeholder="0812-xxxx-xxxx"></div></div><div class="admin-actions"><button class="btn" id="saveSettings">Simpan pengaturan</button></div></div>
 <div class="security-panel" aria-labelledby="securityTitle">
   <h3 id="securityTitle">Keamanan Akun Admin</h3>
@@ -832,7 +907,7 @@ button{line-height:1.1}
   }
   function productCard(p){
     const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
-    return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
+    return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><div class="product-badge-row">${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
   }
   const activeProducts=()=>products.filter(p=>p.is_active!==false);
   function currentFeaturedIds(){
@@ -1036,6 +1111,72 @@ button{line-height:1.1}
   cat.addEventListener('scroll',()=>requestAnimationFrame(updateDots),{passive:true});
   cat.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
 
+
+  /* ---------- Komentar pengunjung: publik + moderasi admin ---------- */
+  const COMMENT_COOLDOWN_MS=60000;
+  const COMMENT_COOLDOWN_KEY='evora_last_comment_at';
+  const commentStatus=(message,isError=false)=>{
+    const el=$('commentStatus');el.textContent=message;el.classList.toggle('error',!!isError);
+  };
+  async function loadComments(){
+    const el=$('publicComments');
+    const {data,error}=await db.from('site_comments').select('id,name,message,created_at')
+      .eq('status','approved').order('created_at',{ascending:false}).limit(12);
+    if(error){
+      el.innerHTML='<p class="comments-empty">Komentar belum tersedia. Coba lagi setelah pengaturan komentar diaktifkan.</p>';
+      return;
+    }
+    el.innerHTML=data?.length?data.map(c=>`<article class="comment-card"><div class="comment-avatar" aria-hidden="true">${safe(String(c.name||'E').charAt(0).toUpperCase())}</div><div class="comment-content"><div class="comment-byline"><strong>${safe(c.name)}</strong><time datetime="${safe(c.created_at)}">${fmtDate(c.created_at)}</time></div><p>${safe(c.message)}</p></div></article>`).join(''):'<p class="comments-empty">Belum ada komentar yang diterbitkan. Jadilah yang pertama berbagi cerita!</p>';
+  }
+  $('commentForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const name=$('commentName').value.trim().replace(/\s+/g,' ');
+    const message=$('commentMessage').value.trim();
+    if($('commentWebsite').value.trim())return;
+    if(name.length<2||name.length>60||message.length<5||message.length>500){commentStatus('Nama harus 2–60 karakter dan komentar 5–500 karakter.',true);return;}
+    let last=0;
+    try{last=Number(localStorage.getItem(COMMENT_COOLDOWN_KEY)||0)}catch(e){}
+    if(Date.now()-last<COMMENT_COOLDOWN_MS){commentStatus('Kamu baru saja mengirim komentar. Coba lagi sebentar.',true);return;}
+    const btn=$('submitComment');btn.disabled=true;const before=btn.innerHTML;btn.textContent='Mengirim…';commentStatus('');
+    try{
+      const {error}=await db.from('site_comments').insert({name,message});
+      if(error)throw error;
+      try{localStorage.setItem(COMMENT_COOLDOWN_KEY,String(Date.now()))}catch(e){}
+      $('commentForm').reset();
+      commentStatus('Terima kasih! Komentarmu berhasil dikirim dan akan tampil setelah disetujui admin.');
+      if(isAdmin)loadAdminComments();
+    }catch(err){
+      console.warn('Komentar gagal dikirim:',err);
+      commentStatus('Komentar belum berhasil dikirim. Pastikan SQL fitur komentar sudah dijalankan di Supabase, lalu coba lagi.',true);
+    }finally{btn.disabled=false;btn.innerHTML=before;}
+  });
+  let adminComments=[];
+  async function loadAdminComments(){
+    if(!isAdmin)return;
+    const el=$('adminCommentsList');el.innerHTML='<p class="hint">Memuat komentar…</p>';
+    const {data,error}=await db.from('site_comments').select('id,name,message,status,created_at').order('created_at',{ascending:false}).limit(100);
+    if(error){el.innerHTML='<p class="hint">Gagal memuat komentar. Jalankan SQL fitur komentar dan periksa hak akses admin.</p>';$('adminCommentsCount').textContent='Data belum tersedia';return;}
+    adminComments=data||[];
+    const pending=adminComments.filter(c=>c.status==='pending').length;
+    $('adminCommentsCount').textContent=`${pending} menunggu persetujuan · ${adminComments.length} komentar`;
+    el.innerHTML=adminComments.length?adminComments.map(c=>`<article class="comments-admin-item"><div class="comments-admin-item-head"><strong>${safe(c.name)}</strong><span class="comment-state ${c.status==='approved'?'approved':'pending'}">${c.status==='approved'?'Ditampilkan':'Menunggu'}</span></div><small>${fmtDate(c.created_at)}</small><p>${safe(c.message)}</p><div class="comments-admin-actions">${c.status==='pending'?`<button type="button" data-comment-action="approved" data-comment-id="${safe(c.id)}">✓ Setujui</button>`:`<button type="button" data-comment-action="pending" data-comment-id="${safe(c.id)}">Sembunyikan</button>`}<button type="button" class="delete-comment" data-comment-action="delete" data-comment-id="${safe(c.id)}">Hapus</button></div></article>`).join(''):'<p class="hint">Belum ada komentar dari pengunjung.</p>';
+  }
+  $('reloadAdminComments').onclick=loadAdminComments;
+  $('adminCommentsList').addEventListener('click',async e=>{
+    const b=e.target.closest('button[data-comment-action]');if(!b||!isAdmin||b.disabled)return;
+    const id=b.dataset.commentId,action=b.dataset.commentAction;
+    if(!adminComments.some(c=>String(c.id)===String(id)))return;
+    if(action==='delete'&&!confirm('Hapus komentar ini secara permanen?'))return;
+    b.disabled=true;
+    try{
+      const query=db.from('site_comments');
+      const {error}=action==='delete'?await query.delete().eq('id',id):await query.update({status:action}).eq('id',id);
+      if(error)throw error;
+      toast(action==='approved'?'Komentar ditampilkan.':action==='pending'?'Komentar disembunyikan.':'Komentar dihapus.');
+      await Promise.all([loadAdminComments(),loadComments()]);
+    }catch(err){report(err);b.disabled=false;}
+  });
+
   /* ---------- Navigasi full-page admin ---------- */
   const open=id=>$(id).classList.add('open');
   const close=id=>$(id).classList.remove('open');
@@ -1051,7 +1192,7 @@ button{line-height:1.1}
     }
   });
   const adminTabMap={
-    overview:'tabStats',home:'tabHome',featured:'tabFeatured',products:'tabProducts',posts:'tabPosts',settings:'tabSettings'
+    overview:'tabStats',home:'tabHome',featured:'tabFeatured',products:'tabProducts',posts:'tabPosts',comments:'tabComments',settings:'tabSettings'
   };
   const tabNames={
     tabStats:['Ringkasan bisnis','Pantau performa toko dan aktivitas pengunjung.'],
@@ -1059,11 +1200,12 @@ button{line-height:1.1}
     tabFeatured:['Produk pilihan beranda','Pilih maksimal lima parfum unggulan dan atur urutannya.'],
     tabProducts:['Kelola produk','Atur katalog, foto, harga dan ketersediaan parfum.'],
     tabPosts:['Info & promo','Publikasikan kabar terbaru untuk pelanggan.'],
+    tabComments:['Komentar pelanggan','Tinjau dan kelola komentar yang ditampilkan di beranda.'],
     tabSettings:['Pengaturan website','Perbarui profil, kontak dan tautan toko.']
   };
   function selectAdminTab(tab){
     if(!Object.values(adminTabMap).includes(tab))tab='tabStats';
-    ['tabStats','tabHome','tabFeatured','tabProducts','tabPosts','tabSettings'].forEach(id=>$(id).hidden=id!==tab);
+    ['tabStats','tabHome','tabFeatured','tabProducts','tabPosts','tabComments','tabSettings'].forEach(id=>$(id).hidden=id!==tab);
     document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{
       const active=b.dataset.tab===tab;
       b.classList.toggle('on',active);
@@ -1075,6 +1217,7 @@ button{line-height:1.1}
     if(tab==='tabStats')loadStats();
     if(tab==='tabHome')fillHome();
     if(tab==='tabFeatured')renderFeaturedEditor();
+    if(tab==='tabComments')loadAdminComments();
     if(tab==='tabSettings')fillSettings();
   }
   function navigateAdmin(tab='overview'){
@@ -1106,7 +1249,7 @@ button{line-height:1.1}
     }else if(isFullCatalog){
       renderFullCatalog();
       window.scrollTo(0,0);
-    }else if(location.hash==='#katalog'||location.hash==='#informasi'){
+    }else if(location.hash==='#katalog'||location.hash==='#informasi'||location.hash==='#komentar'){
       requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView({behavior:'smooth'}));
     }else{window.scrollTo(0,0);}
   }
@@ -1594,6 +1737,7 @@ button{line-height:1.1}
     }catch(err){console.warn('Session check:',err);}
     renderRoute();
     try{await loadPublic();}catch(err){console.error(err);}
+    try{await loadComments();}catch(err){console.warn('Komentar:',err);}
     if(!location.hash.startsWith('#admin')&&!isAdmin)track('visit','');
   })();
 
