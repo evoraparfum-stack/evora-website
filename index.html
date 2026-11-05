@@ -9,7 +9,7 @@
 <meta property="og:description" content="A scent that tells your story.">
 <title>EVORA — Signature Scent</title>
 <!-- V5.3.5: titik Explore More berkedip lembut -->
-<!-- EVORA V5.3.8: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
+<!-- EVORA V5.3.10: Tipografi baru dan Picks rapi, seluruh fitur sebelumnya dipertahankan -->
 <style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{--ink:#262921;--muted:#73746b;--stone:#ebe9e1;--cream:#f8f7f2;--white:#fff;--forest:#273e32;--sage:#d9e4d6;--gold:#ba9c6b;--line:#e4e5dc;--danger:#a3453f;--heading:'Fraunces',Georgia,serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--ui:'Plus Jakarta Sans',system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}img{max-width:100%}[hidden]{display:none!important}::selection{background:#c0d1b9;color:#243329}
@@ -560,14 +560,24 @@ button{line-height:1.1}
 }
 
 
-/* EVORA V5.3.7 — label berada di bawah foto, bukan menutupi produk */
+/* EVORA V5.3.10 — badge promo berada di dalam area foto, menempel di bagian bawah */
 .product .ph{margin-bottom:8px}
-.product .product-badge-row{display:flex;align-items:center;min-height:32px;padding:0 13px;margin:0 0 6px}
-.product .product-badge-row .tag{position:static;display:inline-flex;align-items:center;justify-content:center;max-width:100%;white-space:normal;line-height:1.2;text-align:center;min-height:24px;padding:5px 11px;font:800 9px/1.2 var(--ui);letter-spacing:.07em;box-shadow:none}
-#catalogList.catalog .product-badge-row{padding:0 15px}
-.full-grid .product .product-badge-row{padding:0;margin-bottom:7px}
+.product .product-badge-row{
+  position:absolute;left:12px;right:12px;bottom:12px;
+  display:flex;align-items:center;justify-content:flex-start;
+  min-height:0;padding:0;margin:0;z-index:3;pointer-events:none;
+}
+.product .product-badge-row .tag{
+  position:static;display:inline-flex;align-items:center;justify-content:center;
+  max-width:100%;white-space:normal;line-height:1.2;text-align:center;
+  min-height:24px;padding:6px 12px;font:800 9px/1.2 var(--ui);
+  letter-spacing:.07em;box-shadow:0 5px 14px #1f30251f;
+}
 .full-grid .product .ph{margin-bottom:5px}
-@media(max-width:650px){.full-grid .product .product-badge-row{min-height:29px}.full-grid .product .tag{font-size:8px;padding:5px 9px}}
+@media(max-width:650px){
+  .product .product-badge-row{left:9px;right:9px;bottom:9px}
+  .full-grid .product .tag{font-size:8px;padding:5px 9px;min-height:22px}
+}
 /* EVORA — komentar pelanggan tepat sebelum footer beranda */
 .comments-section{background:linear-gradient(155deg,#f8f9f4,#ecf2e9 70%,#f8f9f4);border-top:1px solid #e3e9df;padding:78px 26px 87px}
 .comments-inner{max-width:1180px;margin:0 auto}
@@ -654,7 +664,7 @@ button{line-height:1.1}
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">Kabar EVORA</span><h2>INFO</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
 
-  <!-- EVORA V5.3.9: 4 komentar terlihat penuh + intipan komentar ke-5, sisanya scroll -->
+  <!-- EVORA V5.3.10: 4 komentar terlihat penuh + intipan komentar ke-5, sisanya scroll -->
   <!-- Komentar pengunjung: bagian terakhir beranda sebelum footer -->
   <section class="comments-section" id="komentar" aria-labelledby="commentsTitle">
     <div class="comments-inner">
@@ -909,7 +919,7 @@ button{line-height:1.1}
   }
   function productCard(p){
     const img=p.image_url?`<img class="product-photo" src="${safe(p.image_url)}" alt="${safe(p.name)}" loading="lazy">`:'<div class="bottle">EVORA</div>';
-    return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><div class="product-badge-row">${p.badge?`<span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span>`:''}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
+    return `<article class="product"><div class="ph" data-detail="${safe(p.id)}">${img}${p.badge?`<div class="product-badge-row"><span class="tag ${tagClass(p.badge)}">${safe(p.badge)}</span></div>`:''}${inStock(p)?'':'<div class="sold">Stok Habis</div>'}</div><h3 data-detail="${safe(p.id)}">${safe(p.name)}</h3><p class="desc">${safe(p.description)}</p><div class="price">${priceHtml(p)}</div><div class="card-actions"><button class="btn ghost" data-detail="${safe(p.id)}">Detail</button>${buyHtml(p)}</div></article>`;
   }
   const activeProducts=()=>products.filter(p=>p.is_active!==false);
   function currentFeaturedIds(){
