@@ -654,7 +654,7 @@ button{line-height:1.1}
   </section>
   <div class="updates-wrap" id="informasi"><section class="updates"><div class="section-top"><span class="section-overline">Kabar EVORA</span><h2>INFO</h2><p class="hint" style="margin-top:12px">Inspirasi, informasi, promo, dan kabar terbaru dari EVORA.</p></div><div class="feed" id="updatePosts"></div></section></div>
 
-  <!-- EVORA V5.3.8: maksimal 5 komentar terlihat, sisanya scroll di panel -->
+  <!-- EVORA V5.3.9: 4 komentar terlihat penuh + intipan komentar ke-5, sisanya scroll -->
   <!-- Komentar pengunjung: bagian terakhir beranda sebelum footer -->
   <section class="comments-section" id="komentar" aria-labelledby="commentsTitle">
     <div class="comments-inner">
@@ -1125,12 +1125,18 @@ button{line-height:1.1}
     if(!el)return;
     const cards=Array.from(el.querySelectorAll('.comment-card'));
     const hint=$('publicCommentsHint');
-    if(hint)hint.hidden=cards.length<=5;
-    if(cards.length>5){
-      const visible=cards.slice(0,5);
+    // Tampilkan 4 komentar penuh, lalu intip sedikit bagian atas komentar ke-5.
+    if(hint)hint.hidden=cards.length<=4;
+    if(cards.length>4){
+      const firstFour=cards.slice(0,4);
+      const fifth=cards[4];
       const styles=getComputedStyle(el);
       const gap=parseFloat(styles.rowGap||styles.gap||'12')||12;
-      const height=visible.reduce((sum,card)=>sum+card.getBoundingClientRect().height,0)+gap*(visible.length-1);
+      const fullHeight=firstFour.reduce((sum,card)=>sum+card.getBoundingClientRect().height,0);
+      const fifthHeight=fifth?fifth.getBoundingClientRect().height:0;
+      // Peek sekitar 38% komentar ke-5, dibatasi agar hanya terlihat sedikit.
+      const peek=Math.min(52,Math.max(34,Math.round(fifthHeight*0.38)));
+      const height=fullHeight+gap*4+peek;
       el.style.maxHeight=Math.ceil(height)+'px';
       el.style.overflowY='auto';
     }else{
